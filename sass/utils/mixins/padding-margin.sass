@@ -1,0 +1,44 @@
+=generatePaddingClasses($prop)
+  @for $i from 0 through $prop
+    .pad
+      &-#{$i}
+        padding: $i * 0.25rem
+
+        &-vert,
+        &-top
+          padding-top: $i * 0.25rem
+
+        &-vert,
+        &-bottom
+          padding-bottom: $i * 0.25rem
+
+        &-sides,
+        &-left
+          padding-left: $i * 0.25rem
+
+        &-sides,
+        &-right
+          padding-right: $i * 0.25rem
+
+
+=generateMarginClasses($prop)
+  @for $i from 0 through $prop
+    .marg
+      &-#{$i}
+        margin: $i * 0.25rem
+
+        &-vert,
+        &-top
+          margin-top: $i * 0.25rem
+
+        &-vert,
+        &-bottom
+          margin-bottom: $i * 0.25rem
+
+        &-sides,
+        &-left
+          margin-left: $i * 0.25rem
+
+        &-sides,
+        &-right
+          margin-right: $i * 0.25rem
