@@ -53,6 +53,7 @@ export const goOnline = () => {
   window.web3.net.getListening((error, result) => {
     if (error) {
       deferred.reject(error);
+      return;
     }
 
     deferred.resolve(result);
