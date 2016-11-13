@@ -23,8 +23,9 @@ const store = createStore(
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
+      <Route path="/login" component={Login} />
       <Route path="/" component={App}>
-        <Route path="login" component={Login} />
+        <IndexRedirect to="inbox" />
         <Route path="inbox" component={Inbox} />
       </Route>
     </Router>
