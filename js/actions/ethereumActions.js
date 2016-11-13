@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import ActionTypes from './actionTypes';
+import ActionTypes from './actionTypes/ethereumActionTypes';
 
 export const goOnlineStart = createAction(
   ActionTypes.ETHEREUM_GO_ONLINE_START

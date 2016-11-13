@@ -1,4 +1,4 @@
-import ActionTypes from '../actions/actionTypes';
+import ActionTypes from '../actions/actionTypes/ethereumActionTypes';
 
 const connectedToEthereum = (
   state = false,

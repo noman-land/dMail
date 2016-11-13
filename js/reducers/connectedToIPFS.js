@@ -1,4 +1,4 @@
-import ActionTypes from '../actions/actionTypes';
+import ActionTypes from '../actions/actionTypes/ipfsActionTypes';
 
 const connectedToIPFS = (
   state = false,
