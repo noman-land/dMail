@@ -46,6 +46,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "web3": "^0.17.0-beta",
     "webpack": "^1.13.3",
     "webpack-babel-jest": "^1.0.4",
     "webpack-dev-server": "^1.16.2"
