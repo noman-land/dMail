@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import ActionTypes from './ActionTypes';
+import ActionTypes from './actionTypes';
 
 export const fetchMessagesError = createAction(
   ActionTypes.MESSAGES_FETCH_ERROR,
