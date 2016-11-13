@@ -65,3 +65,6 @@ export const getJson = (ipfsHash) => {
   }, deferred.reject);
   return deferred.promise;
 };
+
+window.addJson = addJson;
+window.getJson = getJson;
