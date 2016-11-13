@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 
 import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
 
-import Header from './Header';
+import Header from './header/Header';
 import Body from './Body';
 import Footer from './Footer';
 
