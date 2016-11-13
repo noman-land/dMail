@@ -1,16 +1,40 @@
 import IPFS from 'ipfs';
 import Q from 'q';
-
-const ipfs = new IPFS();
+window.ipfs = new IPFS('ipfs'); // this is the name of the indexDB database
 
 export const goOnline = () => {
   const deferred = Q.defer();
+  ipfs.init({ emptyRepo: true, bits: 4096 }, error => {
+    if (error) {
+      if (~error.toString().indexOf('repo already exists')) {
+        ipfs.goOnline(error => {
+          if (error) {
+            deferred.reject(error);
+            return;
+          }
 
-  ipfs.goOnline(err => {
-    if (err) {
-      deferred.reject(err);
+          deferred.resolve();
+        });
+        return;
+      }
+      deferred.reject(error);
     }
-    deferred.resolve(ipfs);
+
+    ipfs.load((error) => {
+      if (error) {
+        deferred.reject(error);
+        return;
+      }
+
+      ipfs.goOnline(error => {
+        if (error) {
+          deferred.reject(error);
+          return;
+        }
+
+        deferred.resolve();
+      });
+    });
   });
 
   return deferred.promise;

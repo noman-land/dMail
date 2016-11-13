@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
+import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
 
 import Header from './header/Header';
 import Body from './Body';
@@ -12,6 +13,7 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     props.ethereumGoOnline();
+    props.ipfsGoOnline();
   }
 
   render() {
@@ -29,6 +31,7 @@ class App extends Component {
 
 App.propTypes = {
   ethereumGoOnline: PropTypes.func.isRequired,
+  ipfsGoOnline: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired,
 };
 
@@ -38,6 +41,9 @@ export default withRouter(connect(
     return {
       ethereumGoOnline: () => {
         dispatch(ethereumGoOnline());
+      },
+      ipfsGoOnline: () => {
+        dispatch(ipfsGoOnline());
       }
     }
   }
