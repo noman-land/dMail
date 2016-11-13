@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class EthereumSettings extends Component {
+class EthereumSettings extends Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -17,3 +18,11 @@ export default class EthereumSettings extends Component {
 EthereumSettings.propTypes = {
   web3: PropTypes.object.isRequired
 };
+
+export default connect(
+  () => {
+    return {
+      web3: window.web3,
+    }
+  }
+)(EthereumSettings);
