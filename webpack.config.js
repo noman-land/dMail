@@ -12,9 +12,13 @@ var config = {
   module: {
     loaders: [
       {
-        test: /js/,
+        test: /\.js$/,
         exclude: /node_modules/,
         loaders: ['react-hot', 'babel']
+      },
+      {
+        test: /\.json$/,
+        loaders: ['json']
       },
       {
         test: /\.sass$/,
