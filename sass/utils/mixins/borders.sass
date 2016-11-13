@@ -4,20 +4,20 @@
       &-#{$i}
         border-width: $i * 1px
 
-        &-vert,
-        &-top
+        &-y,
+        &-t
           border-top-width: $i * 1px
 
-        &-vert,
-        &-bottom
+        &-y,
+        &-b
           border-bottom-width: $i * 1px
 
-        &-sides,
-        &-left
+        &-x,
+        &-l
           border-left-width: $i * 1px
 
-        &-sides,
-        &-right
+        &-x,
+        &-r
           border-right-width: $i * 1px
 
 =generateBorderRadiusClasses($prop)
@@ -26,16 +26,16 @@
       &-#{$i}
         border-radius: $i * 1px
 
-        &-top
-          &-left
+        &-t
+          &-l
             border-top-left-radius: $i * 1px
 
-          &-right
+          &-r
             border-top-right-radius: $i * 1px
 
-        &-bottom
-          &-left
+        &-b
+          &-l
             border-bottom-left-radius: $i * 1px
 
-          &-right
+          &-r
             border-bottom-right-radius: $i * 1px

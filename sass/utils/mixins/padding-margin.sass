@@ -1,44 +1,44 @@
 =generatePaddingClasses($prop)
   @for $i from 0 through $prop
-    .pad
+    .p
       &-#{$i}
         padding: $i * 0.25rem
 
-        &-vert,
-        &-top
+        &-y,
+        &-t
           padding-top: $i * 0.25rem
 
-        &-vert,
-        &-bottom
+        &-y,
+        &-b
           padding-bottom: $i * 0.25rem
 
-        &-sides,
-        &-left
+        &-x,
+        &-l
           padding-left: $i * 0.25rem
 
-        &-sides,
-        &-right
+        &-x,
+        &-r
           padding-right: $i * 0.25rem
 
 
 =generateMarginClasses($prop)
   @for $i from 0 through $prop
-    .marg
+    .m
       &-#{$i}
         margin: $i * 0.25rem
 
-        &-vert,
-        &-top
+        &-y,
+        &-t
           margin-top: $i * 0.25rem
 
-        &-vert,
-        &-bottom
+        &-y,
+        &-b
           margin-bottom: $i * 0.25rem
 
-        &-sides,
-        &-left
+        &-x,
+        &-l
           margin-left: $i * 0.25rem
 
-        &-sides,
-        &-right
+        &-x,
+        &-r
           margin-right: $i * 0.25rem
