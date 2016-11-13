@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { withRouter } from 'react-router';
 
 import Header from './Header';
 import Body from './Body';
@@ -18,4 +19,8 @@ class App extends Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  router: PropTypes.object.isRequired,
+};
+
+export default withRouter(App);
