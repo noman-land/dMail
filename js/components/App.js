@@ -6,6 +6,10 @@ import Body from './Body';
 import Footer from './Footer';
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   render() {
     return (
       <div className="app flex-column">
