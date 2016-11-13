@@ -7,7 +7,7 @@ class Header extends Component {
   }
 
   render() {
-    const { messages } = this.props;
+    const { messages, connectedToEthereum, connectedToIPFS } = this.props;
     return (
       <div className="header flex p-5">
         dMail
@@ -20,5 +20,9 @@ class Header extends Component {
 }
 
 export default connect(
-  state => ({messages: state.messages})
+  state => ({
+    messages: state.messages,
+    connectedToEthereum: state.connectedToEthereum,
+    connectedToIPFS: state.connectedToIPFS,
+  })
 )(Header);
