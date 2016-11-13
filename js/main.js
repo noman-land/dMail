@@ -13,7 +13,8 @@ import rootReducer from './reducers/rootReducer';
 // Components
 import App from './components/App';
 import Inbox from './components/inbox/Inbox';
-import Login from './components/Login';
+import IPFSSettings from './components/IPFSSettings';
+import EthereumSettings from './components/EthereumSettings';
 
 const store = createStore(
   rootReducer,
@@ -23,9 +24,10 @@ const store = createStore(
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/login" component={Login} />
       <Route path="/" component={App}>
         <IndexRedirect to="inbox" />
+        <Route path="ethereum/settings" component={EthereumSettings} />
+        <Route path="ipfs/settings" component={IPFSSettings} />
         <Route path="inbox" component={Inbox} />
       </Route>
     </Router>
