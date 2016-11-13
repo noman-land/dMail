@@ -103,8 +103,8 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --d --hot --inline --progress --port 6969",
     "build": "npm run lint && webpack --config webpack.config.prod.js -p",
+    "start": "webpack-dev-server --d --hot --inline --progress --port 5579",
     "deploy": "",
     "lint": "eslint js"
   }
