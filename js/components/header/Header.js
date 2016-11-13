@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import OnlineBadge from './OnlineBadge';
+import EthereumOnlineBadge from './EthereumOnlineBadge';
+import IpfsOnlineBadge from './IpfsOnlineBadge';
 
 class Header extends Component {
   constructor(props, context) {
@@ -9,7 +10,7 @@ class Header extends Component {
   }
 
   render() {
-    const { messages, connectedToEthereum, connectedToIPFS } = this.props;
+    const { messages } = this.props;
     return (
       <div className="header flex justify-space-between p-5">
         <div className="flex align-items-center">
@@ -21,12 +22,8 @@ class Header extends Component {
           </span>
         </div>
         <div className="flex align-items-center">
-          <OnlineBadge isOnline={connectedToEthereum}>
-            ETH
-          </OnlineBadge>
-          <OnlineBadge isOnline={connectedToIPFS}>
-            IPFS
-          </OnlineBadge>
+          <EthereumOnlineBadge />
+          <IpfsOnlineBadge />
         </div>
       </div>
     );
@@ -34,9 +31,5 @@ class Header extends Component {
 }
 
 export default connect(
-  state => ({
-    messages: state.messages,
-    connectedToEthereum: state.connectedToEthereum,
-    connectedToIPFS: state.connectedToIPFS,
-  })
+  state => ({messages: state.messages})
 )(Header);
