@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+
+import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
 
 import Header from './Header';
 import Body from './Body';
@@ -8,6 +11,7 @@ import Footer from './Footer';
 class App extends Component {
   constructor(props, context) {
     super(props, context);
+    props.ethereumGoOnline();
   }
 
   render() {
@@ -24,7 +28,17 @@ class App extends Component {
 }
 
 App.propTypes = {
+  ethereumGoOnline: PropTypes.func.isRequired,
   router: PropTypes.object.isRequired,
 };
 
-export default withRouter(App);
+export default withRouter(connect(
+  null,
+  dispatch => {
+    return {
+      ethereumGoOnline: () => {
+        dispatch(ethereumGoOnline());
+      }
+    }
+  }
+)(App));
