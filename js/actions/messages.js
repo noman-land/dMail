@@ -13,3 +13,10 @@ export const fetchMessagesSuccess = createAction(
   messages => ({messages})
 );
 
+export const clearActiveMessage = createAction(
+  ActionTypes.ACTIVE_MESSAGE_CLEAR
+);
+export const setActiveMessage = createAction(
+  ActionTypes.ACTIVE_MESSAGE_SET,
+  message => ({message})
+);
