@@ -1,4 +1,4 @@
-import ActionTypes from '../actions/actionTypes';
+import ActionTypes from '../actions/actionTypes/messagesActionTypes';
 
 const messages = (
   state = [{

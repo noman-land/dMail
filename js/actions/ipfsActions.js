@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import ActionTypes from './actionTypes';
+import ActionTypes from './actionTypes/ipfsActionTypes';
 
 export const goOnlineStart = createAction(
   ActionTypes.IPFS_GO_ONLINE_START
