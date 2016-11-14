@@ -130,10 +130,10 @@ export default connect(
     mailboxesLength: state.mailboxes.length,
   }),
   dispatch => ({
-    ethereumGetAccounts: () => {
+    ethereumGetAccounts() {
       dispatch(ethereumGetAccounts());
     },
-    setActiveAccount: (account) => {
+    setActiveAccount(account) {
       dispatch(setActiveAccount(account));
     }
   })
