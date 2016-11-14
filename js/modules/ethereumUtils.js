@@ -62,6 +62,18 @@ export const goOnline = () => {
   return deferred.promise;
 };
 
+export const getAccounts = () => {
+  const deferred = Q.defer();
+  web3.eth.getAccounts((error, accounts) => {
+    if (error) {
+      deferred.reject(error);
+      return;
+    }
+    deferred.resolve(accounts);
+  });
+  return deferred.promise;
+};
+
 export const lockAccount = () => {
   web3.personal.lockAccount(activeAccount);
 };
