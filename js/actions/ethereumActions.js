@@ -20,10 +20,15 @@ export const fetchAccountsError = createAction(
 );
 
 export const fetchAccountsStart = createAction(
-  ActionTypes.ETHEREUM_FETCH_ACCOUNTS_START
+  ActionTypes.ETHEREUM_FETCH_ACCOUNTS_START,
 );
 
 export const fetchAccountsSuccess = createAction(
   ActionTypes.ETHEREUM_FETCH_ACCOUNTS_SUCCESS,
   accounts => ({accounts})
+);
+
+export const setActiveAccount = createAction(
+  ActionTypes.ETHEREUM_SET_ACTIVE_ACCOUNT,
+  account => ({account})
 );
