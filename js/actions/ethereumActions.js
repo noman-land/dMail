@@ -2,7 +2,8 @@ import { createAction } from 'redux-actions';
 import ActionTypes from './actionTypes/ethereumActionTypes';
 
 export const goOnlineError = createAction(
-  ActionTypes.ETHEREUM_GO_ONLINE_ERROR
+  ActionTypes.ETHEREUM_GO_ONLINE_ERROR,
+  error => ({error})
 );
 
 export const goOnlineStart = createAction(
@@ -10,11 +11,12 @@ export const goOnlineStart = createAction(
 );
 
 export const goOnlineSuccess = createAction(
-  ActionTypes.ETHEREUM_GO_ONLINE_SUCCESS
+  ActionTypes.ETHEREUM_GO_ONLINE_SUCCESS,
 );
 
 export const fetchAccountsError = createAction(
-  ActionTypes.ETHEREUM_FETCH_ACCOUNTS_ERROR
+  ActionTypes.ETHEREUM_FETCH_ACCOUNTS_ERROR,
+  error => ({error})
 );
 
 export const fetchAccountsStart = createAction(
@@ -22,5 +24,6 @@ export const fetchAccountsStart = createAction(
 );
 
 export const fetchAccountsSuccess = createAction(
-  ActionTypes.ETHEREUM_FETCH_ACCOUNTS_SUCCESS
+  ActionTypes.ETHEREUM_FETCH_ACCOUNTS_SUCCESS,
+  accounts => ({accounts})
 );
