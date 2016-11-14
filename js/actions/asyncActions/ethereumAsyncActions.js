@@ -19,6 +19,7 @@ export const ethereumGoOnline = () => {
     return goOnline().then(
       () => {
         dispatch(goOnlineSuccess());
+        dispatch(ethereumGetAccounts());
       },
       error => {
         dispatch(goOnlineError(error));
