@@ -1,9 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
+import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
+
 class EthereumSettings extends Component {
   constructor(props, context) {
     super(props, context);
+    props.ethereumGetAccounts();
   }
 
   render() {
@@ -67,10 +70,16 @@ class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string),
+  ethereumGetAccounts: PropTypes.func.isRequired,
 };
 
 export default connect(
   state => ({
     accounts: state.ethereumAccounts,
+  }),
+  dispatch => ({
+    ethereumGetAccounts: () => {
+      dispatch(ethereumGetAccounts());
+    }
   })
 )(EthereumSettings);
