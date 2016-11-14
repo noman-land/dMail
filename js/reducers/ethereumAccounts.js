@@ -1,7 +1,7 @@
 import ActionTypes from '../actions/actionTypes/ethereumActionTypes';
 
 const ethereumAccounts = (
-  state = null,
+  state = [],
   action
 ) => {
   switch (action.type) {
