@@ -7,7 +7,7 @@ export const goOnlineError = createAction(
 );
 
 export const goOnlineStart = createAction(
-  ActionTypes.ETHEREUM_GO_ONLINE_START
+  ActionTypes.ETHEREUM_GO_ONLINE_START,
 );
 
 export const goOnlineSuccess = createAction(
