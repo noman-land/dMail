@@ -27,17 +27,29 @@ class EthereumSettings extends Component {
                 <h4 className="m-2-b">
                   You have {accounts.length} Ethereum addresses
                 </h4>
-                <p>
-                  Which one would you like to use?
-                </p>
-                {accounts.length && (
-                  <select>
-                    {accounts.map(account => (
-                      <option key={account} value={account}>
-                        {account}
-                      </option>
-                    ))}
-                  </select>
+
+                {accounts.length ? (
+                  <div>
+                    <p className="m-1-b">
+                      Which one would you like to use?
+                    </p>
+                    <select>
+                      {accounts.map(account => (
+                        <option key={account} value={account}>
+                          {account}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <div>
+                    <p className="m-5-b">
+                      Would you like to create one now?
+                    </p>
+                    <a className="button">
+                      Create Ethereum wallet
+                    </a>
+                  </div>
                 )}
               </div>
               <hr className="m-10-y" />
