@@ -10,26 +10,48 @@ class EthereumSettings extends Component {
     const { accounts } = this.props;
 
     return (
-      <div className="flex-column align-content-stretch p-5">
-        <h1>
+      <div className="flex-column flex-grow-1 p-5">
+        <h1 className="h2 text-center m-10-b">
           Ethereum Settings!
         </h1>
-        <ul className="list-style-none">
-          <li>
-            <h3>
-              You have {accounts.length} Ethereum addresses
-            </h3>
-            {accounts.length && (
-              <ol>
-                {accounts.map(account => (
-                  <li key={account}>
-                    {account}
-                  </li>
-                ))}
-              </ol>
-            )}
-          </li>
-        </ul>
+        <div className="flex-grow-1">
+          <div className="flex-column align-items-center list-style-none p-0">
+            <div style={{minWidth: 400, maxWidth: 1200}}>
+              <div>
+                <h3 className="m-3-b">
+                  Accounts:
+                </h3>
+                <h4 className="m-2-b">
+                  You have {accounts.length} Ethereum addresses
+                </h4>
+                <p>
+                  Which one would you like to use?
+                </p>
+                {accounts.length && (
+                  <select>
+                    {accounts.map(account => (
+                      <option key={account} value={account}>
+                        {account}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+              <hr className="m-10-y" />
+              <div>
+                <h3 className="m-3-b">
+                  Mailbox:
+                </h3>
+                <h4 className="m-2-b">
+                  You have {accounts.length} mailboxes
+                </h4>
+                <p>
+                  Which one would you like to use?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="flex justify-space-between">
           <a className="button">
             {'<< Prev'}
