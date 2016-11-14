@@ -17,7 +17,12 @@ class EthereumSettings extends Component {
   }
 
   render() {
-    const { accounts, mailboxes = [] } = this.props;
+    const {
+      accounts,
+      accountsLength,
+      mailboxes,
+      mailboxesLength,
+    } = this.props;
 
     return (
       <div className="flex-column flex-grow-1 p-5">
@@ -32,10 +37,10 @@ class EthereumSettings extends Component {
                   Account:
                 </h3>
                 <h4 className="m-2-b">
-                  You have {accounts.length} Ethereum addresses
+                  You have {accountsLength} Ethereum addresses
                 </h4>
 
-                {accounts.length ? (
+                {accountsLength ? (
                   <div>
                     <p className="m-1-b">
                       Which one would you like to use?
@@ -65,10 +70,10 @@ class EthereumSettings extends Component {
                   Mailbox:
                 </h3>
                 <h4 className="m-2-b">
-                  You have {accounts.length} mailboxes
+                  You have {mailboxesLength} mailboxes
                 </h4>
 
-                {mailboxes.length ? (
+                {mailboxesLength ? (
                   <div>
                     <p className="m-1-b">
                       Which one would you like to use?
@@ -109,8 +114,10 @@ class EthereumSettings extends Component {
 }
 
 EthereumSettings.propTypes = {
-  accounts: PropTypes.arrayOf(PropTypes.string),
-  mailboxes: PropTypes.arrayOf(PropTypes.string),
+  accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  accountsLength: PropTypes.number.isRequired,
+  mailboxes: PropTypes.arrayOf(PropTypes.string).isRequired,
+  mailboxesLength: PropTypes.number.isRequired,
   ethereumGetAccounts: PropTypes.func.isRequired,
   setActiveAccount: PropTypes.func.isRequired,
 };
@@ -118,7 +125,9 @@ EthereumSettings.propTypes = {
 export default connect(
   state => ({
     accounts: state.ethereumAccounts,
-    mailboxes: state.dMailboxes
+    accountsLength: state.ethereumAccounts.length,
+    mailboxes: state.mailboxes,
+    mailboxesLength: state.mailboxes.length,
   }),
   dispatch => ({
     ethereumGetAccounts: () => {

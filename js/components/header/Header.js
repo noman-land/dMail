@@ -10,7 +10,7 @@ class Header extends Component {
   }
 
   render() {
-    const { messages } = this.props;
+    const { messagesLength } = this.props;
     return (
       <div className="header">
         <div className="flex align-items-center">
@@ -18,7 +18,7 @@ class Header extends Component {
             dMail
           </span>
           <span className="circle p-3 text-white m-2-l bg-green">
-            {messages.length}
+            {messagesLength}
           </span>
         </div>
         <div className="flex align-items-center">
@@ -30,6 +30,12 @@ class Header extends Component {
   }
 }
 
+Header.propTypes = {
+  messagesLength: PropTypes.number,
+};
+
 export default connect(
-  state => ({messages: state.messages})
+  state => ({
+    messagesLength: state.messages.length
+  })
 )(Header);
