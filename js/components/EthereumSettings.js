@@ -10,7 +10,7 @@ class EthereumSettings extends Component {
   }
 
   render() {
-    const { accounts } = this.props;
+    const { accounts, mailboxes = [] } = this.props;
 
     return (
       <div className="flex-column flex-grow-1 p-5">
@@ -60,9 +60,30 @@ class EthereumSettings extends Component {
                 <h4 className="m-2-b">
                   You have {accounts.length} mailboxes
                 </h4>
-                <p>
-                  Which one would you like to use?
-                </p>
+
+                {mailboxes.length ? (
+                  <div>
+                    <p className="m-1-b">
+                      Which one would you like to use?
+                    </p>
+                    <select>
+                      {mailboxes.map(mailbox => (
+                        <option key={mailbox} value={mailbox}>
+                          {mailbox}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                ) : (
+                  <div>
+                    <p className="m-5-b">
+                      Would you like to deploy one now?
+                    </p>
+                    <a className="button">
+                      Create dMailbox
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -82,12 +103,14 @@ class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string),
+  mailboxes: PropTypes.arrayOf(PropTypes.string),
   ethereumGetAccounts: PropTypes.func.isRequired,
 };
 
 export default connect(
   state => ({
     accounts: state.ethereumAccounts,
+    mailboxes: state.dMailboxes
   }),
   dispatch => ({
     ethereumGetAccounts: () => {
