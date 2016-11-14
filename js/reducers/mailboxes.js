@@ -5,6 +5,11 @@ const mailboxes = (
   action
 ) => {
   switch (action.type) {
+    case ActionTypes.DMAIL_ADD_MAILBOX:
+      return [
+        ...state.mailboxes,
+        action.payload.mailbox
+      ];
     default:
       return state;
   }
