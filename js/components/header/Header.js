@@ -12,7 +12,7 @@ class Header extends Component {
   render() {
     const { messages } = this.props;
     return (
-      <div className="header flex justify-space-between p-5">
+      <div className="header">
         <div className="flex align-items-center">
           <span>
             dMail

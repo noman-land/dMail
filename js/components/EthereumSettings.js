@@ -10,7 +10,7 @@ class EthereumSettings extends Component {
     const { accounts } = this.props;
 
     return (
-      <div className="p-5">
+      <div className="flex-column align-content-stretch p-5">
         <h1>
           Ethereum Settings!
         </h1>
