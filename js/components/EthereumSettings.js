@@ -19,7 +19,7 @@ class EthereumSettings extends Component {
             <div style={{minWidth: 400, maxWidth: 1200}}>
               <div>
                 <h3 className="m-3-b">
-                  Accounts:
+                  Account:
                 </h3>
                 <h4 className="m-2-b">
                   You have {accounts.length} Ethereum addresses
