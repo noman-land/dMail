@@ -35,14 +35,10 @@ class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string),
-  web3: PropTypes.object.isRequired
 };
 
 export default connect(
-  state => {
-    return {
-      accounts: state.ethereumAccounts,
-      web3: window.web3,
-    }
-  }
+  state => ({
+    accounts: state.ethereumAccounts,
+  })
 )(EthereumSettings);
