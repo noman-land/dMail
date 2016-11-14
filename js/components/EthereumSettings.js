@@ -30,6 +30,14 @@ class EthereumSettings extends Component {
             )}
           </li>
         </ul>
+        <div className="flex justify-space-between">
+          <button>
+            {'<< Prev'}
+          </button>
+          <button>
+            {'Next >>'}
+          </button>
+        </div>
       </div>
     );
   }
