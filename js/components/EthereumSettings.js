@@ -2,11 +2,18 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
+import { setActiveAccount } from '../actions/ethereumActions';
 
 class EthereumSettings extends Component {
   constructor(props, context) {
     super(props, context);
     props.ethereumGetAccounts();
+
+    this.handleChangeActiveAccount = this.handleChangeActiveAccount.bind(this);
+  }
+
+  handleChangeActiveAccount({ target: { value } }) {
+    this.props.setActiveAccount(value);
   }
 
   render() {
@@ -33,7 +40,7 @@ class EthereumSettings extends Component {
                     <p className="m-1-b">
                       Which one would you like to use?
                     </p>
-                    <select>
+                    <select onChange={this.handleChangeActiveAccount}>
                       {accounts.map(account => (
                         <option key={account} value={account}>
                           {account}
@@ -105,6 +112,7 @@ EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string),
   mailboxes: PropTypes.arrayOf(PropTypes.string),
   ethereumGetAccounts: PropTypes.func.isRequired,
+  setActiveAccount: PropTypes.func.isRequired,
 };
 
 export default connect(
@@ -115,6 +123,9 @@ export default connect(
   dispatch => ({
     ethereumGetAccounts: () => {
       dispatch(ethereumGetAccounts());
+    },
+    setActiveAccount: (account) => {
+      dispatch(setActiveAccount(account));
     }
   })
 )(EthereumSettings);
