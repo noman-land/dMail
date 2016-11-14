@@ -96,6 +96,15 @@ class EthereumSettings extends Component {
                     </button>
                   </div>
                 )}
+                <p className="m-3-t m-1-b">
+                  Already have your own? Enter its address here:
+                </p>
+                <div className="flex align-items-stretch">
+                  <input type="text" className="flex-grow-1 p-1" />
+                  <button>
+                    Add
+                  </button>
+                </div>
               </div>
             </div>
           </div>
