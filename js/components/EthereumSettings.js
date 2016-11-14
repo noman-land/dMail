@@ -14,20 +14,22 @@ class EthereumSettings extends Component {
         <h1>
           Ethereum Settings!
         </h1>
-        {accounts && (
-          <div>
+        <ul className="list-style-none">
+          <li>
             <h3>
               You have {accounts.length} Ethereum addresses
             </h3>
-            <ul className="list-style-none">
-              {accounts.map(account => (
-                <li key={account}>
-                  {account}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+            {accounts.length && (
+              <ol>
+                {accounts.map(account => (
+                  <li key={account}>
+                    {account}
+                  </li>
+                ))}
+              </ol>
+            )}
+          </li>
+        </ul>
       </div>
     );
   }
