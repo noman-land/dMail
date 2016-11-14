@@ -27,7 +27,7 @@ class EthereumSettings extends Component {
     return (
       <div className="flex-column flex-grow-1 p-5">
         <h1 className="h2 text-center m-10-b">
-          Ethereum Settings!
+          Ethereum Settings
         </h1>
         <div className="flex-grow-1">
           <div className="flex-column align-items-center list-style-none p-0">
