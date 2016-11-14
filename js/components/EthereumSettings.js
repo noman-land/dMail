@@ -88,12 +88,12 @@ class EthereumSettings extends Component {
                   </div>
                 ) : (
                   <div>
-                    <p className="m-5-b">
+                    <p className="m-1-b">
                       Would you like to deploy one now?
                     </p>
-                    <a className="button">
+                    <button className="button">
                       Create dMailbox
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
