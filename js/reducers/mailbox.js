@@ -1,18 +1,15 @@
 import ActionTypes from '../actions/actionTypes/mailboxActionTypes';
 
-const mailboxes = (
-  state = [],
+const mailbox = (
+  state = null,
   action
 ) => {
   switch (action.type) {
     case ActionTypes.MAILBOX_ADD:
-      return [
-        ...state,
-        action.payload.mailbox
-      ];
+      return action.payload.mailbox;
     default:
       return state;
   }
 };
 
-export default mailboxes;
+export default mailbox;

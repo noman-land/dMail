@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
-import { addMailbox } from '../actions/mailboxActions';
+import { setMailbox } from '../actions/mailboxActions';
 import { setActiveAccount } from '../actions/ethereumActions';
 
 class EthereumSettings extends Component {
@@ -20,11 +20,11 @@ class EthereumSettings extends Component {
   }
 
   handleAddMailboxSubmit(e) {
-    const { addMailbox } = this.props;
+    const { setMailbox } = this.props;
     const { userAddedMailbox } = this.state;
     e.preventDefault();
 
-    addMailbox(userAddedMailbox);
+    setMailbox(userAddedMailbox);
   }
 
   handleActiveAccountChange({ target: { value } }) {
@@ -37,12 +37,15 @@ class EthereumSettings extends Component {
     });
   }
 
+  handleCreateMailboxClick() {
+
+  }
+
   render() {
     const {
       accounts,
       accountsLength,
-      mailboxes,
-      mailboxesLength,
+      mailbox,
     } = this.props;
 
     const { userAddedMailbox } = this.state;
@@ -92,30 +95,22 @@ class EthereumSettings extends Component {
                 <h3 className="m-3-b">
                   Mailbox:
                 </h3>
-                <h4 className="m-2-b">
-                  You have {mailboxesLength} mailboxes
-                </h4>
 
-                {mailboxesLength ? (
+                {mailbox ? (
                   <div>
-                    <p className="m-1-b">
-                      Please choose a primary mailbox.
+                    <p className="m-4-b">
+                      You are currently using mailbox:
                     </p>
-                    <ol>
-                      {mailboxes.map(mailbox => (
-                        <li
-                          className="p-1"
-                          key={mailbox}
-                          value={mailbox}
-                        >
-                          {mailbox}
-                        </li>
-                      ))}
-                    </ol>
+                    <p className="h4">
+                      {mailbox}
+                    </p>
                   </div>
                 ) : (
                   <div>
-                    <p className="m-1-b">
+                    <h4 className="m-2-b">
+                      You do not have a mailbox.
+                    </h4>
+                    <p>
                       Would you like to create one now?
                     </p>
                     <button className="button primary">
@@ -123,24 +118,26 @@ class EthereumSettings extends Component {
                     </button>
                   </div>
                 )}
-                <p className="m-3-t">
-                  Already have your own? Enter its address here:
-                </p>
-                <p className="text-small text-grey m-1-b">
-                  Please make sure it adheres to the <a href="#">dMail API spec</a>
-                </p>
-                <div className="flex align-items-stretch">
-                  <form onSubmit={this.handleAddMailboxSubmit} className="flex flex-grow-1">
-                    <input
-                      className="flex-grow-1 p-1"
-                      onChange={this.handleUserAddedMailboxChange}
-                      type="text"
-                      value={userAddedMailbox}
-                    />
-                    <button type="submit">
-                      Add
-                    </button>
-                  </form>
+                <div>
+                  <p>
+                    Already have your own? Enter its address here:
+                  </p>
+                  <p className="text-small text-grey m-1-b">
+                    Please make sure it adheres to the <a href="#">dMail API spec</a>
+                  </p>
+                  <div className="flex align-items-stretch">
+                    <form onSubmit={this.handleAddMailboxSubmit} className="flex flex-grow-1">
+                      <input
+                        className="flex-grow-1 p-1"
+                        onChange={this.handleUserAddedMailboxChange}
+                        type="text"
+                        value={userAddedMailbox}
+                      />
+                      <button type="submit">
+                        Add
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -162,9 +159,8 @@ class EthereumSettings extends Component {
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
   accountsLength: PropTypes.number.isRequired,
-  addMailbox: PropTypes.func.isRequired,
-  mailboxes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  mailboxesLength: PropTypes.number.isRequired,
+  setMailbox: PropTypes.func.isRequired,
+  mailbox: PropTypes.string,
   ethereumGetAccounts: PropTypes.func.isRequired,
   setActiveAccount: PropTypes.func.isRequired,
 };
@@ -173,8 +169,7 @@ export default connect(
   state => ({
     accounts: state.ethereumAccounts,
     accountsLength: state.ethereumAccounts.length,
-    mailboxes: state.mailboxes,
-    mailboxesLength: state.mailboxes.length,
+    mailbox: state.mailbox,
   }),
   dispatch => ({
     ethereumGetAccounts() {
@@ -183,8 +178,8 @@ export default connect(
     setActiveAccount(account) {
       dispatch(setActiveAccount(account));
     },
-    addMailbox(mailbox) {
-      dispatch(addMailbox(mailbox));
+    setMailbox(mailbox) {
+      dispatch(setMailbox(mailbox));
     },
   })
 )(EthereumSettings);
