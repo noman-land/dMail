@@ -78,12 +78,12 @@ class EthereumSettings extends Component {
                   </div>
                 ) : (
                   <div>
-                    <p className="m-5-b">
+                    <p className="m-1-b">
                       Would you like to create one now?
                     </p>
-                    <a className="button">
+                    <button className="button primary">
                       Create Identity
-                    </a>
+                    </button>
                   </div>
                 )}
               </div>
@@ -118,12 +118,12 @@ class EthereumSettings extends Component {
                     <p className="m-1-b">
                       Would you like to create one now?
                     </p>
-                    <button className="button">
+                    <button className="button primary">
                       Create Mailbox
                     </button>
                   </div>
                 )}
-                <p className="m-3-t m-1-b">
+                <p className="m-3-t">
                   Already have your own? Enter its address here:
                 </p>
                 <p className="text-small text-grey m-1-b">

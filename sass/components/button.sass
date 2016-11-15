@@ -1,7 +1,8 @@
 @import ../utils/background
+@import ../utils/borders
 @import ../utils/cursor
 @import ../utils/padding-margin
-@import ../utils/borders
+@import ../utils/text
 
 .button
   @extend .bg-white
@@ -13,3 +14,9 @@
   @extend .p-3-x
   @extend .p-2-y
 
+  &.primary
+    @extend .bg-green-dk
+    @extend .border-1
+    @extend .border-green-dk
+    @extend .border-solid
+    @extend .text-white
