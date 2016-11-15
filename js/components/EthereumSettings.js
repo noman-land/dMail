@@ -113,7 +113,7 @@ class EthereumSettings extends Component {
                     <p>
                       Would you like to create one now?
                     </p>
-                    <button className="button primary">
+                    <button className="button primary m-6-b m-2-t">
                       Create Mailbox
                     </button>
                   </div>
