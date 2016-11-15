@@ -14,12 +14,11 @@ class EthereumSettings extends Component {
 
     props.ethereumGetAccounts();
 
-    this.handleChangeActiveAccount = this.handleChangeActiveAccount.bind(this);
     this.handleAddMailboxSubmit = this.handleAddMailboxSubmit.bind(this);
+    this.handleActiveAccountChange = this.handleActiveAccountChange.bind(this);
     this.handleUserAddedMailboxChange = this.handleUserAddedMailboxChange.bind(this);
   }
 
-  handleChangeActiveAccount({ target: { value } }) {
   handleAddMailboxSubmit(e) {
     const { addMailbox } = this.props;
     const { userAddedMailbox } = this.state;
@@ -28,6 +27,7 @@ class EthereumSettings extends Component {
     addMailbox(userAddedMailbox);
   }
 
+  handleActiveAccountChange({ target: { value } }) {
     this.props.setActiveAccount(value);
   }
 
@@ -68,7 +68,7 @@ class EthereumSettings extends Component {
                     <p className="m-1-b">
                       Which one would you like to use?
                     </p>
-                    <select onChange={this.handleChangeActiveAccount}>
+                    <select onChange={this.handleActiveAccountChange}>
                       {accounts.map(account => (
                         <option key={account} value={account}>
                           {account}
