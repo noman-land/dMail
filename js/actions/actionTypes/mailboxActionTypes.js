@@ -1,0 +1,4 @@
+export default {
+  MAILBOX_ADD: 'MAILBOX_ADD',
+  MAILBOX_SET_ACTIVE: 'MAILBOX_SET_ACTIVE',
+}

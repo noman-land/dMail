@@ -1,11 +1,11 @@
-import ActionTypes from '../actions/actionTypes/ethereumActionTypes';
+import ActionTypes from '../actions/actionTypes/mailboxActionTypes';
 
 const mailboxes = (
   state = [],
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.DMAIL_ADD_MAILBOX:
+    case ActionTypes.MAILBOX_ADD:
       return [
         ...state.mailboxes,
         action.payload.mailbox
