@@ -2,18 +2,39 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
 import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
+import { addMailbox } from '../actions/mailboxActions';
 import { setActiveAccount } from '../actions/ethereumActions';
 
 class EthereumSettings extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      userAddedMailbox: '',
+    };
+
     props.ethereumGetAccounts();
 
     this.handleChangeActiveAccount = this.handleChangeActiveAccount.bind(this);
+    this.handleAddMailboxSubmit = this.handleAddMailboxSubmit.bind(this);
+    this.handleUserAddedMailboxChange = this.handleUserAddedMailboxChange.bind(this);
   }
 
   handleChangeActiveAccount({ target: { value } }) {
+  handleAddMailboxSubmit(e) {
+    const { addMailbox } = this.props;
+    const { userAddedMailbox } = this.state;
+    e.preventDefault();
+
+    addMailbox(userAddedMailbox);
+  }
+
     this.props.setActiveAccount(value);
+  }
+
+  handleUserAddedMailboxChange({ target: { value } }) {
+    this.setState({
+      userAddedMailbox: value
+    });
   }
 
   render() {
@@ -23,6 +44,8 @@ class EthereumSettings extends Component {
       mailboxes,
       mailboxesLength,
     } = this.props;
+
+    const { userAddedMailbox } = this.state;
 
     return (
       <div className="flex-column flex-grow-1 p-5">
@@ -100,10 +123,17 @@ class EthereumSettings extends Component {
                   Already have your own? Enter its address here:
                 </p>
                 <div className="flex align-items-stretch">
-                  <input type="text" className="flex-grow-1 p-1" />
-                  <button>
-                    Add
-                  </button>
+                  <form onSubmit={this.handleAddMailboxSubmit} className="flex flex-grow-1">
+                    <input
+                      className="flex-grow-1 p-1"
+                      onChange={this.handleUserAddedMailboxChange}
+                      type="text"
+                      value={userAddedMailbox}
+                    />
+                    <button type="submit">
+                      Add
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -125,6 +155,7 @@ class EthereumSettings extends Component {
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
   accountsLength: PropTypes.number.isRequired,
+  addMailbox: PropTypes.func.isRequired,
   mailboxes: PropTypes.arrayOf(PropTypes.string).isRequired,
   mailboxesLength: PropTypes.number.isRequired,
   ethereumGetAccounts: PropTypes.func.isRequired,
@@ -144,6 +175,9 @@ export default connect(
     },
     setActiveAccount(account) {
       dispatch(setActiveAccount(account));
-    }
+    },
+    addMailbox(mailbox) {
+      dispatch(addMailbox(mailbox));
+    },
   })
 )(EthereumSettings);
