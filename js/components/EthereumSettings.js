@@ -57,7 +57,7 @@ class EthereumSettings extends Component {
         </h1>
         <div className="flex-grow-1">
           <div className="flex-column align-items-center list-style-none p-0">
-            <div style={{minWidth: 400, maxWidth: 1200}}>
+            <div style={{minWidth: 450, maxWidth: 1200}}>
               <div>
                 <h3 className="m-3-b">
                   Identity:
@@ -98,10 +98,10 @@ class EthereumSettings extends Component {
 
                 {mailbox ? (
                   <div>
-                    <p className="m-4-b">
+                    <p>
                       You are currently using mailbox:
                     </p>
-                    <p className="h4">
+                    <p className="h5 m-4-y">
                       {mailbox}
                     </p>
                   </div>
