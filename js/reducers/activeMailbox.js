@@ -5,7 +5,7 @@ const activeMailbox = (
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.MAILBOX_SET_ACTIVE:
+    case ActionTypes.MAILBOX_SET:
       return action.payload.mailbox;
     default:
       return state;
