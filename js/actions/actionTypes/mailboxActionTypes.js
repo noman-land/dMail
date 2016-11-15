@@ -1,4 +1,3 @@
 export default {
-  MAILBOX_ADD: 'MAILBOX_ADD',
   MAILBOX_SET: 'MAILBOX_SET',
 }
