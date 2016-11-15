@@ -57,16 +57,16 @@ class EthereumSettings extends Component {
             <div style={{minWidth: 400, maxWidth: 1200}}>
               <div>
                 <h3 className="m-3-b">
-                  Account:
+                  Identity:
                 </h3>
                 <h4 className="m-2-b">
-                  You have {accountsLength} Ethereum addresses
+                  You have {accountsLength} identities
                 </h4>
 
                 {accountsLength ? (
                   <div>
                     <p className="m-1-b">
-                      Which one would you like to use?
+                      Please choose a primary identity
                     </p>
                     <select onChange={this.handleActiveAccountChange}>
                       {accounts.map(account => (
@@ -82,7 +82,7 @@ class EthereumSettings extends Component {
                       Would you like to create one now?
                     </p>
                     <a className="button">
-                      Create Ethereum wallet
+                      Create Identity
                     </a>
                   </div>
                 )}
@@ -99,7 +99,7 @@ class EthereumSettings extends Component {
                 {mailboxesLength ? (
                   <div>
                     <p className="m-1-b">
-                      Which one would you like to use?
+                      Please choose a primary mailbox.
                     </p>
                     <select>
                       {mailboxes.map(mailbox => (
@@ -112,15 +112,18 @@ class EthereumSettings extends Component {
                 ) : (
                   <div>
                     <p className="m-1-b">
-                      Would you like to deploy one now?
+                      Would you like to create one now?
                     </p>
                     <button className="button">
-                      Create dMailbox
+                      Create Mailbox
                     </button>
                   </div>
                 )}
                 <p className="m-3-t m-1-b">
                   Already have your own? Enter its address here:
+                </p>
+                <p className="text-small text-grey m-1-b">
+                  Please make sure it adheres to the <a href="#">dMail API spec</a>
                 </p>
                 <div className="flex align-items-stretch">
                   <form onSubmit={this.handleAddMailboxSubmit} className="flex flex-grow-1">
