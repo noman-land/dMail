@@ -101,13 +101,17 @@ class EthereumSettings extends Component {
                     <p className="m-1-b">
                       Please choose a primary mailbox.
                     </p>
-                    <select>
+                    <ol>
                       {mailboxes.map(mailbox => (
-                        <option key={mailbox} value={mailbox}>
+                        <li
+                          className="p-1"
+                          key={mailbox}
+                          value={mailbox}
+                        >
                           {mailbox}
-                        </option>
+                        </li>
                       ))}
-                    </select>
+                    </ol>
                   </div>
                 ) : (
                   <div>
