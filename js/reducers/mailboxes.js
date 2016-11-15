@@ -7,7 +7,7 @@ const mailboxes = (
   switch (action.type) {
     case ActionTypes.MAILBOX_ADD:
       return [
-        ...state.mailboxes,
+        ...state,
         action.payload.mailbox
       ];
     default:
