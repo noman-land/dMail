@@ -37,14 +37,12 @@ App.propTypes = {
 
 export default withRouter(connect(
   null,
-  dispatch => {
-    return {
-      ethereumGoOnline: () => {
-        dispatch(ethereumGoOnline());
-      },
-      ipfsGoOnline: () => {
-        dispatch(ipfsGoOnline());
-      }
+  dispatch => ({
+    ethereumGoOnline: () => {
+      dispatch(ethereumGoOnline());
+    },
+    ipfsGoOnline: () => {
+      dispatch(ipfsGoOnline());
     }
-  }
+  })
 )(App));
