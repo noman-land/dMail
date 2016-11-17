@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import EthereumSettings from '../components/EthereumSettings';
 
 import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
-import { setMailbox, setAddingMailbox } from '../actions/mailboxActions';
+
 import { setActiveAccount } from '../actions/ethereumActions';
+import { setAddingMailbox, setMailbox } from '../actions/mailboxActions';
 
 export default connect(
   state => ({
