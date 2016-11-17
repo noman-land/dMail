@@ -5,8 +5,8 @@ import { withRouter } from 'react-router';
 import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
 import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
 
-import Header from './header/Header';
 import Body from './Body';
+import Header from './header/Header';
 import Footer from './Footer';
 
 class App extends Component {
