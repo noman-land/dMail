@@ -58,11 +58,11 @@ class EthereumSettings extends Component {
           <div className="flex-column align-items-center list-style-none p-0">
             <div style={{minWidth: 450, maxWidth: 1200}}>
               <div>
-                <h3 className="m-3-b">
+                <h3>
                   Identity:
                 </h3>
-                <h4 className="m-2-b">
-                  You have {accountsLength} identities
+                <h4 className="m-4-y">
+                  You have {accountsLength || 'no'} identit{accountsLength - 1 ? 'ies' : 'y'}
                 </h4>
 
                 {accountsLength ? (
@@ -80,10 +80,7 @@ class EthereumSettings extends Component {
                   </div>
                 ) : (
                   <div>
-                    <p className="m-1-b">
-                      Would you like to create one now?
-                    </p>
-                    <button className="button primary">
+                    <button className="button primary m-2-t">
                       Create Identity
                     </button>
                   </div>
