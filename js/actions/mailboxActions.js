@@ -5,3 +5,8 @@ export const setMailbox = createAction(
   ActionTypes.MAILBOX_SET,
   mailbox => ({mailbox})
 );
+
+export const setAddingMailbox = createAction(
+  ActionTypes.MAILBOX_ADDING,
+  isAdding => ({isAdding})
+);
