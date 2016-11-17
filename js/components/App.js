@@ -30,9 +30,9 @@ class App extends Component {
 }
 
 App.propTypes = {
+  children: PropTypes.element.isRequired,
   ethereumGoOnline: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
-  router: PropTypes.object.isRequired,
 };
 
 export default withRouter(connect(
