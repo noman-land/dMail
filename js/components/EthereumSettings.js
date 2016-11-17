@@ -20,11 +20,13 @@ class EthereumSettings extends Component {
   }
 
   handleAddMailboxSubmit(e) {
-    const { setMailbox } = this.props;
+    const { setAddingMailbox, setMailbox } = this.props;
     const { userAddedMailbox } = this.state;
+
     e.preventDefault();
 
     setMailbox(userAddedMailbox);
+    setAddingMailbox(false);
   }
 
   handleActiveAccountChange({ target: { value } }) {
@@ -44,7 +46,7 @@ class EthereumSettings extends Component {
   render() {
     const {
       accounts,
-      accountsLength,
+      addingMailbox,
       mailbox,
     } = this.props;
 
@@ -159,10 +161,12 @@ class EthereumSettings extends Component {
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
   accountsLength: PropTypes.number.isRequired,
+  addingMailbox: PropTypes.bool.isRequired,
   setMailbox: PropTypes.func.isRequired,
   mailbox: PropTypes.string,
   ethereumGetAccounts: PropTypes.func.isRequired,
   setActiveAccount: PropTypes.func.isRequired,
+  setAddingMailbox: PropTypes.func.isRequired,
 };
 
 export default connect(
