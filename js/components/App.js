@@ -9,25 +9,23 @@ import Body from './Body';
 import Header from './header/Header';
 import Footer from './Footer';
 
-class App extends Component {
-  constructor(props, context) {
-    super(props, context);
-    props.ethereumGoOnline();
-    props.ipfsGoOnline();
-  }
-
-  render() {
-    return (
-      <div className="app flex-column">
-        <Header />
-        <Body>
-          {this.props.children}
-        </Body>
-        <Footer />
-      </div>
-    );
-  }
-}
+const App = ({
+  children,
+  ethereumGoOnline,
+  ipfsGoOnline,
+}) => {
+  ethereumGoOnline();
+  ipfsGoOnline();
+  return (
+    <div className="app flex-column">
+      <Header />
+      <Body>
+        {children}
+      </Body>
+      <Footer />
+    </div>
+  );
+};
 
 App.propTypes = {
   children: PropTypes.element.isRequired,
