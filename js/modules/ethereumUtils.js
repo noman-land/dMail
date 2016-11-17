@@ -37,7 +37,7 @@ export const fetchMail = () => {
   return Q(emails);
 };
 
-export const getContractAbi = (contractAddress) => {
+export const makeContract = (contractAddress) => {
   return web3.eth.contract(ETHERMAIL_ABI).at(contractAddress);
 };
 
@@ -79,7 +79,7 @@ export const lockAccount = () => {
 };
 
 export const sendMail = (mail) => {
-  const RecipientEthermail = getContractAbi(mail.recipient);
+  const RecipientEthermail = makeContract(mail.recipient);
   RecipientEthermail.sendMail(mail.messageHash, {
     from: activeAccount,
     gas: 1000000
@@ -92,7 +92,7 @@ export const setPrimaryAccount = () => {
 
 export const unlockAccount = (account, password) => {
   web3.personal.unlockAccount(account, password);
-  MyEthermail = getContractAbi(MY_DMAIL_ADDRESS);
+  MyEthermail = makeContract(MY_DMAIL_ADDRESS);
   activeAccount = account;
 };
 
