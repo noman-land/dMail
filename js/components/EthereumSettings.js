@@ -9,9 +9,16 @@ class EthereumSettings extends Component {
 
     props.ethereumGetAccounts();
 
-    this.handleAddMailboxSubmit = this.handleAddMailboxSubmit.bind(this);
     this.handleActiveAccountChange = this.handleActiveAccountChange.bind(this);
+    this.handleAddMailboxSubmit = this.handleAddMailboxSubmit.bind(this);
+    this.handleCancelAddingMailboxClick = this.handleCancelAddingMailboxClick.bind(this);
+    this.handleChangeMailboxClick = this.handleChangeMailboxClick.bind(this);
+    this.handleCreateMailboxClick = this.handleCreateMailboxClick.bind(this);
     this.handleUserAddedMailboxChange = this.handleUserAddedMailboxChange.bind(this);
+  }
+
+  handleActiveAccountChange({ target: { value } }) {
+    this.props.setActiveAccount(value);
   }
 
   handleAddMailboxSubmit(e) {
@@ -22,20 +29,31 @@ class EthereumSettings extends Component {
 
     setMailbox(userAddedMailbox);
     setAddingMailbox(false);
+
+    this.setState({
+      userAddedMailbox: '',
+    });
   }
 
-  handleActiveAccountChange({ target: { value } }) {
-    this.props.setActiveAccount(value);
+  handleCancelAddingMailboxClick(e) {
+    e.preventDefault();
+    this.props.setAddingMailbox(false);
+  }
+
+  handleChangeMailboxClick(e) {
+    e.preventDefault();
+    this.props.setAddingMailbox(true);
+  }
+
+  handleCreateMailboxClick(e) {
+    // Fire an action.
+    return e;
   }
 
   handleUserAddedMailboxChange({ target: { value } }) {
     this.setState({
-      userAddedMailbox: value
+      userAddedMailbox: value,
     });
-  }
-
-  handleCreateMailboxClick() {
-
   }
 
   render() {
@@ -92,7 +110,7 @@ class EthereumSettings extends Component {
                   Mailbox:
                 </h3>
 
-                {mailbox ? (
+                {mailbox && !addingMailbox ? (
                   <div>
                     <p>
                       You are currently using mailbox:
@@ -100,41 +118,54 @@ class EthereumSettings extends Component {
                     <p className="h5 m-4-y">
                       {mailbox}
                     </p>
+                    <a href="" onClick={this.handleChangeMailboxClick}>
+                      Change mailbox
+                    </a>
                   </div>
                 ) : (
                   <div>
-                    <h4 className="m-2-b">
-                      You do not have a mailbox.
-                    </h4>
-                    <p>
-                      Would you like to create one now?
-                    </p>
-                    <button className="button primary m-6-b m-2-t">
-                      Create Mailbox
-                    </button>
+                    <div>
+                      {!mailbox && (
+                        <h4 className="m-4-y">
+                          You do not have a mailbox.
+                        </h4>
+                      )}
+                      <button className="button primary m-2-t">
+                        Create Mailbox
+                      </button>
+                    </div>
+                    <div className="m-6-t">
+                      <p>
+                        Already have your own? Enter its address here:
+                      </p>
+                      <p className="text-small text-grey m-1-b">
+                        Please make sure it adheres to the <a href="#">dMail API spec</a>
+                      </p>
+                      <div className="flex align-items-stretch">
+                        <form onSubmit={this.handleAddMailboxSubmit} className="flex flex-grow-1">
+                          <input
+                            className="flex-grow-1 p-1"
+                            onChange={this.handleUserAddedMailboxChange}
+                            type="text"
+                            value={userAddedMailbox}
+                          />
+                          <button type="submit">
+                            Add
+                          </button>
+                          {mailbox && (
+                            <a
+                              href=""
+                              className="align-self-end m-2-l"
+                              onClick={this.handleCancelAddingMailboxClick}
+                            >
+                              cancel
+                            </a>
+                          )}
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 )}
-                <div>
-                  <p>
-                    Already have your own? Enter its address here:
-                  </p>
-                  <p className="text-small text-grey m-1-b">
-                    Please make sure it adheres to the <a href="#">dMail API spec</a>
-                  </p>
-                  <div className="flex align-items-stretch">
-                    <form onSubmit={this.handleAddMailboxSubmit} className="flex flex-grow-1">
-                      <input
-                        className="flex-grow-1 p-1"
-                        onChange={this.handleUserAddedMailboxChange}
-                        type="text"
-                        value={userAddedMailbox}
-                      />
-                      <button type="submit">
-                        Add
-                      </button>
-                    </form>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
