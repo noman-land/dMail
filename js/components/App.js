@@ -41,6 +41,6 @@ export default withRouter(connect(
     },
     ipfsGoOnline: () => {
       dispatch(ipfsGoOnline());
-    }
+    },
   })
 )(App));
