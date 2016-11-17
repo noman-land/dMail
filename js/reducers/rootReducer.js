@@ -3,7 +3,7 @@ import activeMessage from './activeMessage';
 import connectedToEthereum from './connectedToEthereum';
 import connectedToIPFS from './connectedToIPFS';
 import ethereumAccounts from './ethereumAccounts';
-import ethereumActiveAccount from './ethereumActiveAccount';
+import activeAccount from './activeAccount';
 import mailbox from './mailbox';
 import messages from './messages';
 
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   connectedToEthereum,
   connectedToIPFS,
   ethereumAccounts,
-  ethereumActiveAccount,
+  activeAccount,
   mailbox,
   messages,
 });

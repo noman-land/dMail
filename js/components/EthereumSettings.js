@@ -59,6 +59,7 @@ class EthereumSettings extends Component {
   render() {
     const {
       accounts,
+      activeAccount,
       addingMailbox,
       mailbox,
     } = this.props;
@@ -185,6 +186,7 @@ class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeAccount: PropTypes.string,
   addingMailbox: PropTypes.bool.isRequired,
   ethereumGetAccounts: PropTypes.func.isRequired,
   mailbox: PropTypes.string,
