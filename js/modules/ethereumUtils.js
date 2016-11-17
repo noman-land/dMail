@@ -37,8 +37,8 @@ export const fetchMail = () => {
   return Q(emails);
 };
 
-export const makeContract = (contractAddress) => {
-  return web3.eth.contract(ETHERMAIL_ABI).at(contractAddress);
+export const makeContract = (address) => {
+  return web3.eth.contract(ETHERMAIL_ABI).at(address);
 };
 
 export const goOnline = () => {
