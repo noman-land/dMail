@@ -1,9 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
-
-import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
-import { setMailbox } from '../actions/mailboxActions';
-import { setActiveAccount } from '../actions/ethereumActions';
 
 class EthereumSettings extends Component {
   constructor(props, context) {
@@ -51,6 +46,8 @@ class EthereumSettings extends Component {
     } = this.props;
 
     const { userAddedMailbox } = this.state;
+
+    const accountsLength = accounts.length;
 
     return (
       <div className="flex-column flex-grow-1 p-5">
@@ -160,30 +157,12 @@ class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  accountsLength: PropTypes.number.isRequired,
   addingMailbox: PropTypes.bool.isRequired,
-  setMailbox: PropTypes.func.isRequired,
-  mailbox: PropTypes.string,
   ethereumGetAccounts: PropTypes.func.isRequired,
+  mailbox: PropTypes.string,
+  setMailbox: PropTypes.func.isRequired,
   setActiveAccount: PropTypes.func.isRequired,
   setAddingMailbox: PropTypes.func.isRequired,
 };
 
-export default connect(
-  state => ({
-    accounts: state.ethereumAccounts,
-    accountsLength: state.ethereumAccounts.length,
-    mailbox: state.mailbox,
-  }),
-  dispatch => ({
-    ethereumGetAccounts() {
-      dispatch(ethereumGetAccounts());
-    },
-    setActiveAccount(account) {
-      dispatch(setActiveAccount(account));
-    },
-    setMailbox(mailbox) {
-      dispatch(setMailbox(mailbox));
-    },
-  })
-)(EthereumSettings);
+export default EthereumSettings;
