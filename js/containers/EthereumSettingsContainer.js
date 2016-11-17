@@ -11,6 +11,7 @@ import { setAddingMailbox, setMailbox } from '../actions/mailboxActions';
 export default connect(
   state => ({
     accounts: state.ethereumAccounts,
+    activeAccount: state.activeAccount,
     addingMailbox: state.addingMailbox,
     mailbox: state.mailbox,
   }),
