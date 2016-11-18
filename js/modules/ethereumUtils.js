@@ -132,9 +132,15 @@ export const setPrimaryAccount = () => {
 };
 
 export const unlockAccount = (account, password) => {
-  web3.personal.unlockAccount(account, password);
-  MyEthermail = makeContract(MY_DMAIL_ADDRESS);
-  activeAccount = account;
+  const deferred = Q.defer();
+  web3.personal.unlockAccount(account, password, (error, result) => {
+    if (error) {
+      deferred.reject(error);
+    } else {
+      deferred.resolve(account);
+    }
+  });
+  return deferred.promise;
 };
 
 export const updateArchiveAddress = (newArchiveAddress) => {
