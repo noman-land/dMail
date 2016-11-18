@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import EthereumSettings from '../components/EthereumSettings';
 
 import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
+import { createMailbox } from '../actions/asyncActions/mailboxAsyncActions';
 
 import { setActiveAccount } from '../actions/ethereumActions';
 import { setAddingMailbox, setActiveMailbox } from '../actions/mailboxActions';
@@ -16,6 +17,9 @@ export default connect(
     addingMailbox: state.addingMailbox,
   }),
   dispatch => ({
+    createMailbox(account, password) {
+      dispatch(createMailbox(account, password));
+    },
     ethereumGetAccounts() {
       dispatch(ethereumGetAccounts());
     },
