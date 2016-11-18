@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import AccountRow from './settings/ethereum/AccountRow';
 
 class EthereumSettings extends Component {
   constructor(props, context) {
@@ -9,16 +10,12 @@ class EthereumSettings extends Component {
 
     props.ethereumGetAccounts();
 
-    this.handleActiveAccountChange = this.handleActiveAccountChange.bind(this);
     this.handleAddMailboxSubmit = this.handleAddMailboxSubmit.bind(this);
     this.handleCancelAddingMailboxClick = this.handleCancelAddingMailboxClick.bind(this);
     this.handleChangeMailboxClick = this.handleChangeMailboxClick.bind(this);
     this.handleCreateMailboxClick = this.handleCreateMailboxClick.bind(this);
+    this.handleSetPrimaryClick = this.handleSetPrimaryClick.bind(this);
     this.handleUserAddedMailboxChange = this.handleUserAddedMailboxChange.bind(this);
-  }
-
-  handleActiveAccountChange({ target: { value } }) {
-    this.props.setActiveAccount(value);
   }
 
   handleAddMailboxSubmit(e) {
@@ -49,6 +46,13 @@ class EthereumSettings extends Component {
     const { activeAccount, createMailbox } = this.props;
     e.preventDefault();
     createMailbox(activeAccount, 'password');
+  }
+
+  handleSetPrimaryClick(account) {
+    return (e) => {
+      e.preventDefault();
+      this.props.setActiveAccount(account);
+    };
   }
 
   handleUserAddedMailboxChange({ target: { value } }) {
@@ -90,13 +94,16 @@ class EthereumSettings extends Component {
                     <p className="m-1-b">
                       Please choose a primary identity
                     </p>
-                    <select onChange={this.handleActiveAccountChange}>
+                    <ol className="list-style-none p-0">
                       {accounts.map(account => (
-                        <option key={account} value={account}>
-                          {account}
-                        </option>
+                        <AccountRow
+                          account={account}
+                          isPrimary={account === activeAccount}
+                          key={account}
+                          onSetPrimary={this.handleSetPrimaryClick}
+                        />
                       ))}
-                    </select>
+                    </ol>
                   </div>
                 ) : (
                   <div>
