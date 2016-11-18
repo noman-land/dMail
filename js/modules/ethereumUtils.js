@@ -5,7 +5,6 @@ import {
   DMAIL_ABI,
   DMAIL_BYTECODE,
   GETH_RPC_PATH,
-  MY_DMAIL_ADDRESS,
 } from './constants'
 
 let activeAccount;
