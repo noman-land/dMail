@@ -2,31 +2,32 @@ var Web3 = require('web3');
 import Q from 'q';
 
 import {
-  ETHERMAIL_ABI,
+  DMAIL_ABI,
+  DMAIL_BYTECODE,
   GETH_RPC_PATH,
   MY_DMAIL_ADDRESS,
 } from './constants'
 
 let activeAccount;
-let MyEthermail;
+let MyDMail;
 
 export const clearInbox = () => {
-  MyEthermail.clearInbox({
+  MyDMail.clearInbox({
     from: activeAccount,
     gas: 1000000
   });
 };
 
 export const fetchArchiveAddress = () => {
-  return Q(MyEthermail.getArchiveAddress.call());
+  return Q(MyDMail.getArchiveAddress.call());
 };
 
 export const fetchMail = () => {
-  const inboxLength = MyEthermail.getInboxLength.call();
+  const inboxLength = MyDMail.getInboxLength.call();
   let emails = [];
 
   for (let i = 0; i < inboxLength; i++) {
-    const mail = MyEthermail.getMail(i);
+    const mail = MyDMail.getMail(i);
     emails.push({
       sender: mail[0],
       messageHash: mail[1],
@@ -37,8 +38,8 @@ export const fetchMail = () => {
   return Q(emails);
 };
 
-export const makeContract = (address) => {
-  return web3.eth.contract(ETHERMAIL_ABI).at(address);
+export const makeMailbox = () => {
+  return web3.eth.contract(DMAIL_ABI);
 };
 
 export const goOnline = () => {
@@ -79,8 +80,8 @@ export const lockAccount = () => {
 };
 
 export const sendMail = (mail) => {
-  const RecipientEthermail = makeContract(mail.recipient);
-  RecipientEthermail.sendMail(mail.messageHash, {
+  const RecipientDMail = makeMailbox(mail.recipient);
+  RecipientDMail.sendMail(mail.messageHash, {
     from: activeAccount,
     gas: 1000000
   });
@@ -96,29 +97,29 @@ export const unlockAccount = (account, password) => {
   activeAccount = account;
 };
 
-export const updateArchiveAddress = (archiveAddress) => {
-  MyEthermail.updateArchiveAddress(archiveAddress, {
+export const updateArchiveAddress = (newArchiveAddress) => {
+  MyDMail.updateArchiveAddress(newArchiveAddress, {
     from: activeAccount,
     gas: 1000000
   });
 };
 
 export const watchForArchiveAddressUpdated = () => {
-  const archiveAddressUpdatedEvent = MyEthermail.ArchiveAddressUpdated();
+  const archiveAddressUpdatedEvent = MyDMail.ArchiveAddressUpdated();
   archiveAddressUpdatedEvent.watch(function(error, result) {
     if (error) console.error(error);
   })
 };
 
 export const watchForMail = () => {
-  const receivedMailEvent = MyEthermail.ReceivedMail();
+  const receivedMailEvent = MyDMail.ReceivedMail();
   receivedMailEvent.watch(function(error, result) {
     if (error) console.error(error);
   })
 };
 
 export const watchForNewMailArchived = () => {
-  const newMailArchivedEvent = MyEthermail.NewMailArchived();
+  const newMailArchivedEvent = MyDMail.NewMailArchived();
   newMailArchivedEvent.watch(function(error, result) {
     if (error) console.error(error);
   })
