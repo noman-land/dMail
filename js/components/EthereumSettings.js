@@ -46,8 +46,9 @@ class EthereumSettings extends Component {
   }
 
   handleCreateMailboxClick(e) {
-    // Fire an action.
-    return e;
+    const { activeAccount, createMailbox } = this.props;
+    e.preventDefault();
+    createMailbox(activeAccount, 'password');
   }
 
   handleUserAddedMailboxChange({ target: { value } }) {
@@ -131,7 +132,7 @@ class EthereumSettings extends Component {
                           You do not have a mailbox.
                         </h4>
                       )}
-                      <button className="button primary m-2-t">
+                      <button className="button primary m-2-t" onClick={this.handleCreateMailboxClick} >
                         Create Mailbox
                       </button>
                     </div>
