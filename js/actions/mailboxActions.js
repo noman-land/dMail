@@ -1,9 +1,9 @@
 import { createAction } from 'redux-actions';
 import ActionTypes from './actionTypes/mailboxActionTypes';
 
-export const setMailbox = createAction(
+export const setActiveMailbox = createAction(
   ActionTypes.MAILBOX_SET,
-  mailbox => ({mailbox})
+  activeMailbox => ({activeMailbox})
 );
 
 export const setAddingMailbox = createAction(

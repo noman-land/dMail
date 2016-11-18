@@ -60,8 +60,8 @@ class EthereumSettings extends Component {
     const {
       accounts,
       activeAccount,
+      activeMailbox,
       addingMailbox,
-      mailbox,
     } = this.props;
 
     const { userAddedMailbox } = this.state;
@@ -111,13 +111,13 @@ class EthereumSettings extends Component {
                   Mailbox:
                 </h3>
 
-                {mailbox && !addingMailbox ? (
+                {activeMailbox && !addingMailbox ? (
                   <div>
                     <p>
                       You are currently using mailbox:
                     </p>
                     <p className="h5 m-4-y">
-                      {mailbox}
+                      {activeMailbox}
                     </p>
                     <a href="" onClick={this.handleChangeMailboxClick}>
                       Change mailbox
@@ -126,7 +126,7 @@ class EthereumSettings extends Component {
                 ) : (
                   <div>
                     <div>
-                      {!mailbox && (
+                      {!activeMailbox && (
                         <h4 className="m-4-y">
                           You do not have a mailbox.
                         </h4>
@@ -153,7 +153,7 @@ class EthereumSettings extends Component {
                           <button type="submit">
                             Add
                           </button>
-                          {mailbox && (
+                          {activeMailbox && (
                             <a
                               href=""
                               className="align-self-end m-2-l"
@@ -189,7 +189,7 @@ EthereumSettings.propTypes = {
   activeAccount: PropTypes.string,
   addingMailbox: PropTypes.bool.isRequired,
   ethereumGetAccounts: PropTypes.func.isRequired,
-  mailbox: PropTypes.string,
+  activeMailbox: PropTypes.string,
   setMailbox: PropTypes.func.isRequired,
   setActiveAccount: PropTypes.func.isRequired,
   setAddingMailbox: PropTypes.func.isRequired,
