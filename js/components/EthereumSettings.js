@@ -188,6 +188,7 @@ EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeAccount: PropTypes.string,
   addingMailbox: PropTypes.bool.isRequired,
+  createMailbox: PropTypes.func.isRequired,
   ethereumGetAccounts: PropTypes.func.isRequired,
   activeMailbox: PropTypes.string,
   setMailbox: PropTypes.func.isRequired,
