@@ -17,16 +17,18 @@ const Settings = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-space-between">
-        <a className="button">
-          {'<< Prev'}
-        </a>
-        <a className="button">
-          {'Next >>'}
-        </a>
+      <div>
+        <div className="flex justify-space-between">
+          <button className="button">
+            {'<< Prev'}
+          </button>
+          <button className="button">
+            {'Next >>'}
+          </button>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Settings;
