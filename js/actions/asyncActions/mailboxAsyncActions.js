@@ -1,13 +1,16 @@
 import { deployMailbox, unlockAccount } from '../../modules/ethereumUtils';
-import { setActiveMailbox } from '../mailboxActions';
+import { creatingMailbox, setActiveMailbox } from '../mailboxActions';
 
 export const createMailbox = (account, password) => {
   return (dispatch) => {
+    dispatch(creatingMailbox(true));
     return unlockAccount(account, password)
       .then(deployMailbox)
       .then(contractAddress => {
         console.log('Deployed! Your dMail address is:', contractAddress);
         dispatch(setActiveMailbox(contractAddress));
-      }).done();
+      }).done(() => {
+        dispatch(creatingMailbox(false));
+      });
   }
 };
