@@ -1,6 +1,6 @@
 import ActionTypes from '../actions/actionTypes/ethereumActionTypes';
 
-const activeAccount = (
+const primaryAccount = (
   state = null,
   action
 ) => {
@@ -12,4 +12,4 @@ const activeAccount = (
   }
 };
 
-export default activeAccount;
+export default primaryAccount;
