@@ -4,7 +4,7 @@ import MailboxSettingsContainer from '../../containers/MailboxSettingsContainer'
 
 const Settings = () => {
   return (
-    <div className="flex-column flex-grow-1 p-5">
+    <div className="settings">
       <h1 className="h2 text-center m-10-b">
         Settings
       </h1>
