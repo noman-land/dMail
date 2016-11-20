@@ -115,6 +115,30 @@ export const getAccounts = () => {
   return deferred.promise;
 };
 
+export const getBalance = (account) => {
+  return web3.eth.getBalance(account).c[0];
+};
+
+export const getCoinbase = () => {
+  const deferred = Q.defer();
+  web3.eth.getCoinbase((error, coinbase) => {
+    if (error) {
+      deferred.reject(error);
+      return;
+    }
+    deferred.resolve(coinbase);
+  });
+  return deferred.promise;
+};
+
+export const isMining = () => {
+  return web3.eth.mining;
+}
+
+export const isOnline = () => {
+  return web3.isConnected();
+};
+
 export const lockAccount = () => {
   web3.personal.lockAccount(primaryAccount);
 };
