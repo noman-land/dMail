@@ -7,12 +7,12 @@ import {
   GETH_RPC_PATH,
 } from './constants'
 
-let activeAccount;
+let primaryAccount;
 let MyDMail;
 
 export const clearInbox = () => {
   MyDMail.clearInbox({
-    from: activeAccount,
+    from: primaryAccount,
     gas: 1000000
   });
 };
@@ -116,19 +116,19 @@ export const getAccounts = () => {
 };
 
 export const lockAccount = () => {
-  web3.personal.lockAccount(activeAccount);
+  web3.personal.lockAccount(primaryAccount);
 };
 
 export const sendMail = (mail) => {
   const RecipientDMail = makeMailbox(mail.recipient);
   RecipientDMail.sendMail(mail.messageHash, {
-    from: activeAccount,
+    from: primaryAccount,
     gas: 1000000
   });
 };
 
 export const setPrimaryAccount = () => {
-  activeAccount = web3.eth.accounts[0];
+  primaryAccount = web3.eth.accounts[0];
 };
 
 export const unlockAccount = (account, password) => {
@@ -145,7 +145,7 @@ export const unlockAccount = (account, password) => {
 
 export const updateArchiveAddress = (newArchiveAddress) => {
   MyDMail.updateArchiveAddress(newArchiveAddress, {
-    from: activeAccount,
+    from: primaryAccount,
     gas: 1000000
   });
 };
