@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import CheckMark from '../../../components/icons/CheckMark'
+import Coins from '../../../components/icons/Coins'
 import PickAxe from '../../../components/icons/PickAxe'
 import { getBalance } from '../../../modules/ethereumUtils';
 
@@ -51,6 +52,9 @@ class AccountRow extends Component {
           </span>
           {isMining && (
             <PickAxe className="m-1-l" />
+          )}
+          {isCoinbase && (
+            <Coins className="m-1-l"/>
           )}
         </td>
         <td className="balance" title={`${balance / 1E18} Ether | ${balance} Wei`}>
