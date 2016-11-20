@@ -9,7 +9,6 @@ const PickAxe = ({
       <svg
         className={`pick-axe ${className}`}
         height={`${size}px`}
-        title="This address is mining"
         viewBox="135 135 225 225"
         width={`${size}px`}
         xmlns="http://www.w3.org/2000/svg"
