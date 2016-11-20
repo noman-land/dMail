@@ -16,6 +16,7 @@ const App = ({
 }) => {
   ethereumGoOnline();
   ipfsGoOnline();
+
   return (
     <div className="app flex-column">
       <Header />
