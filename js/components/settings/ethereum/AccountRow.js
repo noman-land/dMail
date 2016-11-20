@@ -50,11 +50,11 @@ class AccountRow extends Component {
           <span title={account}>
             {shortAccount}
           </span>
-          {isMining && (
-            <PickAxe className="m-1-l" />
-          )}
           {isCoinbase && (
             <Coins className="m-1-l"/>
+          )}
+          {isMining && (
+            <PickAxe className="m-1-l" />
           )}
         </td>
         <td className="balance" title={`${balance / 1E18} Ether | ${balance} Wei`}>
