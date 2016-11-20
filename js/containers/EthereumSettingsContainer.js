@@ -1,36 +1,23 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
-import EthereumSettings from '../components/EthereumSettings';
+import EthereumSettings from '../components/settings/ethereum/EthereumSettings';
 
-import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
-import { createMailbox } from '../actions/asyncActions/mailboxAsyncActions';
+import { getEthereumAccounts } from '../actions/asyncActions/ethereumAsyncActions';
 
-import { setActiveAccount } from '../actions/ethereumActions';
-import { setAddingMailbox, setActiveMailbox } from '../actions/mailboxActions';
+import { setPrimaryAccount } from '../actions/ethereumActions';
 
 export default connect(
   state => ({
     accounts: state.ethereumAccounts,
-    activeAccount: state.activeAccount,
-    activeMailbox: state.activeMailbox,
-    addingMailbox: state.addingMailbox,
+    primaryAccount: state.primaryAccount,
   }),
   dispatch => ({
-    createMailbox(account, password) {
-      dispatch(createMailbox(account, password));
+    getEthereumAccounts() {
+      dispatch(getEthereumAccounts());
     },
-    ethereumGetAccounts() {
-      dispatch(ethereumGetAccounts());
-    },
-    setActiveAccount(account) {
-      dispatch(setActiveAccount(account));
-    },
-    setAddingMailbox(isAdding) {
-      dispatch(setAddingMailbox(isAdding));
-    },
-    setMailbox(mailbox) {
-      dispatch(setActiveMailbox(mailbox));
+    setPrimaryAccount(account) {
+      dispatch(setPrimaryAccount(account));
     },
   }),
 )(EthereumSettings);
