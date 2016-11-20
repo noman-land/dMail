@@ -1,6 +1,9 @@
 @import ../utils/background
+@import ../utils/brightness
 @import ../utils/borders
 @import ../utils/cursor
+@import ../utils/display
+@import ../utils/outline
 @import ../utils/padding-margin
 @import ../utils/text
 
@@ -10,8 +13,17 @@
   @extend .border-black
   @extend .border-radius-2
   @extend .border-solid
+  @extend .cursor-pointer
+  @extend .outline-none
+  @extend .display-block
   @extend .p-3-x
   @extend .p-2-y
+
+  &:active
+    @extend .bg-green-dk
+
+  &:hover:not(:active)
+    @extend .darken
 
   &.primary
     @extend .bg-green-dk
