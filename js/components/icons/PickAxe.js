@@ -5,7 +5,7 @@ const PickAxe = ({
   size = 13,
 }) => {
   return (
-    <span title="This address is mining">
+    <span title="This account is mining. All rewards go to coinbase account.">
       <svg
         className={`pick-axe ${className}`}
         height={`${size}px`}

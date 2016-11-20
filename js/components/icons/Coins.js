@@ -13,7 +13,7 @@ const Coins = ({
   return (
     <span
       className={`${className}`}
-      title="This is your coinbase account, which is where your mining rewards go"
+      title="This is your coinbase account. This is where your mining rewards go."
     >
       <svg
         height={`${size}px`}
