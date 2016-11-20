@@ -12,7 +12,7 @@ class Inbox extends Component {
   render() {
     const { activeMessage, messages } = this.props;
     return (
-      <div className="inbox flex">
+      <div className="inbox">
         <ul className="m-0 p-0">
           {messages.map(message => (
             <MessageSnippet key={Math.random()} message={message} />
