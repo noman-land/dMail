@@ -6,7 +6,7 @@ var config = {
   ],
   output: {
     path: path.resolve(__dirname, 'static/bundle'),
-    publicPath: '/static/bundle/',
+    publicPath: '/static/bundle',
     filename: 'main.js'
   },
   plugins: [
