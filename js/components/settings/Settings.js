@@ -8,7 +8,7 @@ const Settings = () => {
       <h1 className="h2 text-center m-10-b">
         Settings
       </h1>
-      <div className="flex-grow-1">
+      <div className="flex-grow-1 p-10-b">
         <div className="flex-column align-items-center list-style-none p-0">
           <div style={{minWidth: 450, maxWidth: 1200}}>
             <EthereumSettingsContainer />
