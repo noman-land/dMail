@@ -13,3 +13,7 @@ export default class Body extends Component {
     );
   }
 }
+
+Body.propTypes = {
+  children: PropTypes.element.isRequired,
+};
