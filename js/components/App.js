@@ -11,17 +11,9 @@ import Footer from './Footer';
 
 class App extends Component {
   constructor(props, context) {
-    super(props, context)
-  }
-
-  componentDidMount() {
-    const {
-      ethereumGoOnline,
-      ipfsGoOnline,
-    } = this.props;
-
-    ethereumGoOnline();
-    ipfsGoOnline();
+    super(props, context);
+    props.ethereumGoOnline();
+    props.ipfsGoOnline();
   }
 
   render() {
