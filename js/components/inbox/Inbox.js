@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
-import MessageFull from './MessageFull';
-import MessageSnippet from './MessageSnippet';
+import MessageList from './MessageList';
+import Sidebar from './Sidebar'
 
 class Inbox extends Component {
   constructor(props, context) {
@@ -13,20 +13,8 @@ class Inbox extends Component {
     const { activeMessage, messages } = this.props;
     return (
       <div className="inbox">
-        <ul className="m-0 p-0">
-          {messages.map(message => (
-            <MessageSnippet key={Math.random()} message={message} />
-          ))}
-        </ul>
-        <div>
-          {activeMessage ? (
-            <MessageFull message={activeMessage} />
-          ) : (
-            <div>
-              No messages.
-            </div>
-          )}
-        </div>
+        <Sidebar />
+        <MessageList messages={messages} activeMessage={activeMessage} />
       </div>
     );
   }
