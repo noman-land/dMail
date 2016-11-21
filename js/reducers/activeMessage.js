@@ -2,6 +2,7 @@ import ActionTypes from '../actions/actionTypes/messagesActionTypes';
 
 const activeMessage = (
   state = {
+    id: 2,
     subject: 'RE: Hello',
     body: 'Hello',
   },
