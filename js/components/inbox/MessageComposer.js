@@ -5,16 +5,22 @@ import Trash from '../../components/icons/Trash';
 export default class MessageComposer extends Component {
   constructor(props, context) {
     super(props, context);
+    this.handleCloseClick = this.handleCloseClick.bind(this);
+  }
+
+  handleCloseClick(e) {
+    e.preventDefault();
+    this.props.composingMessage(false);
   }
 
   render() {
-    return this.props.isComposing && (
+    return (
       <div className="message-composer">
         <div className="message-composer-header">
           <span>
             New Message
           </span>
-          <a className="close">
+          <a className="close" onClick={this.handleCloseClick}>
             <Remove color="#FFFFFF" />
           </a>
         </div>
@@ -40,7 +46,7 @@ export default class MessageComposer extends Component {
           <button className="message-composer-send-button">
             Send
           </button>
-          <a>
+          <a className="close" onClick={this.handleCloseClick}>
             <Trash />
           </a>
         </div>
