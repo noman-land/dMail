@@ -19,6 +19,10 @@
   right: 30px
   width: 605px
 
+  .close
+    @extend .cursor-pointer
+    @extend .flex
+
   &-header
     @extend .align-items-center
     @extend .bg-black
@@ -27,10 +31,6 @@
     @extend .p-3
     @extend .text-small
     @extend .text-white
-
-    .close
-      @extend .cursor-pointer
-      @extend .flex
 
   &-body
     @extend .bg-white
