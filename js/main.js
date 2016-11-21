@@ -12,7 +12,7 @@ import rootReducer from './reducers/rootReducer';
 
 // Components
 import App from './components/App';
-import Mailbox from './components/inbox/Mailbox';
+import MailboxContainer from './containers/MailboxContainer';
 import MessageFullContainer from './containers/MessageFullContainer';
 import DraftsContainer from './containers/DraftsContainer';
 import InboxContainer from './containers/InboxContainer';
@@ -28,7 +28,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRedirect to="/inbox" />
-        <Route path="/inbox" component={Mailbox}>
+        <Route path="/inbox" component={MailboxContainer}>
           <IndexRoute component={InboxContainer} />
           <Route path="/drafts" component={DraftsContainer} />
           <Route path="/drafts/:messageId" component={MessageFullContainer} />

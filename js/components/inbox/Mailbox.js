@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import Sidebar from './Sidebar';
 import MessageComposer from './MessageComposer';
 
-const Mailbox = ({ children }) => {
+const Mailbox = ({ children, isComposing }) => {
   return (
     <div className="mailbox">
       <Sidebar />
@@ -17,6 +17,7 @@ const Mailbox = ({ children }) => {
 
 Mailbox.propTypes = {
   children: PropTypes.element.isRequired,
+  isComposing: PropTypes.bool.isRequired,
 };
 
 export default Mailbox;
