@@ -19,19 +19,51 @@
   right: 30px
   width: 605px
 
-  &-header,
-  &-body
-    @extend .p-3
-
   &-header
     @extend .bg-black
+    @extend .p-3
     @extend .text-small
     @extend .text-white
 
   &-body
     @extend .bg-white
+    @extend .flex
     @extend .flex-grow-1
-    @extend .p-3
+
+    form
+      @extend .flex-column
+      @extend .justify-space-between
+      @extend .width-100
+
+      input, textarea
+        @extend .border-none
+        @extend .flex-grow-1
+        @extend .outline-none
+
+      label, div
+        @extend .align-items-center
+        @extend .border-0-t
+        @extend .border-0-x
+        @extend .border-1-b
+        @extend .border-grey-lt
+        @extend .border-solid
+        @extend .flex
+        @extend .justify-space-between
+
+      label, div
+        @extend .p-3
+
+      label
+        input
+          @extend .m-3-l
+
+      .message-body
+        @extend .flex-column
+        @extend .flex-grow-1
+
+        textarea
+          @extend .flex-grow-1
+          @extend .width-100
 
   &-footer
     @extend .align-items-center
