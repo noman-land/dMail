@@ -52,6 +52,7 @@ export const deployMailbox = (address) => {
     if (!myContract.address) {
       console.log('Transaction hash:', myContract.transactionHash);
     } else {
+      localStorage.setItem('mailbox', myContract.address);
       deferred.resolve(myContract.address)
     }
   });
