@@ -5,6 +5,10 @@ import { withRouter } from 'react-router';
 import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
 import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
 
+import { setActiveMailbox } from '../actions/mailboxActions'
+
+import { fetchExistingMailbox } from '../modules/ethereumUtils';
+
 import Body from './Body';
 import Header from './header/Header';
 import Footer from './Footer';
@@ -14,6 +18,7 @@ class App extends Component {
     super(props, context);
     props.ethereumGoOnline();
     props.ipfsGoOnline();
+    props.setActiveMailbox(fetchExistingMailbox());
   }
 
   render() {
@@ -35,16 +40,20 @@ App.propTypes = {
   children: PropTypes.element.isRequired,
   ethereumGoOnline: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
+  setActiveMailbox: PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(
   null,
   dispatch => ({
-    ethereumGoOnline: () => {
+    ethereumGoOnline() {
       dispatch(ethereumGoOnline());
     },
-    ipfsGoOnline: () => {
+    ipfsGoOnline() {
       dispatch(ipfsGoOnline());
+    },
+    setActiveMailbox(activeMailbox) {
+      dispatch(setActiveMailbox(activeMailbox));
     },
   })
 )(App));
