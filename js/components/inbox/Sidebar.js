@@ -1,4 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
+
+import { SIDEBAR_LINKS } from '../../modules/constants';
 
 export default class Sidebar extends Component {
   constructor(props, context) {
@@ -13,17 +16,18 @@ export default class Sidebar extends Component {
 
   render() {
     return (
-      <div className="sidebar">
+      <div className="mailbox-sidebar">
         <button className="button primary" onClick={this.handleComposeClick}>
           Compose
         </button>
-        <ul>
-          <li>
-            Inbox
-          </li>
-          <li>
-            Drafts
-          </li>
+        <ul className="list-style-none p-0 m-3-t m-0-b m-0-l m-0-r">
+          {SIDEBAR_LINKS.map(link => (
+            <li key={link.route} className="hover-darken bg-white cursor-pointer p-1">
+              <Link to={`/${link.route}`} className="decoration-none text-black">
+                {link.text}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     );
