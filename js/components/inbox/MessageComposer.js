@@ -9,7 +9,7 @@ export default class MessageComposer extends Component {
     return this.props.isComposing && (
       <div className="message-composer">
         <div className="message-composer-header">
-          header
+          New Message
         </div>
         <div className="message-composer-body">
           body
