@@ -63,6 +63,14 @@ export const fetchArchiveAddress = () => {
   return Q(MyDMail.getArchiveAddress.call());
 };
 
+export const fetchExistingMailbox = () => {
+  const savedMailbox = window.localStorage.getItem('mailbox');
+  if (savedMailbox) {
+    MyDMail = makeMailbox().at(savedMailbox);
+  }
+  return savedMailbox;
+};
+
 export const fetchMail = () => {
   const inboxLength = MyDMail.getInboxLength.call();
   let emails = [];
