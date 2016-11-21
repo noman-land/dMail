@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import MessageComposer from './MessageComposer';
 import SidebarContainer from '../../containers/SidebarContainer';
+import MessageComposerContainer from '../../containers/MessageComposerContainer';
 
 const Mailbox = ({ children, isComposing }) => {
   return (
@@ -10,7 +10,9 @@ const Mailbox = ({ children, isComposing }) => {
       <div className="mailbox-body">
         {children}
       </div>
-      <MessageComposer />
+      {isComposing && (
+        <MessageComposerContainer />
+      )}
     </div>
   );
 };

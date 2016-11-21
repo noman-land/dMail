@@ -50,9 +50,5 @@ export default class MessageComposer extends Component {
 }
 
 MessageComposer.propTypes = {
-  isComposing: PropTypes.bool,
-};
-
-MessageComposer.defaultProps = {
-  isComposing: true,
+  composingMessage: PropTypes.func.isRequired,
 };
