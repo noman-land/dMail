@@ -160,8 +160,8 @@ export const sendMail = (mail) => {
   });
 };
 
-export const setPrimaryAccount = () => {
-  primaryAccount = web3.eth.accounts[0];
+export const setPrimaryAccount = (account) => {
+  primaryAccount = account;
 };
 
 export const unlockAccount = (account, password) => {
