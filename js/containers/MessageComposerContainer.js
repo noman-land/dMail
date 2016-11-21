@@ -7,6 +7,7 @@ import { composingMessage } from '../actions/messagesActions';
 
 export default connect(
   state => ({
+    activeMailbox: state.activeMailbox,
     isComposing: state.isComposing,
   }),
   dispatch => ({

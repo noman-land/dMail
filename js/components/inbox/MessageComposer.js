@@ -7,8 +7,8 @@ export default class MessageComposer extends Component {
     super(props, context);
     this.state = {
       body: '',
-      from: '',
-      to: '',
+      from: props.activeMailbox || '',
+      to: props.activeMailbox || '',
       subject: '',
     };
     this.handleBodyChange = this.handleBodyChange.bind(this);
@@ -112,5 +112,6 @@ export default class MessageComposer extends Component {
 }
 
 MessageComposer.propTypes = {
+  activeMailbox: PropTypes.string,
   composingMessage: PropTypes.func.isRequired,
 };
