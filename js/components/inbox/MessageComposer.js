@@ -8,7 +8,15 @@ export default class MessageComposer extends Component {
   render() {
     return this.props.isComposing && (
       <div className="message-composer">
-        composing
+        <div className="message-composer-header">
+          header
+        </div>
+        <div className="message-composer-body">
+          body
+        </div>
+        <div className="message-composer-footer">
+          footer
+        </div>
       </div>
     );
   }
