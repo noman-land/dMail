@@ -133,7 +133,7 @@ export const getCoinbase = () => {
 
 export const isMining = () => {
   return web3.eth.mining;
-}
+};
 
 export const isOnline = () => {
   return web3.isConnected();
