@@ -5,6 +5,7 @@ import connectedToEthereum from './connectedToEthereum';
 import connectedToIPFS from './connectedToIPFS';
 import creatingMailbox from './creatingMailbox';
 import ethereumAccounts from './ethereumAccounts';
+import isComposing from './isComposing';
 import messages from './messages';
 import primaryAccount from './primaryAccount';
 
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   connectedToEthereum,
   connectedToIPFS,
   ethereumAccounts,
+  isComposing,
   messages,
   primaryAccount,
 });
