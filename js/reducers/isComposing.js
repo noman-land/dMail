@@ -1,4 +1,4 @@
-import ActionTypes from '../actions/actionTypes/mailboxActionTypes';
+import ActionTypes from '../actions/actionTypes/messagesActionTypes';
 
 const isComposing = (
   state = false,
