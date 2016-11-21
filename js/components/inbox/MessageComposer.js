@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Remove from '../../components/icons/Remove';
 import Trash from '../../components/icons/Trash';
 
 export default class MessageComposer extends Component {
@@ -10,7 +11,12 @@ export default class MessageComposer extends Component {
     return this.props.isComposing && (
       <div className="message-composer">
         <div className="message-composer-header">
-          New Message
+          <span>
+            New Message
+          </span>
+          <a className="close">
+            <Remove color="#FFFFFF" />
+          </a>
         </div>
         <div className="message-composer-body">
           <form>
@@ -34,7 +40,9 @@ export default class MessageComposer extends Component {
           <button className="message-composer-send-button">
             Send
           </button>
-          <Trash />
+          <a>
+            <Trash />
+          </a>
         </div>
       </div>
     );
