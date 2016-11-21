@@ -87,10 +87,6 @@ export const fetchMail = () => {
   return Q(emails);
 };
 
-export const makeMailbox = () => {
-  return web3.eth.contract(DMAIL_ABI);
-};
-
 export const goOnline = () => {
   const deferred = Q.defer();
 
@@ -150,6 +146,10 @@ export const isOnline = () => {
 
 export const lockAccount = () => {
   web3.personal.lockAccount(primaryAccount);
+};
+
+export const makeMailbox = () => {
+  return web3.eth.contract(DMAIL_ABI);
 };
 
 export const sendMail = (mail) => {
