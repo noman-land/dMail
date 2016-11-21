@@ -29,6 +29,6 @@ export const fetchAccountsSuccess = createAction(
 );
 
 export const setPrimaryAccount = createAction(
-  ActionTypes.ETHEREUM_SET_ACTIVE_ACCOUNT,
+  ActionTypes.ETHEREUM_SET_PRIMARY_ACCOUNT,
   account => ({account})
 );
