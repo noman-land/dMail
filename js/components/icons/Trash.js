@@ -5,7 +5,7 @@ const Trash = ({
   size = 24
 }) => {
   return (
-    <span>
+    <span className="trash">
       <svg
         fill={color}
         height={`${size}px`}
