@@ -5,7 +5,7 @@ const primaryAccount = (
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.ETHEREUM_SET_ACTIVE_ACCOUNT:
+    case ActionTypes.ETHEREUM_SET_PRIMARY_ACCOUNT:
       return action.payload.account;
     default:
       return state;
