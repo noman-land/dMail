@@ -21,10 +21,10 @@ export default class Sidebar extends Component {
           Compose
         </button>
         <ul className="list-style-none p-0 m-3-t m-0-b m-0-l m-0-r">
-          {SIDEBAR_LINKS.map(link => (
-            <li key={link.route} className="hover-darken bg-white cursor-pointer p-1">
-              <Link to={`/${link.route}`} className="decoration-none text-black">
-                {link.text}
+          {SIDEBAR_LINKS.map(({ route, text }) => (
+            <li key={route} className="hover-darken bg-white cursor-pointer p-1">
+              <Link to={`/${route}`} className="decoration-none text-black">
+                {text}
               </Link>
             </li>
           ))}
