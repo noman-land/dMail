@@ -10,7 +10,7 @@ const activeMessage = (
 ) => {
   switch (action.type) {
     case ActionTypes.ACTIVE_MESSAGE_SET:
-      return action.payload.activeMessage;
+      return action.payload.message;
     default:
       return state;
   }
