@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Trash from '../../components/icons/Trash';
 
 export default class MessageComposer extends Component {
   constructor(props, context) {
@@ -18,6 +19,7 @@ export default class MessageComposer extends Component {
           <button className="message-composer-send-button">
             Send
           </button>
+          <Trash />
         </div>
       </div>
     );

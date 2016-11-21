@@ -20,8 +20,7 @@
   width: 605px
 
   &-header,
-  &-body,
-  &-footer
+  &-body
     @extend .p-3
 
   &-header
@@ -35,7 +34,13 @@
     @extend .flex-grow-1
 
   &-footer
+    @extend .align-items-center
     @extend .bg-white-dk
+    @extend .flex
+    @extend .justify-space-between
+    @extend .p-3-l
+    @extend .p-3-y
+    @extend .p-5-r
 
   &-send-button
     @extend .bg-blue
