@@ -5,7 +5,23 @@ import Trash from '../../components/icons/Trash';
 export default class MessageComposer extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      body: '',
+      from: '',
+      to: '',
+      subject: '',
+    };
+    this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleCloseClick = this.handleCloseClick.bind(this);
+    this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleSubjectChange = this.handleSubjectChange.bind(this);
+    this.handleToChange = this.handleToChange.bind(this);
+  }
+
+  handleBodyChange({ target: { value } }) {
+    this.setState({
+      body: value
+    });
   }
 
   handleCloseClick(e) {
@@ -13,7 +29,26 @@ export default class MessageComposer extends Component {
     this.props.composingMessage(false);
   }
 
+  handleFromChange({ target: { value } }) {
+    this.setState({
+      from: value
+    });
+  }
+
+  handleSubjectChange({ target: { value } }) {
+    this.setState({
+      subject: value
+    });
+  }
+
+  handleToChange({ target: { value } }) {
+    this.setState({
+      to: value
+    });
+  }
+
   render() {
+    const { body, from, subject, to } = this.state;
     return (
       <div className="message-composer">
         <div className="message-composer-header">
@@ -28,17 +63,38 @@ export default class MessageComposer extends Component {
           <form>
             <label htmlFor="to">
               To
-              <input type="text" name="to" />
+              <input
+                name="to"
+                onChange={this.handleToChange}
+                type="text"
+                value={to}
+              />
             </label>
             <label htmlFor="from">
               From
-              <input type="text" name="from" />
+              <input
+                name="from"
+                onChange={this.handleFromChange}
+                type="text"
+                value={from}
+              />
             </label>
             <div className="message-subject">
-              <input type="text" name="subject" placeholder="Subject" />
+              <input
+                name="subject"
+                onChange={this.handleSubjectChange}
+                placeholder="Subject"
+                type="text"
+                value={subject}
+              />
             </div>
             <div className="message-body">
-              <textarea type="text" name="body" />
+              <textarea
+                name="body"
+                onChange={this.handleBodyChange}
+                type="text"
+                value={body}
+              />
             </div>
           </form>
         </div>
