@@ -20,3 +20,8 @@ export const setActiveMessage = createAction(
   ActionTypes.ACTIVE_MESSAGE_SET,
   message => ({message})
 );
+
+export const composingMessage = createAction(
+  ActionTypes.MESSAGE_COMPOSING,
+  isComposing => ({isComposing})
+);
