@@ -1,6 +1,8 @@
 @import ../../utils/background
 @import ../../utils/borders
+@import ../../utils/flexbox
 @import ../../utils/position
+@import ../../utils/text
 
 .message-composer
   @extend .bg-white
@@ -9,8 +11,22 @@
   @extend .border-1-x
   @extend .border-grey-lt
   @extend .border-solid
+  @extend .flex-column
   @extend .position-fixed
   bottom: 0
   height: 600px
   right: 30px
   width: 605px
+
+  &-header,
+  &-footer
+    @extend .bg-black
+    @extend .p-3
+    @extend .text-white
+
+  &-body
+    @extend .bg-white
+    @extend .p-3
+    @extend .flex-grow-1
+
+  &-footer
