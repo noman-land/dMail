@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import Sidebar from './Sidebar'
+import Sidebar from './Sidebar';
+import MessageComposer from './MessageComposer';
 
 const Mailbox = ({ children }) => {
   return (
@@ -9,6 +10,7 @@ const Mailbox = ({ children }) => {
       <div className="mailbox-body">
         {children}
       </div>
+      <MessageComposer />
     </div>
   );
 };
