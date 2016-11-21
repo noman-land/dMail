@@ -11,7 +11,7 @@ export default class Sidebar extends Component {
   }
 
   handleComposeClick() {
-    // this.props.composeMessage();
+    this.props.composingMessage(true);
   }
 
   render() {
@@ -35,5 +35,6 @@ export default class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  // composeMessage: PropTypes.func.isRequired,
+  composingMessage: PropTypes.func.isRequired,
+  isComposing: PropTypes.bool.isRequired,
 };
