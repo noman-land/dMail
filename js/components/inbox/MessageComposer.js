@@ -13,7 +13,23 @@ export default class MessageComposer extends Component {
           New Message
         </div>
         <div className="message-composer-body">
-          body
+          <form>
+            <label htmlFor="to">
+              To:
+              <input type="text" name="to" />
+            </label>
+            <label htmlFor="from">
+              From:
+              <input type="text" name="from" />
+            </label>
+            <label htmlFor="subject">
+              Subject:
+              <input type="text" name="subject" />
+            </label>
+            <div className="message-body">
+              <textarea type="text" name="body" />
+            </div>
+          </form>
         </div>
         <div className="message-composer-footer">
           <button className="message-composer-send-button">
