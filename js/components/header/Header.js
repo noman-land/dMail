@@ -15,7 +15,7 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="flex align-items-center">
-          <Link to="inbox" className="decoration-none">
+          <Link to="/inbox" className="decoration-none">
             <span className="text-black">
                 dMail
             </span>
@@ -25,10 +25,10 @@ class Header extends Component {
           </Link>
         </div>
         <div className="flex align-items-center">
-          <Link to="settings" className="decoration-none">
+          <Link to="/settings" className="decoration-none">
             <EthereumOnlineBadge />
           </Link>
-          <Link to="settings" className="decoration-none">
+          <Link to="/settings" className="decoration-none">
             <IpfsOnlineBadge />
           </Link>
         </div>
