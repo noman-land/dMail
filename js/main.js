@@ -12,9 +12,10 @@ import rootReducer from './reducers/rootReducer';
 
 // Components
 import App from './components/App';
-import Inbox from './components/inbox/Inbox';
-// import EthereumSettings from './components/EthereumSettings';
-// import IPFSSettings from './components/IPFSSettings';
+import Mailbox from './components/inbox/Mailbox';
+import MessageFullContainer from './containers/MessageFullContainer';
+import DraftsContainer from './containers/DraftsContainer';
+import InboxContainer from './containers/InboxContainer';
 import SettingsContainer from './containers/SettingsContainer';
 
 const store = createStore(
@@ -26,11 +27,14 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="inbox" />
-        <Route path="settings" component={SettingsContainer} />
-          {/*<Route path="ethereum" component={EthereumSettings} />*/}
-          {/*<Route path="ipfs" component={IPFSSettings} />*/}
-        <Route path="inbox" component={Inbox} />
+        <IndexRedirect to="/inbox" />
+        <Route path="/inbox" component={Mailbox}>
+          <IndexRoute component={InboxContainer} />
+          <Route path="/drafts" component={DraftsContainer} />
+          <Route path="/drafts/:messageId" component={MessageFullContainer} />
+          <Route path="/inbox/:messageId" component={MessageFullContainer} />
+        </Route>
+        <Route path="/settings" component={SettingsContainer} />
       </Route>
     </Router>
   </Provider>,
