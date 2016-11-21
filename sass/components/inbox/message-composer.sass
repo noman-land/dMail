@@ -20,10 +20,17 @@
   width: 605px
 
   &-header
+    @extend .align-items-center
     @extend .bg-black
+    @extend .flex
+    @extend .justify-space-between
     @extend .p-3
     @extend .text-small
     @extend .text-white
+
+    .close
+      @extend .cursor-pointer
+      @extend .flex
 
   &-body
     @extend .bg-white
@@ -73,9 +80,6 @@
     @extend .p-3-l
     @extend .p-3-y
     @extend .p-5-r
-
-    .trash
-      @extend .cursor-pointer
 
   &-send-button
     @extend .bg-blue
