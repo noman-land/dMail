@@ -63,3 +63,20 @@ export const DMAIL_SOLIDITY_SOURCE =
       suicide(owner);
     }
   }`;
+
+export const routes = {
+  INBOX: 'inbox',
+  DRAFTS: 'drafts',
+  SETTINGS: 'settings',
+};
+
+export const SIDEBAR_LINKS = [
+  {
+    route: routes.INBOX,
+    text: 'Inbox',
+  },
+  {
+    route: routes.DRAFTS,
+    text: 'Drafts',
+  }
+];
