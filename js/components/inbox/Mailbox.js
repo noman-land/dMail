@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
-import Sidebar from './Sidebar';
 import MessageComposer from './MessageComposer';
+import SidebarContainer from '../../containers/SidebarContainer';
 
 const Mailbox = ({ children, isComposing }) => {
   return (
     <div className="mailbox">
-      <Sidebar />
+      <SidebarContainer />
       <div className="mailbox-body">
         {children}
       </div>
