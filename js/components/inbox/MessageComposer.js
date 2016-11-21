@@ -15,7 +15,9 @@ export default class MessageComposer extends Component {
           body
         </div>
         <div className="message-composer-footer">
-          footer
+          <button className="message-composer-send-button">
+            Send
+          </button>
         </div>
       </div>
     );
