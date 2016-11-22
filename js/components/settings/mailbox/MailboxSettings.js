@@ -24,6 +24,7 @@ export default class MailboxSettings extends Component {
     e.preventDefault();
 
     setMailbox(userAddedMailbox);
+    localStorage.setItem('mailbox', userAddedMailbox);
     setAddingMailbox(false);
 
     this.setState({
