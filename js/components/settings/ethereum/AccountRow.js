@@ -42,7 +42,7 @@ class AccountRow extends Component {
     const { account, isCoinbase, isMining, isPrimary } = this.props;
     const { balance } = this.state;
 
-    const shortAccount = account.substr(-4);
+    const shortAccount = account.substr(0, 6);
 
     return (
       <tr value={account}>
