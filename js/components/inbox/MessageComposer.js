@@ -48,6 +48,7 @@ export default class MessageComposer extends Component {
   }
 
   render() {
+    const { activeMailbox, primaryAccount } = this.props;
     const { body, from, subject, to } = this.state;
     return (
       <div className="message-composer">
@@ -67,7 +68,7 @@ export default class MessageComposer extends Component {
                 name="to"
                 onChange={this.handleToChange}
                 type="text"
-                value={to}
+                value={activeMailbox}
               />
             </label>
             <label htmlFor="from">
@@ -76,7 +77,7 @@ export default class MessageComposer extends Component {
                 name="from"
                 onChange={this.handleFromChange}
                 type="text"
-                value={from}
+                value={primaryAccount}
               />
             </label>
             <div className="message-subject">
@@ -114,4 +115,5 @@ export default class MessageComposer extends Component {
 MessageComposer.propTypes = {
   activeMailbox: PropTypes.string,
   composingMessage: PropTypes.func.isRequired,
+  primaryAccount: PropTypes.string.isRequired,
 };

@@ -9,6 +9,7 @@ export default connect(
   state => ({
     activeMailbox: state.activeMailbox,
     isComposing: state.isComposing,
+    primaryAccount: state.primaryAccount,
   }),
   dispatch => ({
     composingMessage(isComposing) {
