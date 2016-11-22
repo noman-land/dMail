@@ -153,11 +153,12 @@ export const makeMailbox = () => {
 };
 
 export const sendMail = (mail) => {
-  const RecipientDMail = makeMailbox(mail.recipient);
-  RecipientDMail.sendMail(mail.messageHash, {
-    from: primaryAccount,
-    gas: 1000000
-  });
+  return makeMailbox()
+    .at(mail.recipient)
+    .sendMail(mail.messageHash, {
+      from: mail.from,
+      gas: 1000000,
+    });
 };
 
 export const setPrimaryAccount = (account) => {
