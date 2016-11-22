@@ -4,9 +4,10 @@ import { withRouter } from 'react-router';
 
 import { ethereumGoOnline, getEthereumAccounts } from '../actions/asyncActions/ethereumAsyncActions';
 import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
+import { getMessages } from '../actions/asyncActions/messageAsyncActions';
 
 import { setPrimaryAccount } from '../actions/ethereumActions';
-import { setActiveMailbox } from '../actions/mailboxActions'
+import { setActiveMailbox } from '../actions/mailboxActions';
 
 import { fetchExistingMailbox, getCoinbase } from '../modules/ethereumUtils';
 
@@ -26,6 +27,7 @@ class App extends Component {
   componentDidMount() {
     const {
       getEthereumAccounts,
+      getMessages,
       primaryAccount,
       setActiveMailbox,
       setPrimaryAccount,
@@ -38,6 +40,7 @@ class App extends Component {
     }
 
     setActiveMailbox(fetchExistingMailbox());
+    getMessages();
   }
 
   render() {
@@ -71,6 +74,9 @@ export default withRouter(connect(
     },
     getEthereumAccounts() {
       dispatch(getEthereumAccounts());
+    },
+    getMessages() {
+      dispatch(getMessages());
     },
     ipfsGoOnline() {
       dispatch(ipfsGoOnline());
