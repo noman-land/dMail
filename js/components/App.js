@@ -9,6 +9,8 @@ import { setActiveMailbox } from '../actions/mailboxActions'
 
 import { fetchExistingMailbox } from '../modules/ethereumUtils';
 
+window.ethereumUtils = require('../modules/ethereumUtils');
+
 import Body from './Body';
 import Header from './header/Header';
 import Footer from './Footer';
