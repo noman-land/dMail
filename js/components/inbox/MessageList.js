@@ -32,11 +32,7 @@ export default class MessageList extends Component {
 }
 
 MessageList.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.object),
+  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   pathname: PropTypes.string.isRequired,
   setActiveMessage: PropTypes.func.isRequired,
-};
-
-MessageList.defaultProps = {
-  messages: [],
 };
