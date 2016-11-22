@@ -8,7 +8,8 @@ import {
 } from './constants'
 
 let primaryAccount;
-window.MyDMail = null;
+let MyDMail;
+window.MyDMail = MyDMail;
 
 export const clearInbox = () => {
   MyDMail.clearInbox({
