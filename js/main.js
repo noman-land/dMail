@@ -23,6 +23,8 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
+window.store = store;
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
