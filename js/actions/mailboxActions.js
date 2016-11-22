@@ -8,7 +8,7 @@ export const creatingMailbox = createAction(
 
 export const setActiveMailbox = createAction(
   ActionTypes.MAILBOX_SET,
-  activeMailbox => ({activeMailbox})
+  mailbox => ({mailbox})
 );
 
 export const setAddingMailbox = createAction(
