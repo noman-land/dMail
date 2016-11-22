@@ -7,8 +7,8 @@ import {
   GETH_RPC_PATH,
 } from './constants'
 
-let MyDMail;
-window.MyDMail = MyDMail;
+// let MyDMail;
+window.MyDMail = null;
 
 export const clearInbox = ({ from }) => {
   MyDMail.clearInbox({
