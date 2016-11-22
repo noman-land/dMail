@@ -153,12 +153,20 @@ export const makeMailbox = () => {
 };
 
 export const sendMail = ({ from, messageHash, to }) => {
-  return makeMailbox()
-    .at(to)
-    .sendMail(messageHash, {
-      from,
-      gas: 1000000,
-    });
+  const deferred = Q.defer();
+
+  try {
+    const transactionHash = makeMailbox()
+      .at(to)
+      .sendMail(messageHash, {
+        from,
+        gas: 1000000,
+      });
+    deferred.resolve(transactionHash);
+  } catch (error) {
+    deferred.reject(error);
+  }
+  return deferred.promise;
 };
 
 export const unlockAccount = (account, password) => {
