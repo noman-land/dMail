@@ -58,6 +58,7 @@ export default class MessageComposer extends Component {
 
   render() {
     const { activeMailbox, draftBody, draftSubject, primaryAccount } = this.props;
+
     return (
       <div className="message-composer">
         <div className="message-composer-header">
