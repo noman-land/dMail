@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
+import { ethereumGoOnline, getEthereumAccounts } from '../actions/asyncActions/ethereumAsyncActions';
 import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
 
+import { setPrimaryAccount } from '../actions/ethereumActions';
 import { setActiveMailbox } from '../actions/mailboxActions'
 
-import { fetchExistingMailbox } from '../modules/ethereumUtils';
+import { fetchExistingMailbox, getCoinbase } from '../modules/ethereumUtils';
 
 window.ethereumUtils = require('../modules/ethereumUtils');
 
@@ -21,6 +22,20 @@ class App extends Component {
     props.ethereumGoOnline();
     props.ipfsGoOnline();
     props.setActiveMailbox(fetchExistingMailbox());
+  }
+
+  componentDidMount() {
+    const {
+      getEthereumAccounts,
+      primaryAccount,
+      setPrimaryAccount,
+    } = this.props;
+
+    getEthereumAccounts();
+
+    if (!primaryAccount) {
+      getCoinbase().then(setPrimaryAccount);
+    }
   }
 
   render() {
@@ -42,6 +57,7 @@ App.propTypes = {
   children: PropTypes.element.isRequired,
   ethereumGoOnline: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
+  primaryAccount: PropTypes.string,
   setActiveMailbox: PropTypes.func.isRequired,
 };
 
@@ -51,11 +67,17 @@ export default withRouter(connect(
     ethereumGoOnline() {
       dispatch(ethereumGoOnline());
     },
+    getEthereumAccounts() {
+      dispatch(getEthereumAccounts());
+    },
     ipfsGoOnline() {
       dispatch(ipfsGoOnline());
     },
     setActiveMailbox(activeMailbox) {
       dispatch(setActiveMailbox(activeMailbox));
+    },
+    setPrimaryAccount(account) {
+      dispatch(setPrimaryAccount(account));
     },
   })
 )(App));

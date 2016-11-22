@@ -13,22 +13,11 @@ export default class EthereumSettings extends Component {
   }
 
   componentDidMount() {
-    const {
-      getEthereumAccounts,
-      primaryAccount,
-      setPrimaryAccount,
-    } = this.props;
-
-    getEthereumAccounts();
-
-    if (!primaryAccount) {
-      getCoinbase().then(coinbase => {
-        setPrimaryAccount(coinbase);
-        this.setState({
-          coinbase
-        });
+    getCoinbase().then(coinbase => {
+      this.setState({
+        coinbase
       });
-    }
+    });
   }
 
   render() {
@@ -100,7 +89,6 @@ export default class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
-  getEthereumAccounts: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
   setPrimaryAccount: PropTypes.func.isRequired,
 };
