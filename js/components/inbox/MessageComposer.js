@@ -7,8 +7,6 @@ export default class MessageComposer extends Component {
     super(props, context);
     this.state = {
       body: '',
-      from: props.activeMailbox || '',
-      to: props.activeMailbox || '',
       subject: '',
     };
     this.handleBodyChange = this.handleBodyChange.bind(this);
@@ -49,7 +47,7 @@ export default class MessageComposer extends Component {
 
   render() {
     const { activeMailbox, primaryAccount } = this.props;
-    const { body, from, subject, to } = this.state;
+    const { body, subject } = this.state;
     return (
       <div className="message-composer">
         <div className="message-composer-header">
