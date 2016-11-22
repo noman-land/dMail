@@ -11,6 +11,7 @@ export default class MessageComposer extends Component {
     this.handleSend = this.handleSend.bind(this);
     this.handleSubjectChange = this.handleSubjectChange.bind(this);
     this.handleToChange = this.handleToChange.bind(this);
+    this.handleTrashClick = this.handleTrashClick.bind(this);
   }
 
   handleBodyChange({ target: { value } }) {
@@ -54,6 +55,12 @@ export default class MessageComposer extends Component {
   }
 
   handleToChange({ target: { value } }) {
+  }
+
+  handleTrashClick(e) {
+    this.handleCloseClick(e);
+    this.props.setDraftBody('');
+    this.props.setDraftSubject('');
   }
 
   render() {
@@ -115,7 +122,7 @@ export default class MessageComposer extends Component {
           >
             Send
           </button>
-          <a className="close" onClick={this.handleCloseClick}>
+          <a className="close" onClick={this.handleTrashClick}>
             <Trash />
           </a>
         </div>
