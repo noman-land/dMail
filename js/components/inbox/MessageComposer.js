@@ -8,6 +8,7 @@ export default class MessageComposer extends Component {
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleCloseClick = this.handleCloseClick.bind(this);
     this.handleFromChange = this.handleFromChange.bind(this);
+    this.handleSend = this.handleSend.bind(this);
     this.handleSubjectChange = this.handleSubjectChange.bind(this);
     this.handleToChange = this.handleToChange.bind(this);
   }
@@ -22,6 +23,23 @@ export default class MessageComposer extends Component {
   }
 
   handleFromChange({ target: { value } }) {
+  }
+
+  handleSend() {
+    const {
+      activeMailbox,
+      draftBody,
+      draftSubject,
+      primaryAccount,
+      sendMessage,
+    } = this.props;
+
+    sendMessage({
+      body: draftBody,
+      from: primaryAccount,
+      subject: draftSubject,
+      to: activeMailbox,
+    }, 'password');
   }
 
   handleSubjectChange({ target: { value } }) {
@@ -83,7 +101,10 @@ export default class MessageComposer extends Component {
           </form>
         </div>
         <div className="message-composer-footer">
-          <button className="message-composer-send-button">
+          <button
+            className="message-composer-send-button"
+            onClick={this.handleSend}
+          >
             Send
           </button>
           <a className="close" onClick={this.handleCloseClick}>
@@ -101,6 +122,7 @@ MessageComposer.propTypes = {
   draftSubject: PropTypes.string,
   composingMessage: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string.isRequired,
+  sendMessage: PropTypes.func.isRequired,
   setDraftBody: PropTypes.func.isRequired,
   setDraftSubject: PropTypes.func.isRequired,
 };
