@@ -152,11 +152,11 @@ export const makeMailbox = () => {
   return web3.eth.contract(DMAIL_ABI);
 };
 
-export const sendMail = (mail) => {
+export const sendMail = ({ from, messageHash, recipient }) => {
   return makeMailbox()
-    .at(mail.recipient)
-    .sendMail(mail.messageHash, {
-      from: mail.from,
+    .at(recipient)
+    .sendMail(messageHash, {
+      from,
       gas: 1000000,
     });
 };
