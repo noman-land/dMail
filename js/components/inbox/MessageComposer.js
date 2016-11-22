@@ -28,10 +28,13 @@ export default class MessageComposer extends Component {
   handleSend() {
     const {
       activeMailbox,
+      composingMessage,
       draftBody,
       draftSubject,
       primaryAccount,
       sendMessage,
+      setDraftBody,
+      setDraftSubject,
     } = this.props;
 
     sendMessage({
@@ -40,6 +43,10 @@ export default class MessageComposer extends Component {
       subject: draftSubject,
       to: activeMailbox,
     }, 'password');
+
+    composingMessage(false);
+    setDraftBody('');
+    setDraftSubject('');
   }
 
   handleSubjectChange({ target: { value } }) {
