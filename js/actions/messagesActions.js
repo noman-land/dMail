@@ -25,3 +25,13 @@ export const composingMessage = createAction(
   ActionTypes.MESSAGE_COMPOSING,
   isComposing => ({isComposing})
 );
+
+export const setDraftSubject = createAction(
+  ActionTypes.MESSAGE_DRAFT_SUBJECT,
+  subject => ({subject})
+);
+
+export const setDraftBody = createAction(
+  ActionTypes.MESSAGE_DRAFT_BODY,
+  body => ({body})
+);
