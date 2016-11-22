@@ -11,13 +11,24 @@ class MessageFull extends Component {
   render() {
     const {
       message: {
-        subject,
         body,
+        messageHash,
+        sender,
+        subject,
+        timestamp,
       },
     } = this.props;
 
+    console.log(this.props.message);
+
     return (
       <div>
+        <div>
+          From: {sender}
+        </div>
+        <div>
+          Sent at: {Date(timestamp)}
+        </div>
         <div>
           Subject: {subject}
         </div>
