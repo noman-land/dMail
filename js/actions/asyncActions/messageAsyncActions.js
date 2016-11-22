@@ -1,6 +1,10 @@
-import { sendMail, unlockAccount } from '../../modules/ethereumUtils';
-import { addJson } from '../../modules/ipfsUtils';
+import Q from 'q';
+import { fetchMail, sendMail, unlockAccount } from '../../modules/ethereumUtils';
+import { addJson, getJson } from '../../modules/ipfsUtils';
 import {
+  fetchMessagesError,
+  fetchMessagesStart,
+  fetchMessagesSuccess,
   messageSendError,
   messageSendStart,
   messageSendSuccess,
@@ -26,4 +30,23 @@ export const sendMessage = ({ body, from, subject, to }, password) => {
       });
     }).done();
   }
+};
+
+export const getMessages = () => {
+  return (dispatch) => {
+    dispatch(fetchMessagesStart());
+
+    return fetchMail().then(
+      messages => {
+        return Q.all(messages.map(({ messageHash }) => getJson(messageHash)))
+          .then(decodedMessages => {
+            console.log('Messages found:', decodedMessages);
+            dispatch(fetchMessagesSuccess(decodedMessages));
+          });
+      },
+      error => {
+        dispatch(fetchMessagesError(error));
+      }
+    ).done();
+  };
 };
