@@ -7,13 +7,12 @@ import {
   GETH_RPC_PATH,
 } from './constants'
 
-let primaryAccount;
 let MyDMail;
 window.MyDMail = MyDMail;
 
-export const clearInbox = () => {
+export const clearInbox = ({ from }) => {
   MyDMail.clearInbox({
-    from: primaryAccount,
+    from,
     gas: 1000000
   });
 };
@@ -145,8 +144,8 @@ export const isOnline = () => {
   return web3.isConnected();
 };
 
-export const lockAccount = () => {
-  web3.personal.lockAccount(primaryAccount);
+export const lockAccount = (account) => {
+  web3.personal.lockAccount(account);
 };
 
 export const makeMailbox = () => {
@@ -162,10 +161,6 @@ export const sendMail = (mail) => {
     });
 };
 
-export const setPrimaryAccount = (account) => {
-  primaryAccount = account;
-};
-
 export const unlockAccount = (account, password) => {
   const deferred = Q.defer();
   web3.personal.unlockAccount(account, password, (error, result) => {
@@ -178,9 +173,9 @@ export const unlockAccount = (account, password) => {
   return deferred.promise;
 };
 
-export const updateArchiveAddress = (newArchiveAddress) => {
+export const updateArchiveAddress = ({ from, newArchiveAddress }) => {
   MyDMail.updateArchiveAddress(newArchiveAddress, {
-    from: primaryAccount,
+    from,
     gas: 1000000
   });
 };
