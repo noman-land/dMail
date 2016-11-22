@@ -12,5 +12,5 @@ export const createMailbox = (account, password) => {
       }).done(() => {
         dispatch(creatingMailbox(false));
       });
-  }
+  };
 };
