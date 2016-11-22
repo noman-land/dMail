@@ -38,3 +38,17 @@ export const setDraftBody = createAction(
   ActionTypes.DRAFT_SET_BODY,
   body => ({body})
 );
+
+export const messageSendError = createAction(
+  ActionTypes.MESSAGE_SEND_ERROR,
+  error => ({error})
+);
+
+export const messageSendStart = createAction(
+  ActionTypes.MESSAGE_SEND_START,
+);
+
+export const messageSendSuccess = createAction(
+  ActionTypes.MESSAGE_SEND_SUCCESS,
+  transactionHash => ({transactionHash})
+);
