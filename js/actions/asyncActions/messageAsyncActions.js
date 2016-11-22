@@ -23,7 +23,6 @@ export const sendMessage = ({ body, from, subject, to }, password) => {
             dispatch(messageSendSuccess(transactionHash));
           },
           error => {
-            console.log(error);
             dispatch(messageSendError(error))
           }
         );
