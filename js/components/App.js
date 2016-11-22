@@ -21,13 +21,13 @@ class App extends Component {
     super(props, context);
     props.ethereumGoOnline();
     props.ipfsGoOnline();
-    props.setActiveMailbox(fetchExistingMailbox());
   }
 
   componentDidMount() {
     const {
       getEthereumAccounts,
       primaryAccount,
+      setActiveMailbox,
       setPrimaryAccount,
     } = this.props;
 
@@ -36,6 +36,8 @@ class App extends Component {
     if (!primaryAccount) {
       getCoinbase().then(setPrimaryAccount);
     }
+
+    setActiveMailbox(fetchExistingMailbox());
   }
 
   render() {
