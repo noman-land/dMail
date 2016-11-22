@@ -17,9 +17,7 @@ export default class MessageComposer extends Component {
   }
 
   handleBodyChange({ target: { value } }) {
-    this.setState({
-      body: value
-    });
+    this.props.setDraftBody(value);
   }
 
   handleCloseClick(e) {
@@ -34,9 +32,7 @@ export default class MessageComposer extends Component {
   }
 
   handleSubjectChange({ target: { value } }) {
-    this.setState({
-      subject: value
-    });
+    this.props.setDraftSubject(value);
   }
 
   handleToChange({ target: { value } }) {
@@ -46,8 +42,7 @@ export default class MessageComposer extends Component {
   }
 
   render() {
-    const { activeMailbox, primaryAccount } = this.props;
-    const { body, subject } = this.state;
+    const { activeMailbox, draftBody, draftSubject, primaryAccount } = this.props;
     return (
       <div className="message-composer">
         <div className="message-composer-header">
@@ -84,7 +79,7 @@ export default class MessageComposer extends Component {
                 onChange={this.handleSubjectChange}
                 placeholder="Subject"
                 type="text"
-                value={subject}
+                value={draftSubject}
               />
             </div>
             <div className="message-body">
@@ -92,7 +87,7 @@ export default class MessageComposer extends Component {
                 name="body"
                 onChange={this.handleBodyChange}
                 type="text"
-                value={body}
+                value={draftBody}
               />
             </div>
           </form>
@@ -112,6 +107,10 @@ export default class MessageComposer extends Component {
 
 MessageComposer.propTypes = {
   activeMailbox: PropTypes.string,
+  draftBody: PropTypes.string,
+  draftSubject: PropTypes.string,
   composingMessage: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string.isRequired,
+  setDraftBody: PropTypes.func.isRequired,
+  setDraftSubject: PropTypes.func.isRequired,
 };
