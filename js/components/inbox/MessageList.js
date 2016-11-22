@@ -10,16 +10,22 @@ export default class MessageList extends Component {
     const { messages, pathname, setActiveMessage } = this.props;
     return (
       <div className="message-list">
-        <ul className="m-0 p-0">
-          {messages.map(message => (
-            <MessageSnippet
-              key={Math.random()}
-              message={message}
-              pathname={pathname}
-              setActiveMessage={setActiveMessage}
-            />
-          ))}
-        </ul>
+        {!messages.length ? (
+          <div>
+            You have no messages :)
+          </div>
+        ) : (
+          <ul className="m-0 p-0">
+            {messages.map(message => (
+              <MessageSnippet
+                key={Math.random()}
+                message={message}
+                pathname={pathname}
+                setActiveMessage={setActiveMessage}
+              />
+            ))}
+          </ul>
+        )}
       </div>
     );
   }
