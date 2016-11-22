@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import MessageComposer from '../components/inbox/MessageComposer';
 
-import { composingMessage } from '../actions/messagesActions';
+import { composingMessage, setDraftBody, setDraftSubject } from '../actions/messagesActions';
 
 export default connect(
   state => ({
@@ -14,6 +14,12 @@ export default connect(
   dispatch => ({
     composingMessage(isComposing) {
       dispatch(composingMessage(isComposing));
+    },
+    setDraftBody(body) {
+      dispatch(setDraftBody(body));
+    },
+    setDraftSubject(subject) {
+      dispatch(setDraftSubject(subject));
     },
   }),
 )(MessageComposer);
