@@ -37,11 +37,16 @@ export const getMessages = () => {
 
     return fetchMail().then(
       messages => {
-        return Q.all(messages.map(({ messageHash }) => getJson(messageHash)))
-          .then(decodedMessages => {
-            console.log('Messages found:', decodedMessages);
-            dispatch(fetchMessagesSuccess(decodedMessages));
-          });
+        return Q.all(messages.map(message => {
+          return getJson(message.messageHash).then(json => ({
+            ...message,
+            ...json,
+          }))
+        }))
+        .then(decodedMessages => {
+          console.log('Messages found:', decodedMessages);
+          dispatch(fetchMessagesSuccess(decodedMessages));
+        });
       },
       error => {
         dispatch(fetchMessagesError(error));
