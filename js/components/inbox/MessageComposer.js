@@ -5,10 +5,6 @@ import Trash from '../../components/icons/Trash';
 export default class MessageComposer extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      body: '',
-      subject: '',
-    };
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleCloseClick = this.handleCloseClick.bind(this);
     this.handleFromChange = this.handleFromChange.bind(this);
@@ -26,9 +22,6 @@ export default class MessageComposer extends Component {
   }
 
   handleFromChange({ target: { value } }) {
-    this.setState({
-      from: value
-    });
   }
 
   handleSubjectChange({ target: { value } }) {
@@ -36,9 +29,6 @@ export default class MessageComposer extends Component {
   }
 
   handleToChange({ target: { value } }) {
-    this.setState({
-      to: value
-    });
   }
 
   render() {
