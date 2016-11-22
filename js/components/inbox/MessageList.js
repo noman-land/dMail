@@ -18,7 +18,7 @@ export default class MessageList extends Component {
           <ul className="m-0 p-0">
             {messages.map(message => (
               <MessageSnippet
-                key={Math.random()}
+                key={message.messageHash}
                 message={message}
                 pathname={pathname}
                 setActiveMessage={setActiveMessage}

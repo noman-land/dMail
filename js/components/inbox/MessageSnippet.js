@@ -19,17 +19,18 @@ class MessageSnippet extends Component {
   render() {
     const {
       message: {
-        id,
+        body,
+        messageHash,
         subject,
-        body
+        timestamp,
       },
       pathname,
     } = this.props;
 
     return (
       <li className="message-snippet" onClick={this.handleClick}>
-        <Link to={`${pathname}/${id}`} className="decoration-none text-black">
-          {subject}: {body}
+        <Link to={`${pathname}/${messageHash}`} className="decoration-none text-black">
+          {subject}: {body} ({timestamp})
         </Link>
       </li>
     );
