@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
 
+import Attachment from '../icons/Attachment';
+
 import { Link } from 'react-router';
 
 class MessageSnippet extends Component {
@@ -57,9 +59,9 @@ class MessageSnippet extends Component {
           </div>
           <div className="flex justify-space-between">
             <div className="attachment">
-              [!]
+              <Attachment />
             </div>
-            <div className="timestamp">
+            <div className="timestamp" title={moment(timestamp * 1E3).format('LLLL')}>
               {prettyDate}
             </div>
           </div>
