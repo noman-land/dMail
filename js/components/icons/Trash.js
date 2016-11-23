@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const Trash = ({
   color = 'grey',
-  size = 24
+  size = 18
 }) => {
   return (
     <span className="trash">
