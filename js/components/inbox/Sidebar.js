@@ -20,10 +20,10 @@ export default class Sidebar extends Component {
         <button className="button primary" onClick={this.handleComposeClick}>
           Compose
         </button>
-        <ul className="list-style-none p-0 m-3-t m-0-b m-0-l m-0-r">
+        <ul className="links">
           {SIDEBAR_LINKS.map(({ route, text }) => (
-            <Link to={`/${route}`} className="decoration-none text-black">
-              <li key={route} className="hover-darken bg-white cursor-pointer p-1">
+            <Link to={`/${route}`} className="link">
+              <li key={route}>
                 {text}
               </li>
             </Link>
