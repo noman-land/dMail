@@ -19,19 +19,6 @@
   right: 30px
   width: 605px
 
-  .close
-    @extend .cursor-pointer
-    @extend .flex
-
-  &-header
-    @extend .align-items-center
-    @extend .bg-black
-    @extend .flex
-    @extend .justify-space-between
-    @extend .p-3
-    @extend .text-small
-    @extend .text-white
-
   &-body
     @extend .bg-white
     @extend .flex
@@ -72,6 +59,10 @@
           @extend .flex-grow-1
           @extend .width-100
 
+  .close
+    @extend .cursor-pointer
+    @extend .flex
+
   &-footer
     @extend .align-items-center
     @extend .bg-white-dk
@@ -80,6 +71,15 @@
     @extend .p-3-l
     @extend .p-3-y
     @extend .p-5-r
+
+  &-header
+    @extend .align-items-center
+    @extend .bg-black
+    @extend .flex
+    @extend .justify-space-between
+    @extend .p-3
+    @extend .text-small
+    @extend .text-white
 
   &-send-button
     @extend .bg-blue
