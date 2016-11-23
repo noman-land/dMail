@@ -22,11 +22,11 @@ export default class Sidebar extends Component {
         </button>
         <ul className="list-style-none p-0 m-3-t m-0-b m-0-l m-0-r">
           {SIDEBAR_LINKS.map(({ route, text }) => (
-            <li key={route} className="hover-darken bg-white cursor-pointer p-1">
-              <Link to={`/${route}`} className="decoration-none text-black">
+            <Link to={`/${route}`} className="decoration-none text-black">
+              <li key={route} className="hover-darken bg-white cursor-pointer p-1">
                 {text}
-              </Link>
-            </li>
+              </li>
+            </Link>
           ))}
         </ul>
       </div>
