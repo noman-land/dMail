@@ -1,9 +1,58 @@
+@import ../../utils/background
 @import ../../utils/borders
+@import ../../utils/cursor
+@import ../../utils/flexbox
+@import ../../utils/lists
 @import ../../utils/padding-margin
+@import ../../utils/text
 
 .message-snippet
-  @extend .p-2
-  @extend .border-1
-  @extend .border-black
+  @extend .bg-white-dk
+  @extend .border-0-b
+  @extend .border-1-t
+  @extend .border-1-x
+  @extend .border-grey-lt
   @extend .border-solid
-  list-style: none
+  @extend .flex
+  @extend .justify-space-between
+  @extend .list-style-none
+  @extend .p-2-x
+
+  .select
+    @extend .m-2-y
+    @extend .p-1-l
+    @extend .p-4-r
+
+  .link
+    @extend .cursor-pointer
+    @extend .decoration-none
+    @extend .flex
+    @extend .flex-grow-1
+    @extend .justify-space-between
+    @extend .text-black
+
+    & > *
+      @extend .m-2-y
+
+    .sender
+      @extend .ellipsis
+      @extend .p-4-r
+      @extend .text-left
+      width: 200px
+
+    .message
+      @extend .flex
+      @extend .flex-grow-1
+      @extend .justify-start
+
+      .body
+        @extend .flex-grow-1
+        @extend .text-grey
+
+    .timestamp
+      @extend .p-2-x
+      @extend .text-right
+      width: 85px
+
+  &:last-child
+    @extend .border-1-b

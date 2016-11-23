@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
+
 import { Link } from 'react-router';
 
 class MessageSnippet extends Component {
@@ -20,6 +22,7 @@ class MessageSnippet extends Component {
     const {
       message: {
         body,
+        sender,
         messageHash,
         subject,
         timestamp,
@@ -27,10 +30,39 @@ class MessageSnippet extends Component {
       pathname,
     } = this.props;
 
+    const prettyDate = moment(timestamp * 1E3).format('MMM DD');
+
     return (
       <li className="message-snippet" onClick={this.handleClick}>
-        <Link to={`${pathname}/${messageHash}`} className="decoration-none text-black">
-          {subject}: {body} ({timestamp})
+        <div className="select">
+          <input type="checkbox" />
+        </div>
+        <Link
+          className="link"
+          to={`${pathname}/${messageHash}`}
+        >
+          <div className="sender" title={sender}>
+            {sender}
+          </div>
+          <div className="message">
+            <span className="subject">
+              {subject}
+            </span>
+            <span className="p-1-x">
+              -
+            </span>
+            <span className="body">
+              {body}
+            </span>
+          </div>
+          <div className="flex justify-space-between">
+            <div className="attachment">
+              [!]
+            </div>
+            <div className="timestamp">
+              {prettyDate}
+            </div>
+          </div>
         </Link>
       </li>
     );
