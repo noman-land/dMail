@@ -22,8 +22,8 @@ export default class Sidebar extends Component {
         </button>
         <ul className="links">
           {SIDEBAR_LINKS.map(({ route, text }) => (
-            <Link to={`/${route}`} className="link">
-              <li key={route}>
+            <Link className="link" key={route} to={`/${route}`}>
+              <li>
                 {text}
               </li>
             </Link>
