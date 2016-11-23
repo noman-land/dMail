@@ -1,4 +1,26 @@
+@import ../../utils/background
+@import ../../utils/cursor
+@import ../../utils/lists
 @import ../../utils/padding-margin
+@import ../../utils/text
 
 .mailbox-sidebar
   @extend .p-5
+
+  .links
+    @extend .list-style-none
+    @extend .m-0-b
+    @extend .m-0-l
+    @extend .m-0-r
+    @extend .m-3-t
+    @extend .p-0
+
+    .link
+      @extend .decoration-none
+      @extend .text-black
+
+      li
+        @extend .cursor-pointer
+        @extend .bg-white
+        @extend .hover-darken
+        @extend .p-1
