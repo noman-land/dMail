@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
 
 class MessageFull extends Component {
   constructor(props, context) {
@@ -19,7 +20,8 @@ class MessageFull extends Component {
       },
     } = this.props;
 
-    console.log(this.props.message);
+    const timeAgo = moment(timestamp * 1E3).fromNow();
+    const prettyDate = moment(timestamp * 1E3).format('LLLL');
 
     return (
       <div>
@@ -27,7 +29,7 @@ class MessageFull extends Component {
           From: {sender}
         </div>
         <div>
-          Sent at: {Date(timestamp)}
+          Sent: {timeAgo} ({prettyDate})
         </div>
         <div>
           Subject: {subject}
