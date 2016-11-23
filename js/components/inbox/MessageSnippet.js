@@ -44,7 +44,7 @@ class MessageSnippet extends Component {
           to={`${pathname}/${messageHash}`}
         >
           <div className="sender" title={sender}>
-            {sender}
+            {sender.slice(0, 6)}
           </div>
           <div className="message">
             <span className="subject">
@@ -57,7 +57,8 @@ class MessageSnippet extends Component {
               {body}
             </span>
           </div>
-          <div className="flex justify-space-between">
+          <div className="spacer"/>
+          <div className="flex justify-space-between m-3-l">
             <div className="attachment">
               <Attachment />
             </div>

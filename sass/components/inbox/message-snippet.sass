@@ -1,6 +1,7 @@
 @import ../../utils/background
 @import ../../utils/borders
 @import ../../utils/cursor
+@import ../../utils/display
 @import ../../utils/flexbox
 @import ../../utils/lists
 @import ../../utils/padding-margin
@@ -26,6 +27,7 @@
   .link
     @extend .cursor-pointer
     @extend .decoration-none
+    @extend .ellipsis
     @extend .flex
     @extend .flex-grow-1
     @extend .justify-space-between
@@ -38,16 +40,24 @@
       @extend .ellipsis
       @extend .p-4-r
       @extend .text-left
-      width: 200px
+      min-width: 150px
+      width: 150px
 
     .message
       @extend .flex
-      @extend .flex-grow-1
       @extend .justify-start
+      @extend .overflow-hidden
+
+      .subject
+        @extend .nowrap
 
       .body
-        @extend .flex-grow-1
+        @extend .display-inline
+        @extend .overflow-hidden
         @extend .text-grey
+
+    .spacer
+      @extend .flex-grow-1
 
     .timestamp
       @extend .p-2-x
