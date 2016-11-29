@@ -1,4 +1,5 @@
 // Styles
+require("font-awesome-webpack");
 import '../sass/style.sass';
 
 // React/Redux/Router
