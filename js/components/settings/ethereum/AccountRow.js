@@ -57,8 +57,8 @@ class AccountRow extends Component {
             <PickAxe className="m-1-l" />
           )}
         </td>
-        <td className="balance" title={`${balance / 1E18} Ether | ${balance} Wei`}>
-          {(balance / 1E6).toFixed(2)}
+        <td className="balance" title={`${balance / 1E4} Ether | ${balance} Wei`}>
+          {(balance / 1E4).toFixed(2)}
         </td>
         <td className="m-5-l p-5-r primary">
           <CheckMark checked={isPrimary} />

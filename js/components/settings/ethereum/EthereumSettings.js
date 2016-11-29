@@ -51,7 +51,7 @@ export default class EthereumSettings extends Component {
                     Address
                   </th>
                   <th className="balance">
-                    Mwei
+                    Ether
                   </th>
                   <th className="primary">
                     Primary
