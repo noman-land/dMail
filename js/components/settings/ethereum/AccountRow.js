@@ -33,9 +33,12 @@ class AccountRow extends Component {
 
   handleClick(account) {
     return (e) => {
+      const { getMessages, setPrimaryAccount } = this.props;
+
       e.preventDefault();
-      this.props.setPrimaryAccount(account);
+      setPrimaryAccount(account);
       localStorage.setItem('primaryAccount', account);
+      getMessages(account);
     };
   }
 
