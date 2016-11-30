@@ -56,8 +56,11 @@ class App extends Component {
 App.propTypes = {
   children: PropTypes.element.isRequired,
   ethereumGoOnline: PropTypes.func.isRequired,
+  getEthereumAccounts: PropTypes.func.isRequired,
+  getMessages: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
+  setPrimaryAccount: PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(
