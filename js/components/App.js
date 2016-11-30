@@ -19,25 +19,23 @@ import Footer from './Footer';
 class App extends Component {
   constructor(props, context) {
     super(props, context);
-    props.ethereumGoOnline();
     props.ipfsGoOnline();
   }
 
   componentDidMount() {
     const {
+      ethereumGoOnline,
       getEthereumAccounts,
-      getMessages,
       primaryAccount,
       setPrimaryAccount,
     } = this.props;
 
+    ethereumGoOnline();
     getEthereumAccounts();
 
     if (!primaryAccount) {
       getCoinbase().then(setPrimaryAccount);
     }
-
-    getMessages();
   }
 
   render() {

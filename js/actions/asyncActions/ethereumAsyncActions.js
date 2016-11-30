@@ -1,6 +1,6 @@
 import {
   getAccounts,
-  goOnline,
+  init,
 } from '../../modules/ethereumUtils';
 
 import {
@@ -12,14 +12,17 @@ import {
   goOnlineError,
 } from '../ethereumActions';
 
+import { getMessages } from '../asyncActions/messageAsyncActions';
+
 export const ethereumGoOnline = () => {
   return (dispatch) => {
     dispatch(goOnlineStart());
 
-    return goOnline().then(
+    return init().then(
       () => {
         dispatch(goOnlineSuccess());
         dispatch(getEthereumAccounts());
+        dispatch(getMessages());
       },
       error => {
         dispatch(goOnlineError(error));
