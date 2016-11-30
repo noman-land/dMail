@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import EthereumSettingsContainer from '../../containers/EthereumSettingsContainer';
-import MailboxSettingsContainer from '../../containers/MailboxSettingsContainer';
 
 const Settings = () => {
   return (
@@ -12,8 +11,6 @@ const Settings = () => {
         <div className="flex-column align-items-center list-style-none p-0">
           <div style={{minWidth: 450, maxWidth: 1200}}>
             <EthereumSettingsContainer />
-            <hr className="m-10-y" />
-            <MailboxSettingsContainer />
           </div>
         </div>
       </div>

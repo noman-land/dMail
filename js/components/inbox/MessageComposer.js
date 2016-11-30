@@ -5,6 +5,11 @@ import Trash from '../../components/icons/Trash';
 export default class MessageComposer extends Component {
   constructor(props, context) {
     super(props, context);
+
+    this.state = {
+      to: '',
+    };
+
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleCloseClick = this.handleCloseClick.bind(this);
     this.handleFromChange = this.handleFromChange.bind(this);
@@ -28,7 +33,6 @@ export default class MessageComposer extends Component {
 
   handleSend() {
     const {
-      activeMailbox,
       composingMessage,
       draftBody,
       draftSubject,
@@ -42,7 +46,7 @@ export default class MessageComposer extends Component {
       body: draftBody,
       from: primaryAccount,
       subject: draftSubject,
-      to: activeMailbox,
+      to: this.state.to,
     }, 'password');
 
     composingMessage(false);
@@ -55,6 +59,9 @@ export default class MessageComposer extends Component {
   }
 
   handleToChange({ target: { value } }) {
+    this.setState({
+      to: value
+    });
   }
 
   handleTrashClick(e) {
@@ -64,7 +71,8 @@ export default class MessageComposer extends Component {
   }
 
   render() {
-    const { activeMailbox, draftBody, draftSubject, primaryAccount } = this.props;
+    const { draftBody, draftSubject, primaryAccount } = this.props;
+    const { to } = this.state;
 
     return (
       <div className="message-composer">
@@ -84,7 +92,7 @@ export default class MessageComposer extends Component {
                 name="to"
                 onChange={this.handleToChange}
                 type="text"
-                value={activeMailbox}
+                value={to}
               />
             </label>
             <label htmlFor="from">
@@ -132,7 +140,6 @@ export default class MessageComposer extends Component {
 }
 
 MessageComposer.propTypes = {
-  activeMailbox: PropTypes.string,
   draftBody: PropTypes.string,
   draftSubject: PropTypes.string,
   composingMessage: PropTypes.func.isRequired,

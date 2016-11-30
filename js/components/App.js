@@ -7,9 +7,8 @@ import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
 import { getMessages } from '../actions/asyncActions/messageAsyncActions';
 
 import { setPrimaryAccount } from '../actions/ethereumActions';
-import { setActiveMailbox } from '../actions/mailboxActions';
 
-import { fetchExistingMailbox, getCoinbase } from '../modules/ethereumUtils';
+import { getCoinbase } from '../modules/ethereumUtils';
 
 window.ethereumUtils = require('../modules/ethereumUtils');
 
@@ -29,7 +28,6 @@ class App extends Component {
       getEthereumAccounts,
       getMessages,
       primaryAccount,
-      setActiveMailbox,
       setPrimaryAccount,
     } = this.props;
 
@@ -39,7 +37,6 @@ class App extends Component {
       getCoinbase().then(setPrimaryAccount);
     }
 
-    setActiveMailbox(fetchExistingMailbox());
     getMessages();
   }
 
@@ -63,7 +60,6 @@ App.propTypes = {
   ethereumGoOnline: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
-  setActiveMailbox: PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(
@@ -80,9 +76,6 @@ export default withRouter(connect(
     },
     ipfsGoOnline() {
       dispatch(ipfsGoOnline());
-    },
-    setActiveMailbox(activeMailbox) {
-      dispatch(setActiveMailbox(activeMailbox));
     },
     setPrimaryAccount(account) {
       dispatch(setPrimaryAccount(account));
