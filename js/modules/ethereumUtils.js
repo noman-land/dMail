@@ -21,16 +21,23 @@ export const createAccount = () => {
   return Q(web3.personal.newAccount('password'));
 };
 
-export const fetchArchiveAddress = () => {
-  return Q(DMailInterface.getArchiveAddress.call());
+export const fetchArchiveAddress = (owner) => {
+  return Q(DMailInterface.getArchiveAddress({
+    from: owner,
+  }));
 };
 
-export const fetchMail = () => {
-  const inboxLength = DMailInterface.getUnreadCount.call();
+export const fetchMail = (owner) => {
+  const inboxLength = DMailInterface.getUnreadCount({
+    from: owner,
+  });
+
   let emails = [];
 
   for (let i = 0; i < inboxLength; i++) {
-    const mail = DMailInterface.getMail(i);
+    const mail = DMailInterface.getMail(i, {
+      from: owner,
+    });
     emails.push({
       sender: mail[0],
       messageHash: mail[1],

@@ -32,11 +32,11 @@ export const sendMessage = ({ body, from, subject, to }, password) => {
   }
 };
 
-export const getMessages = () => {
+export const getMessages = (account) => {
   return (dispatch) => {
     dispatch(fetchMessagesStart());
 
-    return fetchMail().then(
+    return fetchMail(account).then(
       messages => {
         return Q.all(messages.map(message => {
           return getJson(message.messageHash).then(json => ({
