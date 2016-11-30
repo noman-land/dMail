@@ -17,58 +17,8 @@ export const clearInbox = ({ from }) => {
   });
 };
 
-export const compileSolidityCode = (sourceString) => {
-  const deferred = Q.defer();
-
-  web3.eth.compile.solidity(sourceString, (error, result) => {
-    if (error) {
-      deferred.reject(error);
-    } else {
-      deferred.resolve(result);
-    }
-  });
-
-  return deferred.promise;
-};
-
-export const deployMailbox = (address) => {
-  console.log('Deploying...');
-  const deferred = Q.defer();
-
-  makeMailbox().new({
-    data: DMAIL_BYTECODE,
-    gas: 1000000,
-    from: address,
-  }, (error, myContract) => {
-    MyDMail = myContract;
-    // NOTE: The callback will fire twice!
-    // Once the contract has the transactionHash property set and once its deployed on an address.
-    // e.g. check tx hash on the first call (transaction send)
-    if (error) {
-      deferred.reject(error);
-      return;
-    }
-
-    if (!myContract.address) {
-      console.log('Transaction hash:', myContract.transactionHash);
-    } else {
-      localStorage.setItem('mailbox', myContract.address);
-      deferred.resolve(myContract.address)
-    }
-  });
-  return deferred.promise;
-};
-
 export const fetchArchiveAddress = () => {
   return Q(MyDMail.getArchiveAddress.call());
-};
-
-export const fetchExistingMailbox = () => {
-  const savedMailbox = window.localStorage.getItem('mailbox');
-  if (savedMailbox) {
-    MyDMail = makeMailbox().at(savedMailbox);
-  }
-  return savedMailbox;
 };
 
 export const fetchMail = () => {
@@ -146,10 +96,6 @@ export const isOnline = () => {
 
 export const lockAccount = (account) => {
   web3.personal.lockAccount(account);
-};
-
-export const makeMailbox = () => {
-  return web3.eth.contract(DMAIL_ABI);
 };
 
 export const sendMail = ({ from, messageHash, to }) => {
