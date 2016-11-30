@@ -19,14 +19,14 @@ import {
 import { getMessages } from '../asyncActions/messageAsyncActions';
 
 export const ethereumGoOnline = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(goOnlineStart());
 
     return init().then(
       () => {
         dispatch(goOnlineSuccess());
         dispatch(ethereumGetAccounts());
-        dispatch(getMessages());
+        dispatch(getMessages(getState().primaryAccount));
       },
       error => {
         dispatch(goOnlineError(error));
