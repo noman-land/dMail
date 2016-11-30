@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import EthereumSettings from '../components/settings/ethereum/EthereumSettings';
 
+import { ethereumCreateAccount } from '../actions/asyncActions/ethereumAsyncActions';
+
 import { setPrimaryAccount } from '../actions/ethereumActions';
 
 export default connect(
@@ -11,6 +13,9 @@ export default connect(
     primaryAccount: state.primaryAccount,
   }),
   dispatch => ({
+    ethereumCreateAccount() {
+      dispatch(ethereumCreateAccount());
+    },
     setPrimaryAccount(account) {
       dispatch(setPrimaryAccount(account));
     },
