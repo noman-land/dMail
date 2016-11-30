@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { ethereumGoOnline, getEthereumAccounts } from '../actions/asyncActions/ethereumAsyncActions';
+import { ethereumGoOnline } from '../actions/asyncActions/ethereumAsyncActions';
 import { ipfsGoOnline } from '../actions/asyncActions/ipfsAsyncActions';
 import { getMessages } from '../actions/asyncActions/messageAsyncActions';
 
@@ -25,12 +25,9 @@ class App extends Component {
 
   componentDidMount() {
     const {
-      getEthereumAccounts,
       primaryAccount,
       setPrimaryAccount,
     } = this.props;
-
-    getEthereumAccounts();
 
     if (!primaryAccount) {
       getCoinbase().then(setPrimaryAccount);
@@ -55,7 +52,6 @@ class App extends Component {
 App.propTypes = {
   children: PropTypes.element.isRequired,
   ethereumGoOnline: PropTypes.func.isRequired,
-  getEthereumAccounts: PropTypes.func.isRequired,
   getMessages: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
@@ -67,9 +63,6 @@ export default withRouter(connect(
   dispatch => ({
     ethereumGoOnline() {
       dispatch(ethereumGoOnline());
-    },
-    getEthereumAccounts() {
-      dispatch(getEthereumAccounts());
     },
     getMessages() {
       dispatch(getMessages());
