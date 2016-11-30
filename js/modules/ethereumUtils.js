@@ -3,9 +3,9 @@ import Q from 'q';
 
 import {
   DMAIL_ABI,
-  DMAIL_BYTECODE,
+  DMAIL_ADDRESS,
   GETH_RPC_PATH,
-} from './constants'
+} from './constants';
 
 // let DMailInterface;
 window.DMailInterface = null;
@@ -37,27 +37,6 @@ export const fetchMail = () => {
   return Q(emails);
 };
 
-export const goOnline = () => {
-  const deferred = Q.defer();
-
-  if (typeof window.web3 !== 'undefined') {
-    window.web3 = new Web3(window.web3.currentProvider);
-  } else {
-    window.web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
-  }
-
-  window.web3.net.getListening((error, result) => {
-    if (error) {
-      deferred.reject(error);
-      return;
-    }
-
-    deferred.resolve(result);
-  });
-
-  return deferred.promise;
-};
-
 export const getAccounts = () => {
   const deferred = Q.defer();
   web3.eth.getAccounts((error, accounts) => {
@@ -84,6 +63,34 @@ export const getCoinbase = () => {
     deferred.resolve(coinbase);
   });
   return deferred.promise;
+};
+
+export const goOnline = () => {
+  const deferred = Q.defer();
+
+  if (typeof window.web3 !== 'undefined') {
+    window.web3 = new Web3(window.web3.currentProvider);
+  } else {
+    window.web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
+  }
+
+  window.web3.net.getListening((error, result) => {
+    if (error) {
+      deferred.reject(error);
+      return;
+    }
+
+    deferred.resolve(result);
+  });
+
+  return deferred.promise;
+};
+
+export const init = () => {
+  return goOnline().then(() => {
+    DMailInterface = web3.eth.contract(DMAIL_ABI).at(DMAIL_ADDRESS);
+    return DMailInterface;
+  });
 };
 
 export const isMining = () => {
