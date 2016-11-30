@@ -39,8 +39,8 @@ export default class EthereumSettings extends Component {
           You have {accountsLength || 'no'} identit{accountsLength - 1 ? 'ies' : 'y'}
         </h4>
 
-        {accountsLength ? (
-          <div>
+        {accountsLength && (
+          <div className="m-4-b">
             <p className="m-1-b">
               You can change your primary identity here
             </p>
@@ -75,13 +75,12 @@ export default class EthereumSettings extends Component {
               </tbody>
             </table>
           </div>
-        ) : (
-          <div>
-            <button className="button primary m-2-t">
-              Create Identity
-            </button>
-          </div>
         )}
+        <div>
+          <button className="button primary m-2-t">
+            Create Identity
+          </button>
+        </div>
       </div>
     );
   }
