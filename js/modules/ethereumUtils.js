@@ -17,6 +17,10 @@ export const clearInbox = ({ from }) => {
   });
 };
 
+export const createAccount = () => {
+  return Q(web3.personal.newAccount('password'));
+};
+
 export const fetchArchiveAddress = () => {
   return Q(DMailInterface.getArchiveAddress.call());
 };
