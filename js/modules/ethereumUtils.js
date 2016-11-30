@@ -107,16 +107,18 @@ export const lockAccount = (account) => {
 
 export const sendMail = ({ from, messageHash, to }) => {
   const deferred = Q.defer();
+  let transactionHash;
 
   try {
-    const transactionHash = DMailInterface.sendMessage(messageHash, {
-        from,
-        gas: 1000000,
-      });
-    deferred.resolve(transactionHash);
+    transactionHash = DMailInterface.sendMessage(to, messageHash, {
+      from,
+      gas: 1000000,
+    });
   } catch (error) {
     deferred.reject(error);
   }
+
+  deferred.resolve(transactionHash);
   return deferred.promise;
 };
 
