@@ -29,8 +29,15 @@ class App extends Component {
       setPrimaryAccount,
     } = this.props;
 
-    if (!primaryAccount) {
-      getCoinbase().then(setPrimaryAccount);
+    const storedPrimaryAccount = localStorage.getItem('primaryAccount');
+
+    if (storedPrimaryAccount) {
+      setPrimaryAccount(storedPrimaryAccount);
+    } else if (!primaryAccount) {
+      getCoinbase().then((account) => {
+        setPrimaryAccount(account);
+        localStorage.setItem('primaryAccount', account);
+      });
     }
   }
 
