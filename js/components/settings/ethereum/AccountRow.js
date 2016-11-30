@@ -35,6 +35,7 @@ class AccountRow extends Component {
     return (e) => {
       e.preventDefault();
       this.props.setPrimaryAccount(account);
+      localStorage.setItem('primaryAccount', account);
     };
   }
 
