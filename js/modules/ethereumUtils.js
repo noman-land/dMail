@@ -7,26 +7,26 @@ import {
   GETH_RPC_PATH,
 } from './constants'
 
-// let MyDMail;
-window.MyDMail = null;
+// let DMailInterface;
+window.DMailInterface = null;
 
 export const clearInbox = ({ from }) => {
-  MyDMail.clearInbox({
+  DMailInterface.clearInbox({
     from,
     gas: 1000000
   });
 };
 
 export const fetchArchiveAddress = () => {
-  return Q(MyDMail.getArchiveAddress.call());
+  return Q(DMailInterface.getArchiveAddress.call());
 };
 
 export const fetchMail = () => {
-  const inboxLength = MyDMail.getInboxLength.call();
+  const inboxLength = DMailInterface.getUnreadCount.call();
   let emails = [];
 
   for (let i = 0; i < inboxLength; i++) {
-    const mail = MyDMail.getMail(i);
+    const mail = DMailInterface.getMail(i);
     emails.push({
       sender: mail[0],
       messageHash: mail[1],
@@ -102,9 +102,7 @@ export const sendMail = ({ from, messageHash, to }) => {
   const deferred = Q.defer();
 
   try {
-    const transactionHash = makeMailbox()
-      .at(to)
-      .sendMail(messageHash, {
+    const transactionHash = DMailInterface.sendMessage(messageHash, {
         from,
         gas: 1000000,
       });
@@ -128,28 +126,28 @@ export const unlockAccount = (account, password) => {
 };
 
 export const updateArchiveAddress = ({ from, newArchiveAddress }) => {
-  MyDMail.updateArchiveAddress(newArchiveAddress, {
+  DMailInterface.updateArchiveAddress(newArchiveAddress, {
     from,
     gas: 1000000
   });
 };
 
 export const watchForArchiveAddressUpdated = () => {
-  const archiveAddressUpdatedEvent = MyDMail.ArchiveAddressUpdated();
+  const archiveAddressUpdatedEvent = DMailInterface.ArchiveAddressUpdated();
   archiveAddressUpdatedEvent.watch(function(error, result) {
     if (error) console.error(error);
   })
 };
 
 export const watchForMail = () => {
-  const receivedMailEvent = MyDMail.ReceivedMail();
+  const receivedMailEvent = DMailInterface.ReceivedMail();
   receivedMailEvent.watch(function(error, result) {
     if (error) console.error(error);
   })
 };
 
 export const watchForNewMailArchived = () => {
-  const newMailArchivedEvent = MyDMail.NewMailArchived();
+  const newMailArchivedEvent = DMailInterface.NewMailArchived();
   newMailArchivedEvent.watch(function(error, result) {
     if (error) console.error(error);
   })
