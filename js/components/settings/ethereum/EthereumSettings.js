@@ -29,6 +29,7 @@ export default class EthereumSettings extends Component {
   render() {
     const {
       accounts,
+      getMessages,
       primaryAccount,
       setPrimaryAccount,
     } = this.props;
@@ -70,6 +71,7 @@ export default class EthereumSettings extends Component {
                   return (
                     <AccountRow
                       account={account}
+                      getMessages={getMessages}
                       isCoinbase={isCoinbase}
                       isPrimary={account === primaryAccount}
                       isMining={isCoinbase && isMining()}
@@ -94,6 +96,7 @@ export default class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  getMessages: PropTypes.func.isRequired,
   ethereumCreateAccount: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
   setPrimaryAccount: PropTypes.func.isRequired,

@@ -5,6 +5,8 @@ import EthereumSettings from '../components/settings/ethereum/EthereumSettings';
 
 import { ethereumCreateAccount } from '../actions/asyncActions/ethereumAsyncActions';
 
+import { getMessages } from '../actions/asyncActions/messageAsyncActions';
+
 import { setPrimaryAccount } from '../actions/ethereumActions';
 
 export default connect(
@@ -15,6 +17,9 @@ export default connect(
   dispatch => ({
     ethereumCreateAccount() {
       dispatch(ethereumCreateAccount());
+    },
+    getMessages(account) {
+      dispatch(getMessages(account))
     },
     setPrimaryAccount(account) {
       dispatch(setPrimaryAccount(account));

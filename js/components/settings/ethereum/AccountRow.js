@@ -75,6 +75,7 @@ class AccountRow extends Component {
 
 AccountRow.propTypes = {
   account: PropTypes.string.isRequired,
+  getMessages: PropTypes.func.isRequired,
   isCoinbase: PropTypes.bool.isRequired,
   isMining: PropTypes.bool.isRequired,
   isPrimary: PropTypes.bool,
