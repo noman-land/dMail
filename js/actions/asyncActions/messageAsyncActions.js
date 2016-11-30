@@ -23,6 +23,7 @@ export const sendMessage = ({ body, from, subject, to }, password) => {
             dispatch(messageSendSuccess(transactionHash));
           },
           error => {
+            console.log(error);
             dispatch(messageSendError(error))
           }
         );
@@ -49,6 +50,7 @@ export const getMessages = () => {
         });
       },
       error => {
+        console.log(error);
         dispatch(fetchMessagesError(error));
       }
     ).done();
