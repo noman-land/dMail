@@ -1,9 +1,13 @@
 import {
+  createAccount,
   getAccounts,
   init,
 } from '../../modules/ethereumUtils';
 
 import {
+  createAccountError,
+  createAccountStart,
+  createAccountSuccess,
   fetchAccountsError,
   fetchAccountsStart,
   fetchAccountsSuccess,
@@ -41,6 +45,22 @@ export const ethereumGetAccounts = () => {
       },
       error => {
         dispatch(fetchAccountsError(error));
+      }
+    ).done();
+  }
+};
+
+export const ethereumCreateAccount = () => {
+  return (dispatch) => {
+    dispatch(createAccountStart());
+
+    return createAccount().then(
+      address => {
+        dispatch(createAccountSuccess(address));
+        dispatch(ethereumGetAccounts());
+      },
+      error => {
+        dispatch(createAccountError(error));
       }
     ).done();
   }
