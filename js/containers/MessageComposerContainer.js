@@ -13,7 +13,6 @@ import {
 
 export default connect(
   state => ({
-    activeMailbox: state.activeMailbox,
     draftBody: state.draftBody,
     draftSubject: state.draftSubject,
     isComposing: state.isComposing,
