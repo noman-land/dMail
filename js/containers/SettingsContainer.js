@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Settings from '../components/settings/Settings';
 
-import { getEthereumAccounts } from '../actions/asyncActions/ethereumAsyncActions';
+import { ethereumGetAccounts } from '../actions/asyncActions/ethereumAsyncActions';
 
 import { setPrimaryAccount } from '../actions/ethereumActions';
 
@@ -14,7 +14,7 @@ export default connect(
   }),
   dispatch => ({
     ethereumGetAccounts() {
-      dispatch(getEthereumAccounts());
+      dispatch(ethereumGetAccounts());
     },
     setPrimaryAccount(account) {
       dispatch(setPrimaryAccount(account));
