@@ -10,6 +10,8 @@ export default class EthereumSettings extends Component {
     this.state = {
       coinbase: null,
     };
+
+    this.handleCreateIdentityClick = this.handleCreateIdentityClick.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +20,10 @@ export default class EthereumSettings extends Component {
         coinbase
       });
     });
+  }
+
+  handleCreateIdentityClick() {
+    this.props.ethereumCreateAccount();
   }
 
   render() {
@@ -77,7 +83,7 @@ export default class EthereumSettings extends Component {
           </div>
         )}
         <div>
-          <button className="button primary m-2-t">
+          <button className="button primary m-2-t" onClick={this.handleCreateIdentityClick}>
             Create Identity
           </button>
         </div>
@@ -88,6 +94,7 @@ export default class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  ethereumCreateAccount: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
   setPrimaryAccount: PropTypes.func.isRequired,
 };
