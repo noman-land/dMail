@@ -10,7 +10,8 @@ import { setPrimaryAccount } from '../actions/ethereumActions';
 
 import { getCoinbase } from '../modules/ethereumUtils';
 
-window.ethereumUtils = require('../modules/ethereumUtils');
+const ethereumUtils = require('../modules/ethereumUtils');
+window.dMail = {...window.dMail, ethereumUtils};
 
 import Body from './Body';
 import Header from './header/Header';

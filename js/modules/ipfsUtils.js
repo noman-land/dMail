@@ -4,8 +4,6 @@ import { Buffer } from 'buffer';
 
 const ipfs = new IPFS('ipfs'); // this is the name of the indexDB database
 
-window.dMail = {...window.dMail, ipfs};
-
 export const goOnline = () => {
   const deferred = Q.defer();
   ipfs.init({ emptyRepo: true, bits: 4096 }, error => {
@@ -69,7 +67,13 @@ export const getJson = (ipfsHash) => {
   return deferred.promise;
 };
 
-window.ipfsUtils = {
-  addJson,
-  getJson,
+window.dMail = {
+  ...window.dMail,
+  ipfs,
+  ...{
+    ipfsUtils: {
+      addJson,
+      getJson,
+    }
+  }
 };
