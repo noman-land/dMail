@@ -2,9 +2,11 @@ import ActionTypes from '../actions/actionTypes/messagesActionTypes';
 
 const activeMessage = (
   state = {
+    body: 'It shows up when there isn\'t a real one to show',
     id: 2,
-    subject: 'RE: Hello',
-    body: 'Hello',
+    sender: '0x0000',
+    subject: 'This is a default message',
+    timestamp: 0,
   },
   action
 ) => {
