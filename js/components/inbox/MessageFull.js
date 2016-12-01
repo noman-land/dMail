@@ -14,7 +14,7 @@ class MessageFull extends Component {
       message: {
         body,
         messageHash,
-        sender,
+        sender = '',
         subject,
         timestamp,
       },
@@ -24,18 +24,29 @@ class MessageFull extends Component {
     const prettyDate = moment(timestamp * 1E3).format('LLLL');
 
     return (
-      <div>
-        <div>
-          From: {sender}
+      <div className="message-full">
+        <div className="message-subject">
+          {subject}
         </div>
-        <div>
-          Sent: {timeAgo} ({prettyDate})
-        </div>
-        <div>
-          Subject: {subject}
-        </div>
-        <div>
-          Body: {body}
+        <div className="message-body-container">
+          <div className="flex-column flex-grow-1">
+            <div className="message-header">
+              <div className="message-sender">
+                <div className="message-sender-name">
+                  Noman Kapur
+                </div>
+                <div className="message-sender-id">
+                  {'<'}{sender.slice(0, 6)}{'>'}
+                </div>
+              </div>
+              <div className="message-sent-date">
+                {timeAgo} ({prettyDate})
+              </div>
+            </div>
+            <div className="message-body">
+              {body}
+            </div>
+          </div>
         </div>
       </div>
     );
