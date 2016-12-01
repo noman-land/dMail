@@ -1,7 +1,10 @@
 import IPFS from 'ipfs';
 import Q from 'q';
 import { Buffer } from 'buffer';
-window.ipfs = new IPFS('ipfs'); // this is the name of the indexDB database
+
+const ipfs = new IPFS('ipfs'); // this is the name of the indexDB database
+
+window.dMail = {...window.dMail, ipfs};
 
 export const goOnline = () => {
   const deferred = Q.defer();
