@@ -24,7 +24,7 @@ const store = createStore(
   applyMiddleware(thunk)
 );
 
-window.store = store;
+window.dMail = {...window.dMail, store};
 
 render(
   <Provider store={store}>

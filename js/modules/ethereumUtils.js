@@ -7,8 +7,8 @@ import {
   GETH_RPC_PATH,
 } from './constants';
 
-// let DMailInterface;
-window.DMailInterface = null;
+let DMailInterface;
+let web3;
 
 export const clearInbox = ({ from }) => {
   DMailInterface.clearInbox({
@@ -80,12 +80,12 @@ export const goOnline = () => {
   const deferred = Q.defer();
 
   if (typeof window.web3 !== 'undefined') {
-    window.web3 = new Web3(window.web3.currentProvider);
+    web3 = new Web3(window.web3.currentProvider);
   } else {
-    window.web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
+    web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
   }
 
-  window.web3.net.getListening((error, result) => {
+  web3.net.getListening((error, result) => {
     if (error) {
       deferred.reject(error);
       return;
@@ -94,12 +94,15 @@ export const goOnline = () => {
     deferred.resolve(result);
   });
 
+  window.dMail = {...window.dMail, web3};
+
   return deferred.promise;
 };
 
 export const init = () => {
   return goOnline().then(() => {
     DMailInterface = web3.eth.contract(DMAIL_ABI).at(DMAIL_ADDRESS);
+    window.dMail = {...window.dMail, DMailInterface};
     return DMailInterface;
   });
 };
