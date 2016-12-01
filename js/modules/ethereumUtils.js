@@ -85,6 +85,7 @@ export const goOnline = () => {
     web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
   }
 
+  // TODO: There must be a better way to check for online status
   web3.net.getListening((error, result) => {
     if (error) {
       deferred.reject(error);
