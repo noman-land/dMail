@@ -3,8 +3,11 @@ import Q from 'q';
 
 import {
   DMAIL_ABI,
-  DMAIL_ADDRESS,
+  DMAIL_ADDRESS_ROPSTEN,
+  DMAIL_ADDRESS_PRIVATENET,
   GETH_RPC_PATH,
+  NETWORK_ID_PRIVATENET,
+  NETWORK_ID_TESTNET,
 } from './constants';
 
 let DMailInterface;
@@ -20,6 +23,20 @@ export const clearInbox = ({ from }) => {
 export const createAccount = () => {
   return Q(web3.personal.newAccount('password'));
 };
+
+const createDMailInterface = (networkId => {
+  let dMailAddress;
+
+  if (networkId === NETWORK_ID_PRIVATENET) {
+    dMailAddress = DMAIL_ADDRESS_PRIVATENET;
+  } else if (networkId === NETWORK_ID_TESTNET) {
+    dMailAddress = DMAIL_ADDRESS_ROPSTEN;
+  }
+
+  DMailInterface = web3.eth.contract(DMAIL_ABI).at(dMailAddress);
+  window.dMail = {...window.dMail, web3, DMailInterface};
+  return DMailInterface;
+});
 
 export const fetchArchiveAddress = (owner) => {
   return Q(DMailInterface.getArchiveAddress({
@@ -92,20 +109,25 @@ export const goOnline = () => {
       return;
     }
 
-    deferred.resolve(result);
-  });
+    if (result === false) {
+      deferred.reject(result);
+    }
 
-  window.dMail = {...window.dMail, web3};
+    web3.version.getNetwork((error, networkId) => {
+      deferred.resolve(networkId);
+    });
+  });
 
   return deferred.promise;
 };
 
 export const init = () => {
-  return goOnline().then(() => {
-    DMailInterface = web3.eth.contract(DMAIL_ABI).at(DMAIL_ADDRESS);
-    window.dMail = {...window.dMail, DMailInterface};
-    return DMailInterface;
-  });
+  return goOnline().then(
+    createDMailInterface,
+    error => {
+      throw error;
+    }
+  );
 };
 
 export const isMining = () => {
