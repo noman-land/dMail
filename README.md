@@ -11,4 +11,4 @@ The recipient can query the smart contract for their new mail, receive a list of
 ### Future plans
 
 - Integration with ENS
-- Encryped mail and encrypted IPFS hashes
+- Encrypted mail and encrypted IPFS hashes
