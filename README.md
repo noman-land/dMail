@@ -10,5 +10,5 @@ The recipient can query the smart contract for their new mail, receive a list of
 
 ### Future plans
 
-- Integration with ENS
-- Encrypted mail and encrypted IPFS hashes
+- Integration with ENS ([#3](https://git.noman.land/noman/dMail/issues/3))
+- Encrypted mail ([#6](https://git.noman.land/noman/dMail/issues/6))
