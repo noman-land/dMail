@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import moment from 'moment';
+
 import AccountRow from './AccountRow';
 
 import { getCoinbase, isMining } from '../../../modules/ethereumUtils';
@@ -20,6 +22,8 @@ export default class EthereumSettings extends Component {
         coinbase
       });
     });
+
+    this.props.ethereumGetCurrentBlock();
   }
 
   handleCreateIdentityClick() {
@@ -29,6 +33,7 @@ export default class EthereumSettings extends Component {
   render() {
     const {
       accounts,
+      currentBlock,
       getMessages,
       primaryAccount,
       setPrimaryAccount,
@@ -37,6 +42,12 @@ export default class EthereumSettings extends Component {
     const { coinbase } = this.state;
 
     const accountsLength = accounts.length;
+
+    let timeAgo = new Date();
+    if (currentBlock) {
+      timeAgo = moment(currentBlock.timestamp * 1E3).fromNow();
+    }
+
     return (
       <div>
         <h3>
@@ -84,6 +95,13 @@ export default class EthereumSettings extends Component {
             </table>
           </div>
         )}
+        {currentBlock && (
+          <div>
+            <p className="text-right italic text-small">
+              {`Currently at block #${currentBlock.number} from ${timeAgo}`}
+            </p>
+          </div>
+        )}
         <div>
           <button className="button primary m-2-t" onClick={this.handleCreateIdentityClick}>
             Create Identity
@@ -96,8 +114,10 @@ export default class EthereumSettings extends Component {
 
 EthereumSettings.propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentBlock: PropTypes.object,
   getMessages: PropTypes.func.isRequired,
   ethereumCreateAccount: PropTypes.func.isRequired,
+  ethereumGetCurrentBlock: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string,
   setPrimaryAccount: PropTypes.func.isRequired,
 };

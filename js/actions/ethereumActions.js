@@ -42,6 +42,20 @@ export const fetchAccountsSuccess = createAction(
   accounts => ({accounts})
 );
 
+export const fetchCurrentBlockError = createAction(
+  ActionTypes.ETHEREUM_GET_CURRENT_BLOCK_ERROR,
+  error => ({error})
+);
+
+export const fetchCurrentBlockStart = createAction(
+  ActionTypes.ETHEREUM_GET_CURRENT_BLOCK_START,
+);
+
+export const fetchCurrentBlockSuccess = createAction(
+  ActionTypes.ETHEREUM_GET_CURRENT_BLOCK_SUCCESS,
+  currentBlock => ({currentBlock})
+);
+
 export const setPrimaryAccount = createAction(
   ActionTypes.ETHEREUM_SET_PRIMARY_ACCOUNT,
   account => ({account})
