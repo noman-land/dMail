@@ -1,6 +1,7 @@
 import {
   createAccount,
   getAccounts,
+  getCurrentBlock,
   init,
 } from '../../modules/ethereumUtils';
 
@@ -11,6 +12,9 @@ import {
   fetchAccountsError,
   fetchAccountsStart,
   fetchAccountsSuccess,
+  fetchCurrentBlockError,
+  fetchCurrentBlockStart,
+  fetchCurrentBlockSuccess,
   goOnlineStart,
   goOnlineSuccess,
   goOnlineError,
@@ -61,6 +65,21 @@ export const ethereumCreateAccount = () => {
       },
       error => {
         dispatch(createAccountError(error));
+      }
+    ).done();
+  }
+};
+
+export const ethereumGetCurrentBlock = () => {
+  return (dispatch) => {
+    dispatch(fetchCurrentBlockStart());
+
+    return getCurrentBlock().then(
+      currentBlock => {
+        dispatch(fetchCurrentBlockSuccess(currentBlock));
+      },
+      error => {
+        dispatch(fetchCurrentBlockError(error));
       }
     ).done();
   }

@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 
 import EthereumSettings from '../components/settings/ethereum/EthereumSettings';
 
-import { ethereumCreateAccount } from '../actions/asyncActions/ethereumAsyncActions';
+import {
+  ethereumCreateAccount,
+  ethereumGetCurrentBlock,
+} from '../actions/asyncActions/ethereumAsyncActions';
 
 import { getMessages } from '../actions/asyncActions/messageAsyncActions';
 
@@ -12,11 +15,15 @@ import { setPrimaryAccount } from '../actions/ethereumActions';
 export default connect(
   state => ({
     accounts: state.ethereumAccounts,
+    currentBlock: state.currentBlock,
     primaryAccount: state.primaryAccount,
   }),
   dispatch => ({
     ethereumCreateAccount() {
       dispatch(ethereumCreateAccount());
+    },
+    ethereumGetCurrentBlock() {
+      dispatch(ethereumGetCurrentBlock());
     },
     getMessages(account) {
       dispatch(getMessages(account))

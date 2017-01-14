@@ -93,6 +93,28 @@ export const getCoinbase = () => {
   return deferred.promise;
 };
 
+export const getCurrentBlock = () => {
+  const deferred = Q.defer();
+
+  web3.eth.getBlockNumber((err, blockNumber) => {
+    if (err) {
+      deferred.reject(err);
+      return;
+    }
+
+    web3.eth.getBlock(blockNumber, (err, currentBlock) => {
+      if (err) {
+        deferred.reject(err);
+        return;
+      }
+
+      deferred.resolve(currentBlock);
+    });
+  });
+
+  return deferred.promise;
+};
+
 export const goOnline = () => {
   const deferred = Q.defer();
 
