@@ -3,43 +3,18 @@ import Q from 'q';
 import { Buffer } from 'buffer';
 import ipfsAPI from 'ipfs-api';
 
-const ipfs = ipfsAPI({host: '192.168.99.100'});
-// const ipfs = new IPFS();
+let ipfs;
 
 export const goOnline = () => {
   const deferred = Q.defer();
-  // ipfs.init({ emptyRepo: true, bits: 4096 }, error => {
-  //   if (error) {
-  //     if (~error.toString().indexOf('repo already exists')) {
-  //       ipfs.goOnline(error => {
-  //         if (error) {
-  //           deferred.reject(error);
-  //           return;
-  //         }
-  //
-  //         deferred.resolve();
-  //       });
-  //       return;
-  //     }
-  //     deferred.reject(error);
-  //   }
-  //
-  //   ipfs.load((error) => {
-  //     if (error) {
-  //       deferred.reject(error);
-  //       return;
-  //     }
-  //
-  //     ipfs.goOnline(error => {
-  //       if (error) {
-  //         deferred.reject(error);
-  //         return;
-  //       }
-  //
-        deferred.resolve();
-  //     });
-  //   });
-  // });
+
+  try {
+    ipfs = ipfsAPI({host: '192.168.99.100'});
+    deferred.resolve();
+  } catch (error) {
+    ipfs = new IPFS();
+    deferred.resolve();
+  }
 
   return deferred.promise;
 };
@@ -72,10 +47,8 @@ export const getJson = (ipfsHash) => {
 window.dMail = {
   ...window.dMail,
   ipfs,
-  ...{
-    ipfsUtils: {
-      addJson,
-      getJson,
-    }
+  ipfsUtils: {
+    addJson,
+    getJson,
   }
 };
