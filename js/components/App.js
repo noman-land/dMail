@@ -21,7 +21,7 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     props.ethereumGoOnline();
-    props.ipfsGoOnline();
+    props.ipfsGoOnline(props.ipfsIpAddress);
   }
 
   componentDidMount() {
@@ -62,12 +62,15 @@ App.propTypes = {
   ethereumGoOnline: PropTypes.func.isRequired,
   getMessages: PropTypes.func.isRequired,
   ipfsGoOnline: PropTypes.func.isRequired,
+  ipfsIpAddress: PropTypes.string.isRequired,
   primaryAccount: PropTypes.string,
   setPrimaryAccount: PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(
-  null,
+  state => ({
+    ipfsIpAddress: state.ipfsIpAddress,
+  }),
   dispatch => ({
     ethereumGoOnline() {
       dispatch(ethereumGoOnline());
@@ -75,8 +78,8 @@ export default withRouter(connect(
     getMessages() {
       dispatch(getMessages());
     },
-    ipfsGoOnline() {
-      dispatch(ipfsGoOnline());
+    ipfsGoOnline(ipAddress) {
+      dispatch(ipfsGoOnline(ipAddress));
     },
     setPrimaryAccount(account) {
       dispatch(setPrimaryAccount(account));
