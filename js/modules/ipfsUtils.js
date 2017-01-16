@@ -5,15 +5,15 @@ import ipfsAPI from 'ipfs-api';
 
 let ipfs;
 
-export const goOnline = () => {
+export const goOnline = (ipAddress) => {
   const deferred = Q.defer();
 
   try {
-    ipfs = ipfsAPI({host: '192.168.99.100'});
+    ipfs = ipfsAPI({host: ipAddress});
+    window.dMail.ipfs = ipfs;
     deferred.resolve();
   } catch (error) {
-    ipfs = new IPFS();
-    deferred.resolve();
+    deferred.reject(error);
   }
 
   return deferred.promise;
