@@ -13,7 +13,7 @@ import {
 let DMailInterface;
 let web3;
 
-export const clearInbox = ({ from }) => {
+export const clearInbox = (from) => {
   DMailInterface.clearInbox({
     from,
     gas: 1000000
