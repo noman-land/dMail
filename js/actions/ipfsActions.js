@@ -1,6 +1,12 @@
 import { createAction } from 'redux-actions';
 import ActionTypes from './actionTypes/ipfsActionTypes';
 
+
+export const changeIpAddress = createAction(
+  ActionTypes.IPFS_CHANGE_IP_ADDRESS,
+  ipAddress => ({ipAddress})
+);
+
 export const goOnlineStart = createAction(
   ActionTypes.IPFS_GO_ONLINE_START
 );

@@ -1,43 +1,20 @@
 import IPFS from 'ipfs';
 import Q from 'q';
 import { Buffer } from 'buffer';
+import ipfsAPI from 'ipfs-api';
 
-const ipfs = new IPFS('ipfs'); // this is the name of the indexDB database
+let ipfs;
 
-export const goOnline = () => {
+export const goOnline = (ipAddress) => {
   const deferred = Q.defer();
-  ipfs.init({ emptyRepo: true, bits: 4096 }, error => {
-    if (error) {
-      if (~error.toString().indexOf('repo already exists')) {
-        ipfs.goOnline(error => {
-          if (error) {
-            deferred.reject(error);
-            return;
-          }
 
-          deferred.resolve();
-        });
-        return;
-      }
-      deferred.reject(error);
-    }
-
-    ipfs.load((error) => {
-      if (error) {
-        deferred.reject(error);
-        return;
-      }
-
-      ipfs.goOnline(error => {
-        if (error) {
-          deferred.reject(error);
-          return;
-        }
-
-        deferred.resolve();
-      });
-    });
-  });
+  try {
+    ipfs = ipfsAPI({host: ipAddress});
+    window.dMail.ipfs = ipfs;
+    deferred.resolve();
+  } catch (error) {
+    deferred.reject(error);
+  }
 
   return deferred.promise;
 };
@@ -70,10 +47,8 @@ export const getJson = (ipfsHash) => {
 window.dMail = {
   ...window.dMail,
   ipfs,
-  ...{
-    ipfsUtils: {
-      addJson,
-      getJson,
-    }
+  ipfsUtils: {
+    addJson,
+    getJson,
   }
 };

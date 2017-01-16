@@ -6,11 +6,11 @@ import {
   goOnlineError,
 } from '../ipfsActions';
 
-export const ipfsGoOnline = () => {
+export const ipfsGoOnline = (ipAddress) => {
   return (dispatch) => {
     dispatch(goOnlineStart());
 
-    return goOnline().then(
+    return goOnline(ipAddress).then(
       () => {
         dispatch(goOnlineSuccess());
       },

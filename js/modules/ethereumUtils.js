@@ -13,7 +13,7 @@ import {
 let DMailInterface;
 let web3;
 
-export const clearInbox = ({ from }) => {
+export const clearInbox = (from) => {
   DMailInterface.clearInbox({
     from,
     gas: 1000000
@@ -45,11 +45,11 @@ export const fetchArchiveAddress = (owner) => {
 };
 
 export const fetchMail = (owner) => {
+  const deferred = Q.defer();
+  let emails = [];
   const inboxLength = DMailInterface.getUnreadCount({
     from: owner,
   });
-
-  let emails = [];
 
   for (let i = 0; i < inboxLength; i++) {
     const mail = DMailInterface.getMail(i, {
@@ -62,7 +62,8 @@ export const fetchMail = (owner) => {
     });
   }
 
-  return Q(emails);
+  deferred.resolve(emails);
+  return deferred.promise;
 };
 
 export const getAccounts = () => {
