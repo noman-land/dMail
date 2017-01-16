@@ -5,6 +5,7 @@ import currentBlock from './currentBlock';
 import draftBody from './draftBody';
 import draftSubject from './draftSubject';
 import ethereumAccounts from './ethereumAccounts';
+import ipfsIpAddress from './ipfsIpAddress';
 import isComposing from './isComposing';
 import messages from './messages';
 import primaryAccount from './primaryAccount';
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   draftBody,
   draftSubject,
   ethereumAccounts,
+  ipfsIpAddress,
   isComposing,
   messages,
   primaryAccount,
