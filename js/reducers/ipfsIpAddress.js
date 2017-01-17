@@ -1,8 +1,8 @@
 import ActionTypes from '../actions/actionTypes/ipfsActionTypes';
-import { DOCKER_MACHINE_IP } from '../modules/constants';
+import { DEFAULT_HOST } from '../modules/constants';
 
 const ipfsIpAddress = (
-  state = DOCKER_MACHINE_IP,
+  state = DEFAULT_HOST,
   action
 ) => {
   switch (action.type) {
