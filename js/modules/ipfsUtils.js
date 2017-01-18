@@ -6,17 +6,9 @@ import ipfsAPI from 'ipfs-api';
 let ipfs;
 
 export const goOnline = (ipAddress) => {
-  const deferred = Q.defer();
-
-  try {
-    ipfs = ipfsAPI({host: ipAddress});
-    window.dMail.ipfs = ipfs;
-    deferred.resolve();
-  } catch (error) {
-    deferred.reject(error);
-  }
-
-  return deferred.promise;
+  ipfs = ipfsAPI({host: ipAddress});
+  window.dMail.ipfs = ipfs;
+  return Q(dMail.ipfs.version());
 };
 
 export const addJson = (file) => {
