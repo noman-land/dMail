@@ -8,6 +8,10 @@ let ipfs;
 export const goOnline = (ipAddress) => {
   ipfs = ipfsAPI({host: ipAddress});
   window.dMail.ipfs = ipfs;
+  return getVersion();
+};
+
+export const getVersion = () => {
   return Q(dMail.ipfs.version());
 };
 
