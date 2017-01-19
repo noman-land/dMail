@@ -50,13 +50,9 @@ export default class EthereumSettings extends Component {
 
     return (
       <div>
-        <h3>
-          Identity:
-        </h3>
-        <h4 className="m-4-y">
+        <h3 className="m-4-b">
           You have {accountsLength || 'no'} identit{accountsLength - 1 ? 'ies' : 'y'}
-        </h4>
-
+        </h3>
         {accountsLength && (
           <div className="m-4-b">
             <p className="m-1-b">
