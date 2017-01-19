@@ -12,7 +12,7 @@ export const goOnline = (ipAddress) => {
 };
 
 export const getVersion = () => {
-  return Q(dMail.ipfs.version());
+  return Q(ipfs.version());
 };
 
 export const addJson = (file) => {
