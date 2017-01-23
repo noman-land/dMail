@@ -13,17 +13,17 @@ import {
 let DMailInterface;
 let web3;
 
-const createDMailInterface = (networkId => {
-  let dMailAddress;
-
+const getDmailAddress = (networkId) => {
   if (networkId === NETWORK_ID_PRIVATENET) {
-    dMailAddress = DMAIL_ADDRESS_PRIVATENET;
+    return DMAIL_ADDRESS_PRIVATENET;
   } else if (networkId === NETWORK_ID_TESTNET) {
-    dMailAddress = DMAIL_ADDRESS_ROPSTEN;
+    return DMAIL_ADDRESS_ROPSTEN;
   }
+  throw new Error(`No address found for network ID: ${networkId}. Are you sure there's a dMail contract deployed on this network?`);
+};
 
-  DMailInterface = web3.eth.contract(DMAIL_ABI).at(dMailAddress);
-  window.dMail = {...window.dMail, web3, DMailInterface};
+const createDMailInterface = (networkId => {
+  DMailInterface = web3.eth.contract(DMAIL_ABI).at(getDmailAddress(networkId));
   return DMailInterface;
 });
 
@@ -145,12 +145,10 @@ export const goOnline = () => {
 };
 
 export const init = () => {
-  return goOnline().then(
-    createDMailInterface,
-    error => {
-      throw error;
-    }
-  );
+  return goOnline().then(networkId => {
+    createDMailInterface(networkId);
+    return networkId;
+  });
 };
 
 export const isMining = () => {
