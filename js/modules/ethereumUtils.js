@@ -13,17 +13,6 @@ import {
 let DMailInterface;
 let web3;
 
-export const clearInbox = (from) => {
-  DMailInterface.clearInbox({
-    from,
-    gas: 1000000
-  });
-};
-
-export const createAccount = () => {
-  return Q(web3.personal.newAccount('password'));
-};
-
 const createDMailInterface = (networkId => {
   let dMailAddress;
 
@@ -37,6 +26,17 @@ const createDMailInterface = (networkId => {
   window.dMail = {...window.dMail, web3, DMailInterface};
   return DMailInterface;
 });
+
+export const clearInbox = (from) => {
+  DMailInterface.clearInbox({
+    from,
+    gas: 1000000
+  });
+};
+
+export const createAccount = () => {
+  return Q(web3.personal.newAccount('password'));
+};
 
 export const fetchArchiveAddress = (owner) => {
   return Q(DMailInterface.getArchiveAddress({
