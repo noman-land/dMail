@@ -6,15 +6,15 @@ import {
   fetchMessagesError,
   fetchMessagesStart,
   fetchMessagesSuccess,
-  messageSendError,
-  messageSendStart,
-  messageSendSuccess,
+  sendMessageError,
+  sendMessageStart,
+  sendMessageSuccess,
 } from '../messagesActions';
 import ReceivedMessage from '../../classes/ReceivedMessage';
 
 export const sendMessage = (message, { from, to }, password) => {
   return (dispatch) => {
-    dispatch(messageSendStart());
+    dispatch(sendMessageStart());
 
     return ethereumUtils.unlockAccount(from, password)
     .then(() => ipfsUtils.addJson(message))
@@ -24,12 +24,12 @@ export const sendMessage = (message, { from, to }, password) => {
     })
     .then(transactionHash => {
       console.log("Sending mail. Here's the transaction hash:", transactionHash);
-      dispatch(messageSendSuccess(transactionHash));
+      dispatch(sendMessageSuccess(transactionHash));
       return true;
     })
     .catch(error => {
       console.log(error);
-      dispatch(messageSendError(error));
+      dispatch(sendMessageError(error));
       throw error;
     })
     .done();

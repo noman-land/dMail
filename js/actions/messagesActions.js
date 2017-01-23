@@ -39,16 +39,16 @@ export const setDraftBody = createAction(
   body => ({body})
 );
 
-export const messageSendError = createAction(
+export const sendMessageError = createAction(
   ActionTypes.MESSAGE_SEND_ERROR,
   error => ({error})
 );
 
-export const messageSendStart = createAction(
+export const sendMessageStart = createAction(
   ActionTypes.MESSAGE_SEND_START,
 );
 
-export const messageSendSuccess = createAction(
+export const sendMessageSuccess = createAction(
   ActionTypes.MESSAGE_SEND_SUCCESS,
   transactionHash => ({transactionHash})
 );
