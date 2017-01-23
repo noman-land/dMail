@@ -6,7 +6,7 @@ const ipfsIpAddress = (
   action
 ) => {
   switch (action.type) {
-    case ActionTypes.IPFS_CHANGE_IP:
+    case ActionTypes.IPFS_CHANGE_IP_ADDRESS:
       return action.payload.ipfsIpAddress;
     default:
       return state;
