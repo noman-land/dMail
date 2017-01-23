@@ -44,12 +44,3 @@ export const getJson = (ipfsHash) => {
   }, deferred.reject);
   return deferred.promise;
 };
-
-// window.dMail = {
-//   ...window.dMail,
-//   ipfs,
-//   ipfsUtils: {
-//     addJson,
-//     getJson,
-//   }
-// };
