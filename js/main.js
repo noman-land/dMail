@@ -49,10 +49,7 @@ class Application {
       return Q(storedPrimaryAccount);
     }
 
-    return ethereumGetCoinbase().then((coinbase) => {
-      savePrimaryAccount(networkId, coinbase);
-      return coinbase;
-    });
+    return ethereumGetCoinbase();
   }
 
   goOnline() {
