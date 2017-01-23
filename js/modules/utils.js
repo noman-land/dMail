@@ -1,6 +1,5 @@
 const getExistingOrNewPrimaryAccounts = () => {
-  let existingOrEmptyPrimaryAccounts = JSON.parse(localStorage.getItem('primaryAccounts'));
-  return existingOrEmptyPrimaryAccounts || {};
+  return JSON.parse(localStorage.getItem('primaryAccounts')) || {};
 };
 
 export const savePrimaryAccount = (networkId, account) => {
