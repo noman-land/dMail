@@ -5,24 +5,13 @@ import {
   DMAIL_ABI,
   DMAIL_ADDRESS_ROPSTEN,
   DMAIL_ADDRESS_PRIVATENET,
-  GETH_RPC_PATH,
+  DEFAULT_GETH_RPC_PATH,
   NETWORK_ID_PRIVATENET,
   NETWORK_ID_TESTNET,
 } from './constants';
 
 let DMailInterface;
 let web3;
-
-export const clearInbox = (from) => {
-  DMailInterface.clearInbox({
-    from,
-    gas: 1000000
-  });
-};
-
-export const createAccount = () => {
-  return Q(web3.personal.newAccount('password'));
-};
 
 const createDMailInterface = (networkId => {
   let dMailAddress;
@@ -37,6 +26,17 @@ const createDMailInterface = (networkId => {
   window.dMail = {...window.dMail, web3, DMailInterface};
   return DMailInterface;
 });
+
+export const clearInbox = (from) => {
+  DMailInterface.clearInbox({
+    from,
+    gas: 1000000
+  });
+};
+
+export const createAccount = () => {
+  return Q(web3.personal.newAccount('password'));
+};
 
 export const fetchArchiveAddress = (owner) => {
   return Q(DMailInterface.getArchiveAddress({
@@ -122,7 +122,7 @@ export const goOnline = () => {
   if (typeof window.web3 !== 'undefined') {
     web3 = new Web3(window.web3.currentProvider);
   } else {
-    web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
+    web3 = new Web3(new Web3.providers.HttpProvider(DEFAULT_GETH_RPC_PATH));
   }
 
   // TODO: There must be a better way to check for online status

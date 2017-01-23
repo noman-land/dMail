@@ -24,6 +24,6 @@ IpfsOnlineBadge.propTypes = {
 
 export default connect(
   state => ({
-    connectedToIPFS: state.connectedToIPFS,
+    connectedToIPFS: state.connectedToIpfs,
   })
 )(IpfsOnlineBadge);
