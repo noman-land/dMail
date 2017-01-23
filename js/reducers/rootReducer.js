@@ -1,6 +1,6 @@
 import activeMessage from './activeMessage';
 import connectedToEthereum from './connectedToEthereum';
-import connectedToIPFS from './connectedToIPFS';
+import connectedToIpfs from './connectedToIpfs';
 import currentBlock from './currentBlock';
 import draftBody from './draftBody';
 import draftSubject from './draftSubject';
@@ -15,7 +15,7 @@ import { combineReducers } from 'redux';
 const rootReducer = combineReducers({
   activeMessage,
   connectedToEthereum,
-  connectedToIPFS,
+  connectedToIpfs,
   currentBlock,
   draftBody,
   draftSubject,

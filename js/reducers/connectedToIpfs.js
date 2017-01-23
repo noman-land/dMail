@@ -1,6 +1,6 @@
 import ActionTypes from '../actions/actionTypes/ipfsActionTypes';
 
-const connectedToIPFS = (
+const connectedToIpfs = (
   state = false,
   action
 ) => {
@@ -14,4 +14,4 @@ const connectedToIPFS = (
   }
 };
 
-export default connectedToIPFS;
+export default connectedToIpfs;
