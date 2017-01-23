@@ -60,3 +60,8 @@ export const setPrimaryAccount = createAction(
   ActionTypes.ETHEREUM_SET_PRIMARY_ACCOUNT,
   account => ({account})
 );
+
+export const updateNetworkId = createAction(
+  ActionTypes.ETHEREUM_UPDATE_NETWORK_ID,
+  networkId => ({networkId})
+);
