@@ -6,6 +6,9 @@ import Q from 'q';
 require("font-awesome-webpack");
 import '../sass/style.sass';
 
+// Utils
+import { getSavedPrimaryAccount, savePrimaryAccount } from './modules/utils';
+
 // Redux/Router
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -39,14 +42,15 @@ class Application {
     // dispatch();
   }
 
-  getPrimaryAccount() {
-    const storedPrimaryAccount = localStorage.getItem('primaryAccount');
-    if (!storedPrimaryAccount) {
+  getPrimaryAccount(networkId) {
+    let storedPrimaryAccount = getSavedPrimaryAccount(networkId);
+
+    if (storedPrimaryAccount) {
       return Q(storedPrimaryAccount);
     }
 
     return ethereumGetCoinbase().then((coinbase) => {
-      localStorage.setItem('primaryAccount', coinbase);
+      savePrimaryAccount(networkId, coinbase);
       return coinbase;
     });
   }
@@ -74,7 +78,7 @@ class Application {
 
     this.goOnline().then((initialData) => {
       ethereumGetAccounts().then((ethereumAccounts) => {
-        this.getPrimaryAccount().then((primaryAccount) => {
+        this.getPrimaryAccount(initialData.networkId).then((primaryAccount) => {
           this.setupRedux({...initialData, ethereumAccounts, primaryAccount});
           this.fetchData();
           this.startRouter();
