@@ -2,12 +2,17 @@ import IPFS from 'ipfs';
 import Q from 'q';
 import { Buffer } from 'buffer';
 import ipfsAPI from 'ipfs-api';
+import { DEFAULT_HOSTNAME } from '../modules/constants';
 
 let ipfs;
 
-export const goOnline = (ipAddress) => {
-  ipfs = ipfsAPI({host: ipAddress});
-  window.dMail.ipfs = ipfs;
+export const init = (customHostname) => {
+  return goOnline(customHostname);
+};
+
+export const goOnline = (customHostname) => {
+  const hostname = customHostname || DEFAULT_HOSTNAME;
+  ipfs = ipfsAPI({host: hostname});
   return getVersion();
 };
 
