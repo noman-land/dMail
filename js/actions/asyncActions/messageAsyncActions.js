@@ -3,6 +3,9 @@ import * as dMailUtils from '../../utils/dMailUtils';
 import * as ethereumUtils from '../../utils/ethereumUtils';
 import * as ipfsUtils from '../../utils/ipfsUtils';
 import {
+  fetchMessageError,
+  fetchMessageStart,
+  fetchMessageSuccess,
   fetchMessagesError,
   fetchMessagesStart,
   fetchMessagesSuccess,
@@ -58,5 +61,18 @@ export const getMessages = (account) => {
       throw error;
     })
     .done();
+  };
+};
+
+export const getMessage = (messageHash) => {
+  return (dispatch) => {
+    dispatch(fetchMessageStart());
+
+    return getJson(messageHash).then(json => {
+      dispatch(fetchMessageSuccess(json));
+    }).catch(error => {
+      console.log(error);
+      dispatch(fetchMessageError(error));
+    }).done();
   };
 };

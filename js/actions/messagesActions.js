@@ -10,6 +10,20 @@ export const composingMessage = createAction(
   isComposing => ({isComposing})
 );
 
+export const fetchMessageError = createAction(
+  ActionTypes.MESSAGE_FETCH_ERROR,
+  error => ({error})
+);
+
+export const fetchMessageStart = createAction(
+  ActionTypes.MESSAGE_FETCH_START
+);
+
+export const fetchMessageSuccess = createAction(
+  ActionTypes.MESSAGE_FETCH_SUCCESS,
+  message => ({message})
+);
+
 export const fetchMessagesError = createAction(
   ActionTypes.MESSAGES_FETCH_ERROR,
   error => ({error})
