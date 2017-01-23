@@ -1,3 +1,5 @@
+import { routerReducer } from 'react-router-redux';
+
 import activeMessage from './activeMessage';
 import connectedToEthereum from './connectedToEthereum';
 import connectedToIpfs from './connectedToIpfs';
@@ -24,6 +26,7 @@ const rootReducer = combineReducers({
   isComposing,
   messages,
   primaryAccount,
+  routing: routerReducer,
 });
 
 export default rootReducer;
