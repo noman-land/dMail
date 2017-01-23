@@ -10,6 +10,7 @@ import ethereumAccounts from './ethereumAccounts';
 import ipfsIpAddress from './ipfsIpAddress';
 import isComposing from './isComposing';
 import messages from './messages';
+import networkId from './networkId';
 import primaryAccount from './primaryAccount';
 
 import { combineReducers } from 'redux';
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   ipfsIpAddress,
   isComposing,
   messages,
+  networkId,
   primaryAccount,
   routing: routerReducer,
 });
