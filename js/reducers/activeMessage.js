@@ -12,6 +12,7 @@ const activeMessage = (
 ) => {
   switch (action.type) {
     case ActionTypes.ACTIVE_MESSAGE_SET:
+    case ActionTypes.MESSAGE_FETCH_SUCCESS:
       return action.payload.message;
     default:
       return state;

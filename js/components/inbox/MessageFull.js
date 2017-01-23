@@ -7,6 +7,8 @@ class MessageFull extends Component {
   }
 
   componentDidMount() {
+    const { getMessage, routeParams: { messageId } } = this.props;
+    getMessage(messageId);
   }
 
   render() {
@@ -58,6 +60,7 @@ class MessageFull extends Component {
 }
 
 MessageFull.propTypes = {
+  getMessage: PropTypes.func.isRequired,
   message: PropTypes.object.isRequired,
   routeParams: PropTypes.object.isRequired,
 };
