@@ -5,7 +5,7 @@ import {
   DMAIL_ABI,
   DMAIL_ADDRESS_ROPSTEN,
   DMAIL_ADDRESS_PRIVATENET,
-  GETH_RPC_PATH,
+  DEFAULT_GETH_RPC_PATH,
   NETWORK_ID_PRIVATENET,
   NETWORK_ID_TESTNET,
 } from './constants';
@@ -122,7 +122,7 @@ export const goOnline = () => {
   if (typeof window.web3 !== 'undefined') {
     web3 = new Web3(window.web3.currentProvider);
   } else {
-    web3 = new Web3(new Web3.providers.HttpProvider(GETH_RPC_PATH));
+    web3 = new Web3(new Web3.providers.HttpProvider(DEFAULT_GETH_RPC_PATH));
   }
 
   // TODO: There must be a better way to check for online status
