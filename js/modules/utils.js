@@ -1,13 +1,6 @@
 const getExistingOrNewPrimaryAccounts = () => {
-  let existingOrEmptyPrimaryAccounts;
-
-  try {
-    existingOrEmptyPrimaryAccounts = JSON.parse(localStorage.getItem('primaryAccounts'));
-  } catch(error) {
-    existingOrEmptyPrimaryAccounts = {};
-  }
-
-  return existingOrEmptyPrimaryAccounts;
+  let existingOrEmptyPrimaryAccounts = JSON.parse(localStorage.getItem('primaryAccounts'));
+  return existingOrEmptyPrimaryAccounts || {};
 };
 
 export const savePrimaryAccount = (networkId, account) => {
