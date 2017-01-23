@@ -145,12 +145,10 @@ export const goOnline = () => {
 };
 
 export const init = () => {
-  return goOnline().then(
-    createDMailInterface,
-    error => {
-      throw error;
-    }
-  );
+  return goOnline().then(networkId => {
+    createDMailInterface(networkId);
+    return networkId;
+  });
 };
 
 export const isMining = () => {
