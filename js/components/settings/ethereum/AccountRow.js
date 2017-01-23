@@ -37,7 +37,6 @@ class AccountRow extends Component {
 
       e.preventDefault();
       setPrimaryAccount(account);
-      localStorage.setItem('primaryAccount', account);
       getMessages(account);
     };
   }
