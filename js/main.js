@@ -93,9 +93,7 @@ class Application {
   }
 
   startRouter() {
-    const syncedHistory = syncHistoryWithStore(browserHistory, this.store, {
-      selectLocationState: state => state.routing
-    });
+    const syncedHistory = syncHistoryWithStore(browserHistory, this.store);
     render(
       <Provider store={this.store}>
         <Router history={syncedHistory}>
