@@ -18,18 +18,10 @@ export default connect(
     currentBlock: state.currentBlock,
     primaryAccount: state.primaryAccount,
   }),
-  dispatch => ({
-    ethereumCreateAccount() {
-      dispatch(ethereumCreateAccount());
-    },
-    ethereumGetCurrentBlock() {
-      dispatch(ethereumGetCurrentBlock());
-    },
-    getMessages(account) {
-      dispatch(getMessages(account))
-    },
-    setPrimaryAccount(account) {
-      dispatch(setPrimaryAccount(account));
-    },
-  }),
+  {
+    ethereumCreateAccount,
+    ethereumGetCurrentBlock,
+    getMessages,
+    setPrimaryAccount,
+  },
 )(EthereumSettings);

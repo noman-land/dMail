@@ -9,9 +9,5 @@ export default connect(
   state => ({
     isComposing: state.isComposing,
   }),
-  dispatch => ({
-    composingMessage(isComposing) {
-      dispatch(composingMessage(isComposing));
-    },
-  }),
+  {composingMessage},
 )(Sidebar);

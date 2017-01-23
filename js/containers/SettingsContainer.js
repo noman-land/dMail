@@ -12,12 +12,5 @@ export default connect(
     accounts: state.ethereumAccounts,
     primaryAccount: state.primaryAccount,
   }),
-  dispatch => ({
-    ethereumGetAccounts() {
-      dispatch(ethereumGetAccounts());
-    },
-    setPrimaryAccount(account) {
-      dispatch(setPrimaryAccount(account));
-    },
-  }),
+  {ethereumGetAccounts, setPrimaryAccount}
 )(Settings);

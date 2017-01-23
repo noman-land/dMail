@@ -18,18 +18,10 @@ export default connect(
     isComposing: state.isComposing,
     primaryAccount: state.primaryAccount,
   }),
-  dispatch => ({
-    composingMessage(isComposing) {
-      dispatch(composingMessage(isComposing));
-    },
-    sendMessage(message, password) {
-      dispatch(sendMessage(message, password));
-    },
-    setDraftBody(body) {
-      dispatch(setDraftBody(body));
-    },
-    setDraftSubject(subject) {
-      dispatch(setDraftSubject(subject));
-    },
-  }),
+  {
+    composingMessage,
+    sendMessage,
+    setDraftBody,
+    setDraftSubject
+  },
 )(MessageComposer);

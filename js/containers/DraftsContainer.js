@@ -10,9 +10,5 @@ export default connect(
     messages: state.messages.slice(4),
     pathname: props.location.pathname,
   }),
-  dispatch => ({
-    setActiveMessage(message) {
-      dispatch(setActiveMessage(message));
-    },
-  }),
+  {setActiveMessage},
 )(MessageList);
