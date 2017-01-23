@@ -18,3 +18,8 @@ export const goOnlineSuccess = createAction(
 export const goOnlineError = createAction(
   ActionTypes.IPFS_GO_ONLINE_ERROR
 );
+
+export const updateIpfsVersion = createAction(
+  ActionTypes.IPFS_UPDATE_VERSION,
+  ipfsVersion => ({ipfsVersion})
+);
