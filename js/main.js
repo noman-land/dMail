@@ -69,6 +69,13 @@ class Application {
     });
   }
 
+  saveOnExit() {
+    window.onbeforeunload = () => {
+      const { networkId, primaryAccount } = this.store.getState();
+      savePrimaryAccount(networkId, primaryAccount);
+    };
+  }
+
   setupRedux(initialState) {
     this.store = configureStore(initialState, browserHistory);
   }
@@ -82,6 +89,7 @@ class Application {
           this.setupRedux({...initialData, ethereumAccounts, primaryAccount});
           this.fetchData();
           this.startRouter();
+          this.saveOnExit();
         }).catch(error => {throw error}).done()
       }).catch(error => {throw error}).done();
     }).catch(error => {throw error}).done();
