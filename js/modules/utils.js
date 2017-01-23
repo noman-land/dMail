@@ -12,7 +12,5 @@ export const savePrimaryAccount = (networkId, account) => {
 };
 
 export const getSavedPrimaryAccount = (networkId) => {
-  let storedPrimaryAccounts = getNewOrExistingPrimaryAccounts();
-
-  return storedPrimaryAccounts[networkId];
+  return getNewOrExistingPrimaryAccounts()[networkId];
 };
