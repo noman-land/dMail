@@ -25,7 +25,7 @@ export const sendMessage = ({ body, from, subject, to }, password) => {
           },
           error => {
             console.log(error);
-            dispatch(messageSendError(error))
+            dispatch(messageSendError(error));
           }
         );
       });
