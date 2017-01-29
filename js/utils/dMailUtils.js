@@ -1,5 +1,5 @@
 import Q from 'q';
-import { getWeb3 } from './ethereumUtils';
+import { createContractInterface } from './ethereumUtils';
 
 import {
   DMAIL_ABI,
@@ -21,7 +21,8 @@ const getDMailAddress = (networkId) => {
 };
 
 export const createDMailInterface = (networkId => {
-  DMailInterface = getWeb3().eth.contract(DMAIL_ABI).at(getDMailAddress(networkId));
+  const dMailContractAddress = getDMailAddress(networkId);
+  DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
   return DMailInterface;
 });
 

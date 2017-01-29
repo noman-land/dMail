@@ -10,6 +10,10 @@ export const createAccount = () => {
   return Q(web3.personal.newAccount('password'));
 };
 
+export const createContractInterface = (address, abi) => {
+  return web3.eth.contract(abi).at(address);
+};
+
 export const getAccounts = () => {
   const deferred = Q.defer();
   web3.eth.getAccounts((error, accounts) => {
@@ -58,10 +62,6 @@ export const getCurrentBlock = () => {
   });
 
   return deferred.promise;
-};
-
-export const getWeb3 = () => {
-  return web3;
 };
 
 export const goOnline = () => {
