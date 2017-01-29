@@ -1,5 +1,5 @@
 import ActionTypes from '../actions/actionTypes/ipfsActionTypes';
-import { DEFAULT_HOSTNAME } from '../modules/constants';
+import { DEFAULT_HOSTNAME } from '../utils/constants';
 
 const ipfsIpAddress = (
   state = DEFAULT_HOSTNAME,

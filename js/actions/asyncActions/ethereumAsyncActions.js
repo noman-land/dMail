@@ -3,7 +3,7 @@ import {
   getAccounts,
   getCurrentBlock,
   init,
-} from '../../modules/ethereumUtils';
+} from '../../utils/ethereumUtils';
 
 import {
   createAccountError,
