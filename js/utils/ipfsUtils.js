@@ -2,7 +2,7 @@ import IPFS from 'ipfs';
 import Q from 'q';
 import { Buffer } from 'buffer';
 import ipfsAPI from 'ipfs-api';
-import { DEFAULT_HOSTNAME } from '../modules/constants';
+import { DEFAULT_HOSTNAME } from '../utils/constants';
 
 let ipfs;
 

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import AccountRow from './AccountRow';
 
-import { getCoinbase, isMining } from '../../../modules/ethereumUtils';
+import { getCoinbase, isMining } from '../../../utils/ethereumUtils';
 
 export default class EthereumSettings extends Component {
   constructor(props, context) {
