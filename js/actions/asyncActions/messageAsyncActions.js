@@ -1,6 +1,6 @@
 import Q from 'q';
-import { fetchMail, sendMail, unlockAccount } from '../../modules/ethereumUtils';
-import { addJson, getJson } from '../../modules/ipfsUtils';
+import { fetchMail, sendMail, unlockAccount } from '../../utils/ethereumUtils';
+import { addJson, getJson } from '../../utils/ipfsUtils';
 import {
   fetchMessagesError,
   fetchMessagesStart,

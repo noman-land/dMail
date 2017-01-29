@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { SIDEBAR_LINKS } from '../../modules/constants';
+import { SIDEBAR_LINKS } from '../../utils/constants';
 
 export default class Sidebar extends Component {
   constructor(props, context) {
