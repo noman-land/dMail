@@ -11,18 +11,18 @@ import {
   messageSendSuccess,
 } from '../messagesActions';
 
-export const sendMessage = (message, password) => {
+export const sendMessage = (message, metadata, password) => {
   return (dispatch) => {
     dispatch(messageSendStart());
 
-    return ethereumUtils.unlockAccount(message.from, password)
+    return ethereumUtils.unlockAccount(metadata.from, password)
     .then(() => ipfsUtils.addJson(message))
     .then(messageHash => {
       console.log("Added to IPFS. Here's the message hash: ", messageHash);
       return dMailUtils.sendMail({
-        from: message.from,
+        from: metadata.from,
         messageHash,
-        to: message.to
+        to: metadata.to,
       });
     })
     .then(transactionHash => {

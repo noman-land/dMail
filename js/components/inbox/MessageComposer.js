@@ -42,11 +42,12 @@ export default class MessageComposer extends Component {
       setDraftSubject,
     } = this.props;
 
-    sendMessage({
-      ...draft,
+    const metadata = {
       from: primaryAccount,
       to,
-    }, 'password');
+    };
+
+    sendMessage(draft, metadata, 'password');
 
     composingMessage(false);
     setDraftBody('');
