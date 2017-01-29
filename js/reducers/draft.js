@@ -11,7 +11,7 @@ const draft = (
     inResponseTo: '',
     replyTo: '',
     subject: '',
-    version: 1,
+    version: '1',
   },
   action,
 ) => {
