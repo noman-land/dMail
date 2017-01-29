@@ -1,4 +1,4 @@
-import { goOnline } from '../../modules/ipfsUtils';
+import { goOnline } from '../../utils/ipfsUtils';
 
 import {
   goOnlineStart,

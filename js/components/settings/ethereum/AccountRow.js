@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import CheckMark from '../../../components/icons/CheckMark'
 import Coins from '../../../components/icons/Coins'
 import PickAxe from '../../../components/icons/PickAxe'
-import { getBalance } from '../../../modules/ethereumUtils';
+import { getBalance } from '../../../utils/ethereumUtils';
 
 class AccountRow extends Component {
   constructor(props, context) {

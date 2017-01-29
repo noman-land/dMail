@@ -7,21 +7,21 @@ require("font-awesome-webpack");
 import '../sass/style.sass';
 
 // Utils
-import { getSavedPrimaryAccount, savePrimaryAccount } from './modules/utils';
+import { getSavedPrimaryAccount, savePrimaryAccount } from './utils/localStorageUtils';
 
 // Redux/Router
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, IndexRedirect, IndexRoute, browserHistory } from 'react-router';
-import configureStore from './modules/reduxUtils';
+import configureStore from './utils/reduxUtils';
 
 import {
   init as ethereumInit,
   getAccounts as ethereumGetAccounts,
   getCoinbase as ethereumGetCoinbase
-} from './modules/ethereumUtils';
+} from './utils/ethereumUtils';
 
-import { init as ipfsInit } from './modules/ipfsUtils';
+import { init as ipfsInit } from './utils/ipfsUtils';
 
 import { getMessages } from './actions/asyncActions/messageAsyncActions';
 
