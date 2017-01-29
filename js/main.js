@@ -7,7 +7,7 @@ require("font-awesome-webpack");
 import '../sass/style.sass';
 
 // Utils
-import { getSavedPrimaryAccount, savePrimaryAccount } from './utils/utils';
+import { getSavedPrimaryAccount, savePrimaryAccount } from './utils/localStorageUtils';
 
 // Redux/Router
 import { Provider } from 'react-redux';
