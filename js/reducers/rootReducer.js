@@ -4,8 +4,7 @@ import activeMessage from './activeMessage';
 import connectedToEthereum from './connectedToEthereum';
 import connectedToIpfs from './connectedToIpfs';
 import currentBlock from './currentBlock';
-import draftBody from './draftBody';
-import draftSubject from './draftSubject';
+import draft from './draft';
 import ethereumAccounts from './ethereumAccounts';
 import ipfsIpAddress from './ipfsIpAddress';
 import ipfsVersion from './ipfsVersion';
@@ -21,8 +20,7 @@ const rootReducer = combineReducers({
   connectedToEthereum,
   connectedToIpfs,
   currentBlock,
-  draftBody,
-  draftSubject,
+  draft,
   ethereumAccounts,
   ipfsIpAddress,
   ipfsVersion,
