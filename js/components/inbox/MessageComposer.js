@@ -32,27 +32,22 @@ export default class MessageComposer extends Component {
   }
 
   handleSend() {
-    const { to } = this.state;
     const {
       composingMessage,
-      draft,
+      draftBody,
+      draftSubject,
       primaryAccount,
       sendMessage,
       setDraftBody,
       setDraftSubject,
     } = this.props;
 
-    const metadata = {
-      from: primaryAccount,
-      to,
-    };
-
     sendMessage({
-      ...draft,
-      author: primaryAccount,
-      authoredDate: new Date().getTime().toString(),
-      replyTo: primaryAccount,
-    }, metadata, 'password');
+      body: draftBody,
+      from: primaryAccount,
+      subject: draftSubject,
+      to: this.state.to,
+    }, 'password');
 
     composingMessage(false);
     setDraftBody('');
@@ -76,14 +71,8 @@ export default class MessageComposer extends Component {
   }
 
   render() {
+    const { draftBody, draftSubject, primaryAccount } = this.props;
     const { to } = this.state;
-    const {
-      draft: {
-        draftBody,
-        draftSubject,
-      },
-      primaryAccount
-    } = this.props;
 
     return (
       <div className="message-composer">
@@ -151,7 +140,8 @@ export default class MessageComposer extends Component {
 }
 
 MessageComposer.propTypes = {
-  draft: PropTypes.object.isRequired,
+  draftBody: PropTypes.string,
+  draftSubject: PropTypes.string,
   composingMessage: PropTypes.func.isRequired,
   primaryAccount: PropTypes.string.isRequired,
   sendMessage: PropTypes.func.isRequired,
