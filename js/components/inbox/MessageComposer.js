@@ -47,7 +47,12 @@ export default class MessageComposer extends Component {
       to,
     };
 
-    sendMessage(draft, metadata, 'password');
+    sendMessage({
+      ...draft,
+      author: primaryAccount,
+      authoredDate: new Date().getTime().toString(),
+      replyTo: primaryAccount,
+    }, metadata, 'password');
 
     composingMessage(false);
     setDraftBody('');

@@ -23,16 +23,20 @@ class MessageSnippet extends Component {
   render() {
     const {
       message: {
-        body,
-        sender,
-        messageHash,
-        subject,
-        timestamp,
+        metadata: {
+          messageHash,
+          sender,
+          sentDate,
+        },
+        messageContent: {
+          body,
+          subject,
+        }
       },
       pathname,
     } = this.props;
 
-    const prettyDate = moment(timestamp * 1E3).format('MMM DD');
+    const prettyDate = moment(sentDate * 1E3).format('MMM DD');
 
     return (
       <li className="message-snippet" onClick={this.handleClick}>
@@ -62,7 +66,7 @@ class MessageSnippet extends Component {
             <div className="attachment">
               <Attachment />
             </div>
-            <div className="timestamp" title={moment(timestamp * 1E3).format('LLLL')}>
+            <div className="timestamp" title={moment(sentDate * 1E3).format('LLLL')}>
               {prettyDate}
             </div>
           </div>

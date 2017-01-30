@@ -10,6 +10,7 @@ import {
   messageSendStart,
   messageSendSuccess,
 } from '../messagesActions';
+import ReceivedMessage from '../../classes/ReceivedMessage';
 
 export const sendMessage = (message, { from, to }, password) => {
   return (dispatch) => {
@@ -39,14 +40,11 @@ export const getMessages = (account) => {
   return (dispatch) => {
     dispatch(fetchMessagesStart());
 
-    return dMailUtils.fetchMail(account)
-    .then(messages => {
-      return Q.all(messages.map(message => {
-        return ipfsUtils.getJson(message.messageHash)
-        .then(json => ({
-          ...message,
-          ...json,
-        }));
+    return dMailUtils.fetchMail(account).then(newMessages => {
+      return Q.all(newMessages.map(newMessageMetadata => {
+        return ipfsUtils.getJson(newMessageMetadata.messageHash).then(messageContent => {
+          return new ReceivedMessage({messageContent, ...newMessageMetadata}).toJson();
+        });
       }));
     })
     .then(decodedMessages => {
