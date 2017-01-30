@@ -46,13 +46,14 @@ export const fetchMail = (account) => {
   });
 
   for (let i = 0; i < inboxLength; i++) {
-    const mail = DMailInterface.getMail(i, {
+    const [ sender, messageHash, sentDate ] = DMailInterface.getMail(i, {
       from: account,
     });
+
     emails.push({
-      sender: mail[0],
-      messageHash: mail[1],
-      timestamp: mail[2].toString(),
+      messageHash,
+      sender,
+      sentDate: sentDate.toString(),
     });
   }
 
