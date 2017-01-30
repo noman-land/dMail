@@ -20,11 +20,11 @@ const getDMailAddress = (networkId) => {
   throw new Error(`No address found for network ID: ${networkId}. Are you sure there's a dMail contract deployed on this network?`);
 };
 
-export const createDMailInterface = (networkId => {
+export const createDMailInterface = networkId => {
   const dMailContractAddress = getDMailAddress(networkId);
   DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
   return DMailInterface;
-});
+};
 
 export const clearInbox = (from) => {
   DMailInterface.clearInbox({
