@@ -38,6 +38,12 @@ export const fetchArchiveAddress = (owner) => {
   }));
 };
 
+export const fetchArchivedMail = (owner) => {
+  return fetchArchiveAddress(owner).then(archiveAddress => {
+    console.log(archiveAddress);
+  });
+};
+
 export const fetchMail = (account) => {
   const deferred = Q.defer();
   let emails = [];
