@@ -22,8 +22,7 @@ const getDMailAddress = (networkId) => {
 
 export const createDMailInterface = networkId => {
   const dMailContractAddress = getDMailAddress(networkId);
-  DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
-  return DMailInterface;
+  return DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
 };
 
 export const clearInbox = (from) => {
@@ -39,21 +38,22 @@ export const fetchArchiveAddress = (owner) => {
   }));
 };
 
-export const fetchMail = (owner) => {
+export const fetchMail = (account) => {
   const deferred = Q.defer();
   let emails = [];
   const inboxLength = DMailInterface.getUnreadCount({
-    from: owner,
+    from: account,
   });
 
   for (let i = 0; i < inboxLength; i++) {
-    const mail = DMailInterface.getMail(i, {
-      from: owner,
+    const [ sender, messageHash, sentDate ] = DMailInterface.getMail(i, {
+      from: account,
     });
+
     emails.push({
-      sender: mail[0],
-      messageHash: mail[1],
-      timestamp: mail[2].toString(),
+      messageHash,
+      sender,
+      sentDate: sentDate.toString(),
     });
   }
 
