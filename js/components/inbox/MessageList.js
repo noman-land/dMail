@@ -16,10 +16,10 @@ export default class MessageList extends Component {
           </div>
         ) : (
           <ul className="m-0 p-0">
-            {messages.sort((a, b) => +b.timestamp - +a.timestamp)
+            {messages.sort((a, b) => +b.metadata.sentDate - +a.metadata.sentDate)
               .map(message => (
                 <MessageSnippet
-                  key={message.messageHash}
+                  key={message.metadata.messageHash}
                   message={message}
                   pathname={pathname}
                   setActiveMessage={setActiveMessage}
