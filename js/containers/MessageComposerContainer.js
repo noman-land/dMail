@@ -13,7 +13,8 @@ import {
 
 export default connect(
   state => ({
-    draft: state.draft,
+    draftBody: state.draftBody,
+    draftSubject: state.draftSubject,
     isComposing: state.isComposing,
     primaryAccount: state.primaryAccount,
   }),
