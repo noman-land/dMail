@@ -12,11 +12,15 @@ class MessageFull extends Component {
   render() {
     const {
       message: {
-        body,
-        messageHash,
-        sender = '',
-        subject,
-        timestamp,
+        metadata: {
+          messageHash,
+          sender = '',
+          sentDate: timestamp,
+        },
+        messageContent: {
+          body,
+          subject,
+        },
       },
     } = this.props;
 
