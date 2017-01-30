@@ -1,4 +1,4 @@
-import IPFS from 'ipfs';
+import 'ipfs';
 import Q from 'q';
 import { Buffer } from 'buffer';
 import ipfsAPI from 'ipfs-api';
