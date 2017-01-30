@@ -22,8 +22,7 @@ const getDMailAddress = (networkId) => {
 
 export const createDMailInterface = networkId => {
   const dMailContractAddress = getDMailAddress(networkId);
-  DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
-  return DMailInterface;
+  return DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
 };
 
 export const clearInbox = (from) => {
