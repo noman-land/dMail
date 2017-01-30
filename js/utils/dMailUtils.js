@@ -70,11 +70,11 @@ export const sendMessage = ({ from, messageHash, to }) => {
       from,
       gas: 1000000,
     });
+    deferred.resolve(transactionHash);
   } catch (error) {
     deferred.reject(error);
   }
 
-  deferred.resolve(transactionHash);
   return deferred.promise;
 };
 
