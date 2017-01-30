@@ -12,6 +12,7 @@
     "font-awesome": "^4.7.0",
     "history": "^4.5.1",
     "idb-pull-blob-store": "^0.5.1",
+    "immutable": "^3.8.1",
     "ipfs": "^0.20.4",
     "ipfs-api": "^12.1.4",
     "ipfs-repo": "^0.11.2",
