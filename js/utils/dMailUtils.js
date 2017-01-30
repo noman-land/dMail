@@ -61,7 +61,7 @@ export const fetchMail = (account) => {
   return deferred.promise;
 };
 
-export const sendMail = ({ from, messageHash, to }) => {
+export const sendMessage = ({ from, messageHash, to }) => {
   const deferred = Q.defer();
   let transactionHash;
 
