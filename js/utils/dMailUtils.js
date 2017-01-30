@@ -38,16 +38,16 @@ export const fetchArchiveAddress = (owner) => {
   }));
 };
 
-export const fetchMail = (owner) => {
+export const fetchMail = (account) => {
   const deferred = Q.defer();
   let emails = [];
   const inboxLength = DMailInterface.getUnreadCount({
-    from: owner,
+    from: account,
   });
 
   for (let i = 0; i < inboxLength; i++) {
     const mail = DMailInterface.getMail(i, {
-      from: owner,
+      from: account,
     });
     emails.push({
       sender: mail[0],
