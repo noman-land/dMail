@@ -18,7 +18,7 @@ export const sendMessage = (message, metadata, password) => {
     return ethereumUtils.unlockAccount(metadata.from, password)
     .then(() => ipfsUtils.addJson(message))
     .then(messageHash => {
-      console.log("Added to IPFS. Here's the message hash: ", messageHash);
+      console.log("Added to IPFS. Here's the message hash:", messageHash);
       return dMailUtils.sendMail({
         from: metadata.from,
         messageHash,
