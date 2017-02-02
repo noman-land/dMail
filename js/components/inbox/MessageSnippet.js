@@ -66,7 +66,7 @@ class MessageSnippet extends Component {
             <div className="attachment">
               <Attachment />
             </div>
-            <div className="timestamp" title={moment(sentDate * 1E3).format('LLLL')}>
+            <div className="sent-date" title={moment(sentDate * 1E3).format('LLLL')}>
               {prettyDate}
             </div>
           </div>

@@ -6,7 +6,7 @@ const activeMessage = (
     id: 2,
     sender: '0x0000',
     subject: 'This is a default message',
-    timestamp: 0,
+    sentDate: 0,
   },
   action
 ) => {
