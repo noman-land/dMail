@@ -17,7 +17,7 @@ class MessageFull extends Component {
         metadata: {
           messageHash,
           sender = '',
-          sentDate: timestamp,
+          sentDate,
         },
         messageContent: {
           body,
@@ -26,8 +26,8 @@ class MessageFull extends Component {
       },
     } = this.props;
 
-    const timeAgo = moment(timestamp * 1E3).fromNow();
-    const prettyDate = moment(timestamp * 1E3).format('LLLL');
+    const timeAgo = moment(sentDate * 1E3).fromNow();
+    const prettyDate = moment(sentDate * 1E3).format('LLLL');
 
     return (
       <div className="message-full">

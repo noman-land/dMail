@@ -43,7 +43,7 @@ export const getMessages = (account) => {
   return (dispatch) => {
     dispatch(fetchMessagesStart());
 
-    return dMailUtils.fetchMail(account).then(newMessages => {
+    return dMailUtils.fetchMessages(account).then(newMessages => {
       return Q.all(newMessages.map(newMessageMetadata => {
         return ipfsUtils.getJson(newMessageMetadata.messageHash).then(messageContent => {
           return new ReceivedMessage({messageContent, ...newMessageMetadata}).toJson();
