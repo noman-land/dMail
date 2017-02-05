@@ -68,7 +68,7 @@ export const getMessage = (messageHash) => {
   return (dispatch) => {
     dispatch(fetchMessageStart());
 
-    return getJson(messageHash).then(json => {
+    return ipfsUtils.getJson(messageHash).then(json => {
       dispatch(fetchMessageSuccess(json));
     }).catch(error => {
       console.log(error);
