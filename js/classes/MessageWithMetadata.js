@@ -1,4 +1,4 @@
-export default class ReceivedMessage {
+export default class MessageWithMetadata {
   constructor({
     labels = [],
     messageContent,

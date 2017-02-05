@@ -10,7 +10,7 @@ import {
   messageSendStart,
   messageSendSuccess,
 } from '../messagesActions';
-import ReceivedMessage from '../../classes/ReceivedMessage';
+import MessageWithMetadata from '../../classes/MessageWithMetadata';
 
 export const sendMessage = (message, { from, to }, password) => {
   return (dispatch) => {
@@ -43,7 +43,7 @@ export const getMessages = (account) => {
     return dMailUtils.fetchMessages(account).then(newMessages => {
       return Q.all(newMessages.map(newMessageMetadata => {
         return ipfsUtils.getJson(newMessageMetadata.messageHash).then(messageContent => {
-          return new ReceivedMessage({messageContent, ...newMessageMetadata}).toJson();
+          return new MessageWithMetadata({messageContent, ...newMessageMetadata}).toJson();
         });
       }));
     })
