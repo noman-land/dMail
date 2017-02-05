@@ -2,10 +2,15 @@ import ActionTypes from '../actions/actionTypes/messagesActionTypes';
 
 const activeMessage = (
   state = {
-    body: 'It shows up when there isn\'t a real one to show',
-    sender: '0x0000',
-    subject: 'This is a default message',
-    sentDate: 0,
+    metadata: {
+      messageHash: 'QmHash',
+      sender: '0x0000',
+      sentDate: 0,
+    },
+    messageContent: {
+      body: 'It shows up when there isn\'t a real one to show',
+      subject: 'This is a default message',
+    },
   },
   action
 ) => {
