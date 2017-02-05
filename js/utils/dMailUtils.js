@@ -44,9 +44,9 @@ export const fetchArchivedMail = (owner) => {
   });
 };
 
-export const fetchMail = (account) => {
+export const fetchMessages = (account) => {
   const deferred = Q.defer();
-  let emails = [];
+  const messages = [];
   const inboxLength = DMailInterface.getUnreadCount({
     from: account,
   });
@@ -56,14 +56,14 @@ export const fetchMail = (account) => {
       from: account,
     });
 
-    emails.push({
+    messages.push({
       messageHash,
       sender,
       sentDate: sentDate.toString(),
     });
   }
 
-  deferred.resolve(emails);
+  deferred.resolve(messages);
   return deferred.promise;
 };
 
