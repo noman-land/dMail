@@ -33,9 +33,18 @@ export const clearInbox = (from) => {
 };
 
 export const fetchArchiveAddress = (owner) => {
-  return Q(DMailInterface.getArchiveAddress({
+  const deferred = Q.defer();
+  DMailInterface.getArchiveAddress({
     from: owner,
-  }));
+  }, (error, result) => {
+    if (error) {
+      deferred.reject(error);
+    } else {
+      deferred.resolve(result);
+    }
+  });
+
+  return deferred.promise;
 };
 
 export const fetchArchivedMail = (owner) => {
