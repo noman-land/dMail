@@ -29,7 +29,7 @@ export default class MessageWithMetadata {
     };
   }
 
-  serialize() {
+  getMetadata() {
     return this.metadata;
   }
 };
