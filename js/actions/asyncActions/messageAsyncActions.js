@@ -2,6 +2,7 @@ import Q from 'q';
 import * as dMailUtils from '../../utils/dMailUtils';
 import * as ethereumUtils from '../../utils/ethereumUtils';
 import * as ipfsUtils from '../../utils/ipfsUtils';
+import * as messagesUtils from '../../utils/messagesUtils';
 import {
   fetchMessagesError,
   fetchMessagesStart,
@@ -9,8 +10,10 @@ import {
   messageSendError,
   messageSendStart,
   messageSendSuccess,
+  setActiveMessageError,
+  setActiveMessageStart,
+  setActiveMessageSuccess,
 } from '../messagesActions';
-import MessageWithMetadata from '../../classes/MessageWithMetadata';
 
 export const sendMessage = (message, { from, to }, password) => {
   return (dispatch) => {
@@ -33,6 +36,30 @@ export const sendMessage = (message, { from, to }, password) => {
       throw error;
     })
     .done();
+  }
+};
+
+export const setActiveMessage = (metadataHash) => {
+  return dispatch => {
+    dispatch(setActiveMessageStart(metadataHash));
+    console.group('Get Message:', metadataHash);
+    console.time('Get Message');
+
+    return messagesUtils.fetchMessage(metadataHash)
+      .then(message => {
+        console.log('Found message:', message);
+        dispatch(setActiveMessageSuccess(message));
+        return true;
+      })
+      .catch(error => {
+        console.error(error);
+        dispatch(setActiveMessageError(error));
+        throw error;
+      })
+      .done(() => {
+        console.timeEnd('Get Message');
+        console.groupEnd('Done');
+      });
   }
 };
 

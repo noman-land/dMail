@@ -1,14 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
-import MessageList from '../components/inbox/MessageList';
+import { setActiveMessageSuccess } from '../actions/messagesActions';
 
-import { setActiveMessage } from '../actions/messagesActions';
+import MessageList from '../components/inbox/MessageList';
 
 export default connect(
   (state, props) => ({
     messages: state.messages,
     pathname: props.location.pathname,
   }),
-  {setActiveMessage},
+  {setActiveMessageSuccess}
 )(MessageList);
