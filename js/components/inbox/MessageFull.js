@@ -7,13 +7,17 @@ class MessageFull extends Component {
   }
 
   componentDidMount() {
+    const {
+      routeParams: { messageId },
+      setActiveMessage,
+    } = this.props;
+    setActiveMessage(messageId);
   }
 
   render() {
     const {
       message: {
         metadata: {
-          messageHash,
           sender = '',
           sentDate,
         },
@@ -60,6 +64,7 @@ class MessageFull extends Component {
 MessageFull.propTypes = {
   message: PropTypes.object.isRequired,
   routeParams: PropTypes.object.isRequired,
+  setActiveMessage: PropTypes.func.isRequired,
 };
 
 export default MessageFull;
