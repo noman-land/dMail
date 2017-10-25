@@ -20,7 +20,7 @@ export const sendMessage = (message, { from, to }, password) => {
     .then(() => ipfsUtils.addJson(message))
     .then(messageHash => {
       console.log("Added to IPFS. Here's the message hash:", messageHash);
-      return dMailUtils.sendMail({from, messageHash, to});
+      return dMailUtils.sendMessage({from, messageHash, to});
     })
     .then(transactionHash => {
       console.log("Sending mail. Here's the transaction hash:", transactionHash);
