@@ -64,19 +64,17 @@ export const setActiveMessage = (metadataHash) => {
 };
 
 export const getMessages = (account) => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(fetchMessagesStart());
 
-    return dMailUtils.fetchMessages(account).then(newMessages => {
-      return Q.all(newMessages.map(newMessageMetadata => {
-        return ipfsUtils.getJson(newMessageMetadata.messageHash).then(messageContent => {
-          return new MessageWithMetadata({messageContent, ...newMessageMetadata}).toJson();
-        });
-      }));
-    })
-    .then(decodedMessages => {
-      console.log('Messages found:', decodedMessages);
-      dispatch(fetchMessagesSuccess(decodedMessages));
+    return Q.all([
+      messagesUtils.fetchNewMessages(account),
+      messagesUtils.fetchArchivedMessages(account),
+    ])
+    .spread((newMessages, archivedMessages) => {
+      console.log('New messages:', newMessages);
+      console.log('Archived messages:', archivedMessages);
+      dispatch(fetchMessagesSuccess([...newMessages, ...archivedMessages]));
       return true;
     })
     .catch(error => {

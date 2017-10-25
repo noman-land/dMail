@@ -53,7 +53,7 @@ export const fetchArchivedMail = (owner) => {
   });
 };
 
-export const fetchMessages = (account) => {
+export const fetchNewMessages = (account) => {
   const deferred = Q.defer();
   const messages = [];
   const inboxLength = DMailInterface.getUnreadCount({
