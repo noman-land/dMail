@@ -20,22 +20,22 @@ export const sendMessage = (message, { from, to }, password) => {
     dispatch(messageSendStart());
 
     return ethereumUtils.unlockAccount(from, password)
-    .then(() => ipfsUtils.addJson(message))
-    .then(messageHash => {
-      console.log("Added to IPFS. Here's the message hash:", messageHash);
-      return dMailUtils.sendMessage({from, messageHash, to});
-    })
-    .then(transactionHash => {
-      console.log("Sending mail. Here's the transaction hash:", transactionHash);
-      dispatch(messageSendSuccess(transactionHash));
-      return true;
-    })
-    .catch(error => {
-      console.log(error);
-      dispatch(messageSendError(error));
-      throw error;
-    })
-    .done();
+      .then(() => ipfsUtils.addJson(message))
+      .then(messageHash => {
+        console.log("Added to IPFS. Here's the message hash:", messageHash);
+        return dMailUtils.sendMessage({ from, messageHash, to });
+      })
+      .then(transactionHash => {
+        console.log("Sending mail. Here's the transaction hash:", transactionHash);
+        dispatch(messageSendSuccess(transactionHash));
+        return true;
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch(messageSendError(error));
+        throw error;
+      })
+      .done();
   }
 };
 
