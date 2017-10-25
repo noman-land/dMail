@@ -24,8 +24,18 @@ export const fetchMessagesSuccess = createAction(
   messages => ({messages})
 );
 
-export const setActiveMessage = createAction(
-  ActionTypes.ACTIVE_MESSAGE_SET,
+export const setActiveMessageError = createAction(
+  ActionTypes.ACTIVE_MESSAGE_SET_ERROR,
+  error => ({error})
+);
+
+export const setActiveMessageStart = createAction(
+  ActionTypes.ACTIVE_MESSAGE_SET_START,
+  metadataHash => ({metadataHash})
+);
+
+export const setActiveMessageSuccess = createAction(
+  ActionTypes.ACTIVE_MESSAGE_SET_SUCCESS,
   message => ({message})
 );
 

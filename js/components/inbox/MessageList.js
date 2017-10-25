@@ -7,7 +7,7 @@ export default class MessageList extends Component {
   }
 
   render() {
-    const { messages, pathname, setActiveMessage } = this.props;
+    const { messages, pathname, setActiveMessageSuccess } = this.props;
     return (
       <div className="message-list">
         {!messages.length ? (
@@ -19,10 +19,10 @@ export default class MessageList extends Component {
             {messages.sort((a, b) => +b.metadata.sentDate - +a.metadata.sentDate)
               .map(message => (
                 <MessageSnippet
-                  key={message.metadata.messageHash}
+                  key={message.metadataHash}
                   message={message}
                   pathname={pathname}
-                  setActiveMessage={setActiveMessage}
+                  setActiveMessageSuccess={setActiveMessageSuccess}
                 />
               ))
             }
@@ -36,5 +36,5 @@ export default class MessageList extends Component {
 MessageList.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   pathname: PropTypes.string.isRequired,
-  setActiveMessage: PropTypes.func.isRequired,
+  setActiveMessageSuccess: PropTypes.func.isRequired,
 };
