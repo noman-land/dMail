@@ -37,7 +37,7 @@ class MessageFull extends Component {
             <div className="message-header">
               <div className="message-sender">
                 <div className="message-sender-name">
-                  Noman Kapur
+                  Noman Land
                 </div>
                 <div className="message-sender-id">
                   {'<'}{sender.slice(0, 6)}{'>'}
