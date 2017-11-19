@@ -1,4 +1,4 @@
-export default class ReceivedMessage {
+export default class MessageWithMetadata {
   constructor({
     labels = [],
     messageContent,
@@ -29,7 +29,7 @@ export default class ReceivedMessage {
     };
   }
 
-  serialize() {
+  getMetadata() {
     return this.metadata;
   }
 };
