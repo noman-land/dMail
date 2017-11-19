@@ -54,25 +54,38 @@ export const fetchArchivedMail = (owner) => {
 };
 
 export const fetchNewMessages = (account) => {
+  return getUnreadCount(account).then(unreadCount => {
+    const deferred = Q.defer();
+    const messages = [];
+    for (let i = 0; i < unreadCount; i++) {
+      const [ sender, messageHash, sentDate ] = DMailInterface.getMail(i, {
+        from: account,
+      });
+
+      messages.push({
+        messageHash,
+        sender,
+        sentDate: sentDate.toString(),
+      });
+    }
+    deferred.resolve(messages);
+    return deferred.promise;
+  });
+};
+
+export const getUnreadCount = account => {
   const deferred = Q.defer();
-  const messages = [];
-  const inboxLength = DMailInterface.getUnreadCount({
+
+  DMailInterface.getUnreadCount({
     from: account,
+  }, (error, result) => {
+    if (error) {
+      deferred.reject(error);
+    }
+
+    deferred.resolve(result);
   });
 
-  for (let i = 0; i < inboxLength; i++) {
-    const [ sender, messageHash, sentDate ] = DMailInterface.getMail(i, {
-      from: account,
-    });
-
-    messages.push({
-      messageHash,
-      sender,
-      sentDate: sentDate.toString(),
-    });
-  }
-
-  deferred.resolve(messages);
   return deferred.promise;
 };
 
