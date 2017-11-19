@@ -22,7 +22,7 @@ const getDMailAddress = (networkId) => {
 
 export const createDMailInterface = networkId => {
   const dMailContractAddress = getDMailAddress(networkId);
-  return DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
+  return window.DMailInterface = DMailInterface = createContractInterface(dMailContractAddress, DMAIL_ABI);
 };
 
 export const clearInbox = (from) => {
@@ -33,12 +33,27 @@ export const clearInbox = (from) => {
 };
 
 export const fetchArchiveAddress = (owner) => {
-  return Q(DMailInterface.getArchiveAddress({
+  const deferred = Q.defer();
+  DMailInterface.getArchiveAddress({
     from: owner,
-  }));
+  }, (error, result) => {
+    if (error) {
+      deferred.reject(error);
+    } else {
+      deferred.resolve(result);
+    }
+  });
+
+  return deferred.promise;
 };
 
-export const fetchMessages = (account) => {
+export const fetchArchivedMail = (owner) => {
+  return fetchArchiveAddress(owner).then(archiveAddress => {
+    console.log(archiveAddress);
+  });
+};
+
+export const fetchNewMessages = (account) => {
   const deferred = Q.defer();
   const messages = [];
   const inboxLength = DMailInterface.getUnreadCount({
@@ -61,7 +76,7 @@ export const fetchMessages = (account) => {
   return deferred.promise;
 };
 
-export const sendMail = ({ from, messageHash, to }) => {
+export const sendMessage = ({ from, messageHash, to }) => {
   const deferred = Q.defer();
   let transactionHash;
 
@@ -70,11 +85,11 @@ export const sendMail = ({ from, messageHash, to }) => {
       from,
       gas: 1000000,
     });
+    deferred.resolve(transactionHash);
   } catch (error) {
     deferred.reject(error);
   }
 
-  deferred.resolve(transactionHash);
   return deferred.promise;
 };
 

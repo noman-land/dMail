@@ -1,33 +1,29 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import moment from 'moment';
 
 import Attachment from '../icons/Attachment';
 
-import { Link } from 'react-router';
-
 class MessageSnippet extends Component {
   constructor(props, context) {
     super(props, context);
+
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
-    const {
-      message,
-      setActiveMessage,
-    } = this.props;
-
-    setActiveMessage(message);
+  handleClick() {
+    const { message, setActiveMessageSuccess } = this.props;
+    setActiveMessageSuccess(message);
   }
 
   render() {
     const {
       message: {
         metadata: {
-          messageHash,
           sender,
           sentDate,
         },
+        metadataHash,
         messageContent: {
           body,
           subject,
@@ -45,7 +41,7 @@ class MessageSnippet extends Component {
         </div>
         <Link
           className="link"
-          to={`${pathname}/${messageHash}`}
+          to={`${pathname}/${metadataHash}`}
         >
           <div className="sender" title={sender}>
             {sender.slice(0, 6)}
@@ -79,7 +75,7 @@ class MessageSnippet extends Component {
 MessageSnippet.propTypes = {
   message: PropTypes.object.isRequired,
   pathname: PropTypes.string.isRequired,
-  setActiveMessage: PropTypes.func.isRequired,
+  setActiveMessageSuccess: PropTypes.func.isRequired,
 };
 
 export default MessageSnippet;
