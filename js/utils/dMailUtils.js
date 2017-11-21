@@ -47,6 +47,19 @@ export const fetchArchiveAddress = (owner) => {
   return deferred.promise;
 };
 
+export const fetchMessage = (account, index) => {
+  const deferred = Q.defer();
+  DMailInterface.getMail(index, {
+    from: account,
+  }, (error, message) => {
+    if (error) {
+      return deferred.reject(error);
+    }
+    return deferred.resolve(message);
+  });
+  return deferred.promise;
+};
+
 export const fetchArchivedMail = (owner) => {
   return fetchArchiveAddress(owner).then(archiveAddress => {
     console.log(archiveAddress);
@@ -54,25 +67,31 @@ export const fetchArchivedMail = (owner) => {
 };
 
 export const fetchNewMessages = (account) => {
+  return getUnreadCount(account).then(unreadCount => {
+    return Q.all(new Array(unreadCount).fill(true).map((_, index) => {
+      return fetchMessage(account, index)
+        .then(([ sender, messageHash, sentDate ]) => ({
+          messageHash,
+          sender,
+          sentDate: sentDate.toString(),
+        }));
+    }));
+  });
+};
+
+export const getUnreadCount = account => {
   const deferred = Q.defer();
-  const messages = [];
-  const inboxLength = DMailInterface.getUnreadCount({
+
+  DMailInterface.getUnreadCount({
     from: account,
+  }, (error, result) => {
+    if (error) {
+      return deferred.reject(error);
+    }
+
+    return deferred.resolve(result);
   });
 
-  for (let i = 0; i < inboxLength; i++) {
-    const [ sender, messageHash, sentDate ] = DMailInterface.getMail(i, {
-      from: account,
-    });
-
-    messages.push({
-      messageHash,
-      sender,
-      sentDate: sentDate.toString(),
-    });
-  }
-
-  deferred.resolve(messages);
   return deferred.promise;
 };
 
