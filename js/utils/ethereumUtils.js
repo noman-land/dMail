@@ -27,7 +27,16 @@ export const getAccounts = () => {
 };
 
 export const getBalance = (account) => {
-  return web3.eth.getBalance(account).c[0];
+  const deferred = Q.defer();
+  web3.eth.getBalance(account, (error, { c: [ balance ] }) => {
+    if (error) {
+      deferred.reject(error);
+      return;
+    }
+    deferred.resolve(balance);
+  });
+
+  return deferred.promise;
 };
 
 export const getCoinbase = () => {

@@ -16,14 +16,10 @@ class AccountRow extends Component {
   componentDidMount() {
     const { account } = this.props;
 
-    this.setState({
-      balance: getBalance(account)
-    });
+    getBalance(account).then(balance => this.setState({ balance }));
 
     this.interval = setInterval(() => {
-      this.setState({
-        balance: getBalance(account)
-      });
+      getBalance(account).then(balance => this.setState({ balance }));
     }, 5000);
   }
 
