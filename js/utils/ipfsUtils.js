@@ -1,18 +1,15 @@
-import 'ipfs';
 import Q from 'q';
 import { Buffer } from 'buffer';
-import ipfsAPI from 'ipfs-api';
-import { DEFAULT_HOSTNAME } from '../utils/constants';
+import IPFS from 'ipfs';
 
 let ipfs;
 
-export const init = (customHostname) => {
-  return goOnline(customHostname);
+export const init = () => {
+  return goOnline();
 };
 
-export const goOnline = (customHostname) => {
-  const hostname = customHostname || DEFAULT_HOSTNAME;
-  ipfs = ipfsAPI({host: hostname});
+export const goOnline = () => {
+  ipfs = new IPFS();
   return getVersion();
 };
 

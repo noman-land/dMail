@@ -14,7 +14,6 @@
     "idb-pull-blob-store": "^0.5.1",
     "immutable": "^3.8.1",
     "ipfs": "^0.20.4",
-    "ipfs-api": "^12.1.4",
     "ipfs-repo": "^0.11.2",
     "ipld": "^0.6.0",
     "moment": "^2.17.1",
