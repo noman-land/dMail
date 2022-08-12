@@ -28,7 +28,7 @@ export const MessageList = ({
     {!messages.length ? (
       <div>You have no messages :)</div>
     ) : (
-      <ul className="m-0 p-0">
+      <ul>
         {messages
           .sort((a, b) => +b.metadata.sentDate - +a.metadata.sentDate)
           .map(message => (
