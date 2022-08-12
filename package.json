@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "description": "Distributed, decentralized mail",
   "author": "Noman",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "keywords": [
     "ethereum",
     "react",
@@ -12,11 +12,11 @@
   ],
   "private": true,
   "scripts": {
-    "react-app:build": "yarn workspace @my-app/react-app build",
-    "react-app:eject": "yarn workspace @my-app/react-app eject",
-    "react-app:ipfs": "yarn workspace @my-app/react-app ipfs",
-    "react-app:start": "yarn workspace @my-app/react-app start",
-    "react-app:test": "yarn workspace @my-app/react-app test"
+    "react-app:build": "yarn workspace @dmail/react-app build",
+    "react-app:eject": "yarn workspace @dmail/react-app eject",
+    "react-app:ipfs": "yarn workspace @dmail/react-app ipfs",
+    "react-app:start": "yarn workspace @dmail/react-app start",
+    "react-app:test": "yarn workspace @dmail/react-app test"
   },
   "workspaces": {
     "packages": [
@@ -28,6 +28,6 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-react": "^7.28.0"
+    "eslint-plugin-react": "^7.30.1"
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 // import { Contract } from '@ethersproject/contracts';
 // import { useCall } from '@usedapp/core';
-// import { addresses, abis } from '@my-app/contracts';
+// import { addresses, abis } from '@dmail/contracts';
 
 import { Body } from './components/Body';
 import { Container } from './components/Container';

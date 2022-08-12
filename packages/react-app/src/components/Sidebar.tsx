@@ -14,11 +14,23 @@ const StyledSidebar = styled.div`
   flex-basis: 200px;
   flex-direction: column;
 
-  & > ul {
+  & ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 
-    & > li a {
-      text-decoration: none;
+    & li {
+      & a {
+        color: black;
+        display: block;
+        padding: 12px 24px;
+        text-decoration: none;
+      }
+
+      &:hover:not(:active) {
+        background: #ddd;
+        filter: brightness(2);
+      }
     }
   }
 `;
@@ -31,12 +43,10 @@ export const Sidebar = ({ composingMessage }: SidebarProps) => {
   return (
     <StyledSidebar>
       <button onClick={handleComposeClick}>Compose</button>
-      <ul className="links">
+      <ul>
         {SIDEBAR_LINKS.map(({ route, text }) => (
-          <li>
-            <Link key={route} to={`/${route}`}>
-              {text}
-            </Link>
+          <li key={route}>
+            <Link to={`/${route}`}>{text}</Link>
           </li>
         ))}
       </ul>
