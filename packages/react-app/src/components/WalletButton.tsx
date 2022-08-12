@@ -6,12 +6,12 @@ import { Button } from './Button';
 export const WalletButton = () => {
   const [rendered, setRendered] = useState<string>('');
 
-  const ens = useLookupAddress();
   const { account, activateBrowserWallet, deactivate, error } = useEthers();
+  const ens = useLookupAddress(account);
 
   useEffect(() => {
-    if (ens) {
-      setRendered(ens);
+    if (ens && ens.ens) {
+      setRendered(ens.ens);
     } else if (account) {
       setRendered(shortenAddress(account));
     } else {
