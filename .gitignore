@@ -1,5 +1,4 @@
-*.DS_*
 node_modules
-.idea
-*.log
-static/bundle
+.DS_*
+.swp
+.swo
