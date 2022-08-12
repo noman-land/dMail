@@ -3,18 +3,19 @@ import './styles/index.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { DAppProvider, Mainnet } from '@usedapp/core';
+import { Config, DAppProvider, Mainnet, Ropsten } from '@usedapp/core';
 
 import { App } from './App';
 
 // Change this to your own Infura project id: https://infura.io/register
 const INFURA_PROJECT_ID = 'defba93b47f748f09fcead8282b9e58e' as const;
-const config = {
+const config: Config = {
   readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
     [Mainnet.chainId]: 'https://mainnet.infura.io/v3/' + INFURA_PROJECT_ID,
+    [Ropsten.chainId]: 'https://ropsten.infura.io/v3/' + INFURA_PROJECT_ID,
   },
-} as const;
+};
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
