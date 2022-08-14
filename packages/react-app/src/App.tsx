@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 // import { Contract } from '@ethersproject/contracts';
@@ -8,8 +7,8 @@ import { Route, Routes } from 'react-router-dom';
 import { Body } from './components/Body';
 import { Container } from './components/Container';
 import { Header } from './components/Header';
+import { Mailbox } from './components/Mailbox';
 import { MessageList } from './components/MessageList';
-import { Sidebar } from './components/Sidebar';
 import { WalletButton } from './components/WalletButton';
 
 // // Read more about useDapp on https://usedapp.io/
@@ -34,16 +33,14 @@ const message = (i: number) => ({
 
 const messages = [1, 2, 3, 4, 5, 6].map(message);
 
-export const App = () => {
-  const [isComposing, setIsComposing] = useState<boolean>(false);
-  return (
-    <Container>
-      <Header>
-        <WalletButton />
-      </Header>
-      <Body>
-        <Sidebar isComposing={isComposing} setIsComposing={setIsComposing} />
-        <Routes>
+export const App = () => (
+  <Container>
+    <Header>
+      <WalletButton />
+    </Header>
+    <Body>
+      <Routes>
+        <Route path="/" element={<Mailbox />}>
           <Route
             path="inbox"
             element={
@@ -55,8 +52,8 @@ export const App = () => {
           />
           <Route path="inbox/:messageId" element={<div>message</div>} />
           <Route path="drafts" element={<div>drafts</div>} />
-        </Routes>
-      </Body>
-    </Container>
-  );
-};
+        </Route>
+      </Routes>
+    </Body>
+  </Container>
+);
