@@ -23,7 +23,6 @@ export type Message = {
 
 export type MessageSnippetProps = {
   message: Message;
-  pathname: string;
   setActiveMessageSuccess: (message: Message) => void;
 };
 
@@ -70,7 +69,6 @@ const StyledLink = styled(Link)`
 
 export const MessageSnippet = ({
   message,
-  pathname,
   setActiveMessageSuccess,
 }: MessageSnippetProps) => {
   const {
@@ -91,7 +89,7 @@ export const MessageSnippet = ({
       <div className="select">
         <input type="checkbox" />
       </div>
-      <StyledLink to={`${pathname}/${metadataHash}`}>
+      <StyledLink to={metadataHash}>
         <div className="sender" title={sender}>
           {sender.slice(0, 6)}
         </div>

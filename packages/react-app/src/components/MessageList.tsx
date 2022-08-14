@@ -4,7 +4,6 @@ import { Message, MessageSnippet } from './MessageSnippet';
 
 export type MessageListProps = {
   messages: Message[];
-  pathname: string;
   setActiveMessageSuccess: () => void;
 };
 
@@ -20,7 +19,6 @@ const StyledUl = styled.ul`
 
 export const MessageList = ({
   messages,
-  pathname,
   setActiveMessageSuccess,
 }: MessageListProps) => (
   <StyledMessageList>
@@ -34,7 +32,6 @@ export const MessageList = ({
             <MessageSnippet
               key={message.metadataHash}
               message={message}
-              pathname={pathname}
               setActiveMessageSuccess={setActiveMessageSuccess}
             />
           ))}

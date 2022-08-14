@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 // import { Contract } from '@ethersproject/contracts';
 // import { useCall } from '@usedapp/core';
@@ -21,7 +22,7 @@ import { WalletButton } from './components/WalletButton';
 
 const message = (i: number) => ({
   metadata: {
-    sender: `0x123${i}`,
+    sender: `0x32${i}`,
     sentDate: Date.now() + i,
   },
   metadataHash: `QmHash${i}`,
@@ -42,11 +43,19 @@ export const App = () => {
       </Header>
       <Body>
         <Sidebar isComposing={isComposing} setIsComposing={setIsComposing} />
-        <MessageList
-          messages={messages}
-          pathname="inbox"
-          setActiveMessageSuccess={() => {}}
-        />
+        <Routes>
+          <Route
+            path="inbox"
+            element={
+              <MessageList
+                messages={messages}
+                setActiveMessageSuccess={() => {}}
+              />
+            }
+          />
+          <Route path="inbox/:messageId" element={<div>message</div>} />
+          <Route path="drafts" element={<div>drafts</div>} />
+        </Routes>
       </Body>
     </Container>
   );
