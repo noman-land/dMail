@@ -13,6 +13,7 @@ const StyledSidebar = styled.div`
   display: flex;
   flex-basis: 200px;
   flex-direction: column;
+  padding: 0 16px;
 
   & ul {
     list-style: none;

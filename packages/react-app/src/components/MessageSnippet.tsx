@@ -29,8 +29,15 @@ export type MessageSnippetProps = {
 
 const StyledLi = styled.li`
   display: flex;
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px 1px 0px 1px;
   justify-content: stretch;
-  padding: 12px 16px;
+  padding: 12px 16px 12px 12px;
+
+  &:last-child {
+    border-bottom: 1px solid #ccc;
+  }
 `;
 
 const StyledLink = styled(Link)`

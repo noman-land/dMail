@@ -10,6 +10,7 @@ export type MessageListProps = {
 
 const StyledMessageList = styled.div`
   flex-grow: 1;
+  padding: 0 16px 16px 0;
 `;
 
 const StyledUl = styled.ul`
