@@ -41,17 +41,22 @@ const StyledLink = styled(Link)`
   margin-left: 12px;
   text-decoration: none;
 
-  & .spacer {
+  .spacer {
     flex-grow: 1;
   }
 
-  & .message {
+  .message {
     .subject {
+      font-weight: 600;
       margin-left: 16px;
     }
 
     .divider {
-      margin: 0 12px;
+      margin: 0 6px;
+    }
+
+    .body {
+      color: #999;
     }
   }
 `;
