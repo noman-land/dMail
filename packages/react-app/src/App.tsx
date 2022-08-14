@@ -18,6 +18,21 @@ import { WalletButton } from './components/WalletButton';
 //     method: 'balanceOf',
 //     args: ['0x3f8CB69d9c0ED01923F11c829BaE4D9a4CB6c82C'],
 //   }) ?? {};
+
+const message = (i: number) => ({
+  metadata: {
+    sender: `0x123${i}`,
+    sentDate: Date.now() + i,
+  },
+  metadataHash: `QmHash${i}`,
+  messageContent: {
+    body: `Hey ${i}, how are you doing?`,
+    subject: `Saying hello ${i}`,
+  },
+});
+
+const messages = [1, 2, 3, 4, 5, 6].map(message);
+
 export const App = () => (
   <Container>
     <Header>
@@ -26,7 +41,7 @@ export const App = () => (
     <Body>
       <Sidebar composingMessage={() => {}} />
       <MessageList
-        messages={[]}
+        messages={messages}
         pathname=""
         setActiveMessageSuccess={() => {}}
       />

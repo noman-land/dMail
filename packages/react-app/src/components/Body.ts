@@ -5,6 +5,6 @@ export const Body = styled.div`
   color: black;
   display: flex;
   flex-grow: 1;
-  font-size: calc(10px + 2vmin);
+  font-size: 16px;
   justify-content: stretch;
 `;

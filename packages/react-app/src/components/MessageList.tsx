@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
-// import MessageSnippet from './MessageSnippet';
-
-export type Message = {
-  metadata: {
-    metadataHash: string;
-    sentDate: number;
-  };
-};
+import { Message, MessageSnippet } from './MessageSnippet';
 
 export type MessageListProps = {
   messages: Message[];
@@ -19,8 +12,13 @@ const StyledMessageList = styled.div`
   flex-grow: 1;
 `;
 
+const StyledUl = styled.ul`
+  margin: 0;
+  padding: 0;
+`;
+
 export const MessageList = ({
-  messages = [],
+  messages,
   pathname,
   setActiveMessageSuccess,
 }: MessageListProps) => (
@@ -28,19 +26,18 @@ export const MessageList = ({
     {!messages.length ? (
       <div>You have no messages :)</div>
     ) : (
-      <ul>
+      <StyledUl>
         {messages
           .sort((a, b) => +b.metadata.sentDate - +a.metadata.sentDate)
           .map(message => (
-            // <MessageSnippet
-            //   key={message.metadataHash}
-            //   message={message}
-            //   pathname={pathname}
-            //   setActiveMessageSuccess={setActiveMessageSuccess}
-            // />
-            <div>messages</div>
+            <MessageSnippet
+              key={message.metadataHash}
+              message={message}
+              pathname={pathname}
+              setActiveMessageSuccess={setActiveMessageSuccess}
+            />
           ))}
-      </ul>
+      </StyledUl>
     )}
   </StyledMessageList>
 );
