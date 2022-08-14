@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 
 // import { Contract } from '@ethersproject/contracts';
 // import { useCall } from '@usedapp/core';
@@ -33,18 +33,21 @@ const message = (i: number) => ({
 
 const messages = [1, 2, 3, 4, 5, 6].map(message);
 
-export const App = () => (
-  <Container>
-    <Header>
-      <WalletButton />
-    </Header>
-    <Body>
-      <Sidebar composingMessage={() => {}} />
-      <MessageList
-        messages={messages}
-        pathname=""
-        setActiveMessageSuccess={() => {}}
-      />
-    </Body>
-  </Container>
-);
+export const App = () => {
+  const [isComposing, setIsComposing] = useState<boolean>(false);
+  return (
+    <Container>
+      <Header>
+        <WalletButton />
+      </Header>
+      <Body>
+        <Sidebar isComposing={isComposing} setIsComposing={setIsComposing} />
+        <MessageList
+          messages={messages}
+          pathname="inbox"
+          setActiveMessageSuccess={() => {}}
+        />
+      </Body>
+    </Container>
+  );
+};

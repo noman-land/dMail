@@ -100,7 +100,7 @@ export const MessageSnippet = ({
           <span className="divider">-</span>
           <span className="body">{body}</span>
         </div>
-        <div className="spacer" />
+        <span className="spacer" />
         <div className="flex justify-space-between m-3-l">
           <div className="attachment">{/* <Attachment /> */}</div>
           <div className="sent-date" title={longDate}>

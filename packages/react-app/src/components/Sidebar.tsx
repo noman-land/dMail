@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { SIDEBAR_LINKS } from '../constants';
 
 export type SidebarProps = {
-  composingMessage: (isComposing: boolean) => void;
+  isComposing: boolean;
+  setIsComposing: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const StyledSidebar = styled.div`
@@ -15,35 +16,37 @@ const StyledSidebar = styled.div`
   flex-direction: column;
   padding: 0 16px;
 
-  & ul {
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
 
-    & li {
-      & a {
+    li {
+      &:hover:not(:active) {
+        background: #ddd;
+        filter: brightness(2);
+      }
+
+      a {
         color: black;
         display: block;
         padding: 12px 24px;
         text-decoration: none;
       }
-
-      &:hover:not(:active) {
-        background: #ddd;
-        filter: brightness(2);
-      }
     }
   }
 `;
 
-export const Sidebar = ({ composingMessage }: SidebarProps) => {
+export const Sidebar = ({ isComposing, setIsComposing }: SidebarProps) => {
   const handleComposeClick = useCallback(
-    () => composingMessage(true),
-    [composingMessage]
+    () => setIsComposing(c => !c),
+    [setIsComposing]
   );
   return (
     <StyledSidebar>
-      <button onClick={handleComposeClick}>Compose</button>
+      <button onClick={handleComposeClick}>
+        {isComposing ? 'Stop composing' : 'Compose'}
+      </button>
       <ul>
         {SIDEBAR_LINKS.map(({ route, text }) => (
           <li key={route}>
