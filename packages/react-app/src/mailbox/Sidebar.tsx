@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { SIDEBAR_LINKS } from '../constants';
 
-export type SidebarProps = {
+type SidebarProps = {
   isComposing: boolean;
   setIsComposing: React.Dispatch<React.SetStateAction<boolean>>;
 };

@@ -4,12 +4,13 @@ import { Route, Routes } from 'react-router-dom';
 // import { useCall } from '@usedapp/core';
 // import { addresses, abis } from '@dmail/contracts';
 
-import { Body } from './components/Body';
-import { Container } from './components/Container';
-import { Header } from './components/Header';
-import { Mailbox } from './components/Mailbox';
-import { MessageList } from './components/MessageList';
-import { WalletButton } from './components/WalletButton';
+import { Body } from './layout/Body';
+import { Container } from './layout/Container';
+import { Header } from './layout/Header';
+import { Mailbox } from './mailbox/Mailbox';
+import { MessageFull } from './mailbox/MessageFull';
+import { MessageList } from './mailbox/MessageList';
+import { WalletButton } from './wallet-button/WalletButton';
 
 // // Read more about useDapp on https://usedapp.io/
 // const { error: contractCallError, value: tokenBalance } =
@@ -50,8 +51,9 @@ export const App = () => (
               />
             }
           />
-          <Route path="inbox/:messageId" element={<div>message</div>} />
+          <Route path="inbox/:messageId" element={<MessageFull />} />
           <Route path="drafts" element={<div>drafts</div>} />
+          <Route path="drafts/:messageId" element={<div>draft message</div>} />
         </Route>
       </Routes>
     </Body>

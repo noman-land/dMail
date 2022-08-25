@@ -2,29 +2,9 @@ import moment from 'moment';
 import styled from 'styled-components';
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { MessageSnippetProps } from './MessageTypes';
 
 // import Attachment from '../icons/Attachment';
-
-type MessageMetadata = {
-  sender: string;
-  sentDate: number;
-};
-
-type MessageContent = {
-  body: string;
-  subject: string;
-};
-
-export type Message = {
-  metadata: MessageMetadata;
-  metadataHash: string;
-  messageContent: MessageContent;
-};
-
-export type MessageSnippetProps = {
-  message: Message;
-  setActiveMessageSuccess: (message: Message) => void;
-};
 
 const StyledLi = styled.li`
   display: flex;
@@ -32,7 +12,10 @@ const StyledLi = styled.li`
   border-style: solid;
   border-width: 1px 1px 0px 1px;
   justify-content: stretch;
-  padding: 12px 16px 12px 12px;
+
+  .select {
+    padding: 12px 0 12px 12px;
+  }
 
   &:last-child {
     border-bottom: 1px solid #ccc;
@@ -44,7 +27,7 @@ const StyledLink = styled(Link)`
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
-  margin-left: 12px;
+  padding: 12px 16px 12px 12px;
   text-decoration: none;
 
   .spacer {

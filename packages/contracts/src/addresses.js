@@ -1,5 +1,4 @@
-// This address points to a dummy ERC-20 contract. Replace it with your own smart contracts.
-const addresses = {
-  ceaErc20: "0xa6dF0C88916f3e2831A329CE46566dDfBe9E74b7",
+/* eslint-disable import/prefer-default-export */
+export const addresses = {
+  dmail: '0x3360Bc5a02Ade2FE4B082181C082618B52456Ce7',
 };
-export default addresses;

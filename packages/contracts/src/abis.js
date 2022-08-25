@@ -1,9 +1,6 @@
-import erc20Abi from "./abis/erc20.json";
-import ownableAbi from "./abis/ownable.json";
+/* eslint-disable import/prefer-default-export */
+import DMail from './abis/DMail.json';
 
-const abis = {
-  erc20: erc20Abi,
-  ownable: ownableAbi,
+export const abis = {
+  dmail: DMail,
 };
-
-export default abis;

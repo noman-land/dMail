@@ -16,12 +16,15 @@
   },
   "dependencies": {
     "@usedapp/core": "^1.1.5",
-    "ethers": "^5.6.9",
+    "buffer": "^6.0.3",
+    "ethers": "^5.7.0",
+    "ipfs-core": "^0.15.4",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "util": "^0.12.4"
   },
   "eslintConfig": {
     "extends": [
@@ -37,8 +40,8 @@
     "test": "react-scripts test"
   },
   "devDependencies": {
-    "@ethersproject/contracts": "^5.6.2",
-    "@ethersproject/providers": "^5.6.8",
+    "@ethersproject/contracts": "^5.7.0",
+    "@ethersproject/providers": "^5.7.0",
     "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
