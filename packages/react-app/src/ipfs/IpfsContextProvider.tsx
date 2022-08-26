@@ -14,8 +14,8 @@ type IpfsContextValue = {
 const ERROR_TEXT = 'IPFS is not set up yet';
 
 export const IpfsContext: Context<IpfsContextValue> = createContext({
-  addJson: _ => Promise.reject(`${ERROR_TEXT}, deferring adding JSON.`),
-  getJson: _ => Promise.reject(`${ERROR_TEXT}, deferring getting JSON.`),
+  addJson: _ => Promise.reject(ERROR_TEXT),
+  getJson: _ => Promise.reject(ERROR_TEXT),
 });
 
 export const IpfsContextProvider = ({ children }: { children: ReactNode }) => {
