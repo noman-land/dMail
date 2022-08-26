@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { Key, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { ERROR_TEXT, IpfsContext } from '../ipfs/IpfsContextProvider';
@@ -49,7 +49,7 @@ export const MessageList = ({
             .sort((a, b) => +b.metadata.sentDate - +a.metadata.sentDate)
             .map(message => (
               <MessageSnippet
-                key={message.metadataHash}
+                key={message.metadataHash as Key}
                 message={message}
                 setActiveMessageSuccess={setActiveMessageSuccess}
               />

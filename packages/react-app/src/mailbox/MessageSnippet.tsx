@@ -1,7 +1,7 @@
 import moment from 'moment';
 import styled from 'styled-components';
 import { useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, To } from 'react-router-dom';
 import { MessageSnippetProps } from './MessageTypes';
 
 // import Attachment from '../icons/Attachment';
@@ -72,7 +72,7 @@ export const MessageSnippet = ({
       <div className="select">
         <input type="checkbox" />
       </div>
-      <StyledLink to={metadataHash}>
+      <StyledLink to={metadataHash as To}>
         <div className="sender" title={sender}>
           {sender.slice(0, 6)}
         </div>
