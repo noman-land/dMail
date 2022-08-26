@@ -1,5 +1,4 @@
 import { DMAIL_ADDRESS_GOERLI, DMAIL_ADDRESS_MAINNET } from '../constants';
-import { Abi, ContractMethod } from '../ethereum/EthereumTypes';
 
 export type SupportedAddresses =
   | typeof DMAIL_ADDRESS_GOERLI
@@ -12,20 +11,6 @@ export type SupportedChainIds =
 export type DmailAddressLookup = {
   [K in SupportedChainIds]: SupportedAddresses;
 };
-
-export type MakeContractMethodHookParams = {
-  abi: Abi;
-  address: string;
-  method: ContractMethod;
-};
-
-type Hook = (...args: any[]) => any;
-
-export type MakeContractMethodHook = (
-  params: MakeContractMethodHookParams
-) => Hook;
-
-export type HooksLookup = { [K: string]: Hook };
 
 export type DmailContextValue = {
   unreadCount: number;

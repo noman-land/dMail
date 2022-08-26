@@ -3,7 +3,7 @@ export type ContractMethod = {
   type: 'function';
 };
 
-export type ContractEvent = {
+type ContractEvent = {
   name: string;
   type: 'event';
 };
@@ -11,3 +11,17 @@ export type ContractEvent = {
 type ContractElement = ContractMethod | ContractEvent;
 
 export type Abi = ContractElement[];
+
+type MakeContractMethodHookParams = {
+  abi: Abi;
+  address: string;
+  method: ContractMethod;
+};
+
+type Hook = (...args: any[]) => any;
+
+export type MakeContractMethodHook = (
+  params: MakeContractMethodHookParams
+) => Hook;
+
+export type HooksLookup = { [K: string]: Hook };

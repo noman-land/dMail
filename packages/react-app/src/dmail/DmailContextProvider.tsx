@@ -1,6 +1,5 @@
-import { Contract } from '@ethersproject/contracts';
 import { createContext, ReactNode, useMemo } from 'react';
-import { Goerli, Mainnet, useCall, useNetwork } from '@usedapp/core';
+import { Goerli, Mainnet, useNetwork } from '@usedapp/core';
 
 import { abis } from '@dmail/contracts';
 
@@ -8,11 +7,10 @@ import { DMAIL_ADDRESS_GOERLI, DMAIL_ADDRESS_MAINNET } from '../constants';
 import {
   DmailAddressLookup,
   DmailContextValue,
-  HooksLookup,
-  MakeContractMethodHook,
   SupportedChainIds,
 } from './DmailTypes';
-import { Abi, ContractMethod } from '../ethereum/EthereumTypes';
+import { Abi, HooksLookup } from '../ethereum/EthereumTypes';
+import { makeContractMethodHooks } from '../ethereum/EthereumUtils';
 
 const dmailAddressLookup = {
   [Mainnet.chainId]: DMAIL_ADDRESS_MAINNET,
@@ -38,37 +36,6 @@ const dmailAddressLookup = {
 //       )
 //     )
 //   );
-
-const renameToUseHookStyle = ([first, ...rest]: string) =>
-  `use${first.toUpperCase()}${rest.join('')}`;
-
-const makeContractMethodHook: MakeContractMethodHook =
-  ({ abi, address, method }) =>
-  (...args) => {
-    const { value, error } =
-      useCall(
-        address && {
-          contract: new Contract(address, abi),
-          method: method.name,
-          args,
-        }
-      ) ?? {};
-    if (error) {
-      console.error(error.message);
-      return undefined;
-    }
-    return value?.[0];
-  };
-
-const makeContractMethodHooks = (address: string, abi: Abi): HooksLookup =>
-  (abi as ContractMethod[]).reduce((accum: HooksLookup, method) => {
-    accum[renameToUseHookStyle(method.name)] = makeContractMethodHook({
-      abi,
-      address,
-      method,
-    });
-    return accum;
-  }, {});
 
 const useContract = (address: string, abi: Abi): HooksLookup =>
   useMemo(
