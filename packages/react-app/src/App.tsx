@@ -42,15 +42,7 @@ export const App = () => (
     <Body>
       <Routes>
         <Route path="/" element={<Mailbox />}>
-          <Route
-            path="inbox"
-            element={
-              <MessageList
-                messages={messages}
-                setActiveMessageSuccess={() => {}}
-              />
-            }
-          />
+          <Route path="inbox" element={<MessageList messages={messages} />} />
           <Route path="inbox/:messageId" element={<MessageFull />} />
           <Route path="drafts" element={<div>drafts</div>} />
           <Route path="drafts/:messageId" element={<div>draft message</div>} />

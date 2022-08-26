@@ -7,7 +7,6 @@ import { Message } from './MessageTypes';
 
 type MessageListProps = {
   messages: Message[];
-  setActiveMessageSuccess: () => void;
 };
 
 const StyledMessageList = styled.div`
@@ -20,10 +19,7 @@ const StyledUl = styled.ul`
   padding: 0;
 `;
 
-export const MessageList = ({
-  messages,
-  setActiveMessageSuccess,
-}: MessageListProps) => {
+export const MessageList = ({ messages }: MessageListProps) => {
   const { addJson, getJson } = useContext(IpfsContext);
 
   useEffect(() => {
@@ -51,7 +47,6 @@ export const MessageList = ({
               <MessageSnippet
                 key={message.metadataHash as Key}
                 message={message}
-                setActiveMessageSuccess={setActiveMessageSuccess}
               />
             ))}
         </StyledUl>

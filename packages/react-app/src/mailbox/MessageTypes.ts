@@ -18,5 +18,4 @@ export type Message = {
 
 export type MessageSnippetProps = {
   message: Message;
-  setActiveMessageSuccess: (message: Message) => void;
 };

@@ -50,19 +50,14 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export const MessageSnippet = ({
-  message,
-  setActiveMessageSuccess,
-}: MessageSnippetProps) => {
+export const MessageSnippet = ({ message }: MessageSnippetProps) => {
   const {
     metadata: { sender, sentDate },
     metadataHash,
     messageContent: { body, subject },
   } = message;
 
-  const handleClick = useCallback(() => {
-    setActiveMessageSuccess(message);
-  }, [message, setActiveMessageSuccess]);
+  const handleClick = useCallback(() => {}, []);
 
   const prettyDate = moment(sentDate * 1e3).format('MMM DD');
   const longDate = moment(sentDate * 1e3).format('LLLL');
