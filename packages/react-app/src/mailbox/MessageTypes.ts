@@ -19,3 +19,7 @@ export type Message = {
 export type MessageSnippetProps = {
   message: Message;
 };
+
+export type MessageListProps = {
+  messages: Message[];
+};

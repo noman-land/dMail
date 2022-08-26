@@ -5,18 +5,14 @@ import { Goerli, Mainnet, useCall, useNetwork } from '@usedapp/core';
 import { abis } from '@dmail/contracts';
 
 import { DMAIL_ADDRESS_GOERLI, DMAIL_ADDRESS_MAINNET } from '../constants';
-
-type SupportedAddresses =
-  | typeof DMAIL_ADDRESS_GOERLI
-  | typeof DMAIL_ADDRESS_MAINNET;
-
-type SupportedChainIds =
-  | 1 // mainnet
-  | 5; //goerli
-
-type DmailAddressLookup = {
-  [K in SupportedChainIds]: SupportedAddresses;
-};
+import {
+  DmailAddressLookup,
+  DmailContextValue,
+  HooksLookup,
+  MakeContractMethodHook,
+  SupportedChainIds,
+} from './DmailTypes';
+import { Abi, ContractMethod } from '../ethereum/EthereumTypes';
 
 const dmailAddressLookup = {
   [Mainnet.chainId]: DMAIL_ADDRESS_MAINNET,
@@ -43,27 +39,10 @@ const dmailAddressLookup = {
 //     )
 //   );
 
-type ContractElement = {
-  name: string;
-  type: 'function' | 'event';
-};
-
-type Abi = ContractElement[];
-
 const renameToUseHookStyle = ([first, ...rest]: string) =>
   `use${first.toUpperCase()}${rest.join('')}`;
 
-type MakeHookParams = {
-  abi: Abi;
-  address: string;
-  method: ContractElement;
-};
-
-type Hook = (...args: any[]) => any;
-
-type MakeHook = (params: MakeHookParams) => Hook;
-
-const makeHook: MakeHook =
+const makeContractMethodHook: MakeContractMethodHook =
   ({ abi, address, method }) =>
   (...args) => {
     const { value, error } =
@@ -82,16 +61,14 @@ const makeHook: MakeHook =
   };
 
 const makeContractMethodHooks = (address: string, abi: Abi): HooksLookup =>
-  abi.reduce((accum: HooksLookup, method) => {
-    accum[renameToUseHookStyle(method.name)] = makeHook({
+  (abi as ContractMethod[]).reduce((accum: HooksLookup, method) => {
+    accum[renameToUseHookStyle(method.name)] = makeContractMethodHook({
       abi,
       address,
       method,
     });
     return accum;
   }, {});
-
-type HooksLookup = { [K: string]: Hook };
 
 const useContract = (address: string, abi: Abi): HooksLookup =>
   useMemo(
@@ -123,10 +100,6 @@ const useContract = (address: string, abi: Abi): HooksLookup =>
 //     if (error) console.error(error);
 //   });
 // };
-
-type DmailContextValue = {
-  unreadCount: number;
-};
 
 export const DmailContext = createContext<DmailContextValue>({
   unreadCount: 0,

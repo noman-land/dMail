@@ -12,7 +12,7 @@ import {
 } from '@usedapp/core';
 
 import { App } from './App';
-import { DmailContextProvider } from './dmail/DMailHooks';
+import { DmailContextProvider } from './dmail/DmailContextProvider';
 import { IpfsContextProvider } from './ipfs/IpfsContextProvider';
 
 // Change this to your own Infura project id: https://infura.io/register

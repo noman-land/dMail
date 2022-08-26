@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 import { Key, useContext, useEffect } from 'react';
 
+import { DmailContext } from '../dmail/DmailContextProvider';
 import { ERROR_TEXT, IpfsContext } from '../ipfs/IpfsContextProvider';
 import { MessageSnippet } from './MessageSnippet';
-import { Message } from './MessageTypes';
-import { DmailContext } from '../dmail/DMailHooks';
-
-type MessageListProps = {
-  messages: Message[];
-};
+import { MessageListProps } from './MessageTypes';
 
 const StyledMessageList = styled.div`
   flex-grow: 1;
