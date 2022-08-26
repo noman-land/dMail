@@ -20,7 +20,9 @@ export const useIpfs = () => {
     }
     return () => {
       if (ipfs && ipfs.stop) {
-        ipfs.stop().catch(e => console.error('Problem stopping IPFS:', e));
+        ipfs
+          .stop()
+          .catch(e => console.error('Problem while stopping IPFS:', e));
       }
     };
   }, [ipfs]);
