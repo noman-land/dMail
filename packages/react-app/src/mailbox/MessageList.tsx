@@ -4,6 +4,7 @@ import { Key, useContext, useEffect } from 'react';
 import { ERROR_TEXT, IpfsContext } from '../ipfs/IpfsContextProvider';
 import { MessageSnippet } from './MessageSnippet';
 import { Message } from './MessageTypes';
+import { DmailContext } from '../dmail/DMailHooks';
 
 type MessageListProps = {
   messages: Message[];
@@ -21,6 +22,9 @@ const StyledUl = styled.ul`
 
 export const MessageList = ({ messages }: MessageListProps) => {
   const { addJson, getJson } = useContext(IpfsContext);
+  const { unreadCount } = useContext(DmailContext);
+
+  console.log('unreadCount', unreadCount);
 
   useEffect(() => {
     addJson({ okay: 'hi' })

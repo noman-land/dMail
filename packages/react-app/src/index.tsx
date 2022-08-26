@@ -12,6 +12,7 @@ import {
 } from '@usedapp/core';
 
 import { App } from './App';
+import { DmailContextProvider } from './dmail/DMailHooks';
 import { IpfsContextProvider } from './ipfs/IpfsContextProvider';
 
 // Change this to your own Infura project id: https://infura.io/register
@@ -24,17 +25,16 @@ const config: Config = {
   },
 };
 
-const container = document.getElementById('root');
-const root = createRoot(container!);
-
-root.render(
+createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <DAppProvider config={config}>
-      <IpfsContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </IpfsContextProvider>
+      <DmailContextProvider>
+        <IpfsContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </IpfsContextProvider>
+      </DmailContextProvider>
     </DAppProvider>
   </React.StrictMode>
 );
