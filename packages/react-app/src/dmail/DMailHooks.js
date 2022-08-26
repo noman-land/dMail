@@ -1,3 +1,11 @@
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+
 import { Goerli, Localhost } from '@usedapp/core';
 
 import { createContractInterface } from './ethereumUtils';
@@ -7,8 +15,6 @@ import {
   DMAIL_ADDRESS_GOERLI,
   DMAIL_ADDRESS_LOCAL,
 } from '../constants';
-
-let DMailInterface;
 
 const dMailAddressLookup = {
   [Localhost.chainId]: DMAIL_ADDRESS_LOCAL,
@@ -100,4 +106,21 @@ export const watchForNewMailArchived = () => {
   newMailArchivedEvent.watch((error, result) => {
     if (error) console.error(error);
   });
+};
+
+export const DmailContext = createContext({});
+
+export const DmailContextProvider = ({ children }) => {
+  const [dmail, setDmail] = useState();
+
+  useEffect(() => {
+    if (!dmail) {
+    }
+  }, [dmail]);
+
+  const value = useMemo(() => ({}), []);
+
+  return (
+    <DmailContext.Provider value={value}>{children}</DmailContext.Provider>
+  );
 };

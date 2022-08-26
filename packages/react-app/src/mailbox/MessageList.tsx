@@ -29,7 +29,14 @@ export const MessageList = ({
   useEffect(() => {
     addJson({ okay: 'hi' })
       .then(({ cid }) => getJson(cid))
-      .then(console.log);
+      .then(result => console.log('result', result))
+      .catch(error => {
+        if (error.message === 'IPFS not set up yet') {
+          console.info(`${error.message}. Skipping.`);
+        } else {
+          throw error;
+        }
+      });
   }, [addJson, getJson]);
 
   return (

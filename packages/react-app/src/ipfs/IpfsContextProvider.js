@@ -10,8 +10,8 @@ import { Buffer } from 'buffer';
 import * as IPFS from 'ipfs-core';
 
 export const IpfsContext = createContext({
-  addJson: _ => new Promise(),
-  getJson: _ => new Promise(),
+  addJson: Promise.reject,
+  getJson: Promise.reject,
 });
 
 export const IpfsContextProvider = ({ children }) => {
@@ -19,14 +19,24 @@ export const IpfsContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (!ipfs) {
-      IPFS.create().then(client => {
-        window.ipfs = client;
-        setIpfs(client);
-      });
+      IPFS.create()
+        .then(client => {
+          window.ipfs = client;
+          setIpfs(client);
+        })
+        .catch(error => {
+          if (
+            error.message === 'Lock already being held for file: ipfs/repo.lock'
+          ) {
+            console.info('IPFS repo has already been created. Skipping.');
+          } else {
+            throw error;
+          }
+        });
     }
     return () => {
       if (ipfs && ipfs.stop) {
-        ipfs.stop().catch(console.error);
+        ipfs.stop().catch(e => console.error('Problem stopping IPFS:', e));
       }
     };
   }, [ipfs]);
@@ -36,7 +46,7 @@ export const IpfsContextProvider = ({ children }) => {
       if (ipfs) {
         return ipfs.add(Buffer.from(JSON.stringify(file)));
       }
-      return Promise.reject(new Error('ipfs not set up yet'));
+      return Promise.reject(new Error('IPFS not set up yet'));
     },
     [ipfs]
   );
@@ -51,7 +61,7 @@ export const IpfsContextProvider = ({ children }) => {
         return Promise.resolve(JSON.parse(buffer[1].toString()));
       }
 
-      return Promise.reject(new Error('ipfs not set up yet'));
+      return Promise.reject(new Error('IPFS not set up yet'));
     },
     [ipfs]
   );
