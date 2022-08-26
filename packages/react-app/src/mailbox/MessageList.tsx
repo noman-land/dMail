@@ -28,7 +28,7 @@ export const MessageList = ({ messages }: MessageListProps) => {
       .then(result => console.log('result', result))
       .catch(error => {
         if (error.message === ERROR_TEXT) {
-          console.info(`${error.message}. Deffering.`);
+          console.info(`${error.message}. Deferring.`);
         } else {
           throw error;
         }
