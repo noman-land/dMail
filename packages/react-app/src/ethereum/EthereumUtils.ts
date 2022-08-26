@@ -1,4 +1,9 @@
-import { Abi, HooksLookup, MakeContractMethodHook } from './EthereumTypes';
+import {
+  Abi,
+  ContractMethod,
+  HooksLookup,
+  MakeContractMethodHook,
+} from './EthereumTypes';
 
 import { Contract } from '@ethersproject/contracts';
 import { useCall } from '@usedapp/core';
@@ -28,14 +33,11 @@ export const makeContractMethodHooks = (
   address: string,
   abi: Abi
 ): HooksLookup =>
-  (abi as import('./EthereumTypes').ContractMethod[]).reduce(
-    (accum: HooksLookup, method) => {
-      accum[renameToUseHookStyle(method.name)] = makeContractMethodHook({
-        abi,
-        address,
-        method,
-      });
-      return accum;
-    },
-    {}
-  );
+  (abi as ContractMethod[]).reduce((accum: HooksLookup, method) => {
+    accum[renameToUseHookStyle(method.name)] = makeContractMethodHook({
+      abi,
+      address,
+      method,
+    });
+    return accum;
+  }, {});
