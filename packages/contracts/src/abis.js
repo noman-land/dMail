@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import DMail from './abis/DMail.json';
+import dmailAbi from './abis/dmail.json';
 
 export const abis = {
-  dmail: DMail,
+  dmail: dmailAbi,
 };
