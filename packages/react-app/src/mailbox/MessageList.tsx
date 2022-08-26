@@ -1,5 +1,5 @@
-import { Key, useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import { Key, useContext, useEffect } from 'react';
 
 import { ERROR_TEXT, IpfsContext } from '../ipfs/IpfsContextProvider';
 import { MessageSnippet } from './MessageSnippet';
