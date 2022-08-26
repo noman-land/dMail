@@ -32,7 +32,7 @@ export const MessageList = ({
       .then(result => console.log('result', result))
       .catch(error => {
         if (error.message === 'IPFS not set up yet') {
-          console.info(`${error.message}. Skipping.`);
+          console.info(`${error.message}. Deffering.`);
         } else {
           throw error;
         }
