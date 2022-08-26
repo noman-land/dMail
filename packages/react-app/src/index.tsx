@@ -7,7 +7,7 @@ import {
   Config,
   DAppProvider,
   Goerli,
-  Localhost,
+  // Localhost,
   Mainnet,
 } from '@usedapp/core';
 
