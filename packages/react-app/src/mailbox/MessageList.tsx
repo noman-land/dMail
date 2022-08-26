@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { IpfsContext } from '../ipfs/IpfsContextProvider';
+import { ERROR_TEXT, IpfsContext } from '../ipfs/IpfsContextProvider';
 import { MessageSnippet } from './MessageSnippet';
 import { Message } from './MessageTypes';
 
@@ -31,7 +31,7 @@ export const MessageList = ({
       .then(({ cid }) => getJson(cid))
       .then(result => console.log('result', result))
       .catch(error => {
-        if (error.message === 'IPFS not set up yet') {
+        if (error.message === ERROR_TEXT) {
           console.info(`${error.message}. Deffering.`);
         } else {
           throw error;
