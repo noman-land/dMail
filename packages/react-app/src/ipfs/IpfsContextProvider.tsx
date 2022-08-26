@@ -6,9 +6,12 @@ import { Context, createContext, ReactNode, useCallback, useMemo } from 'react';
 import { useIpfs } from './IpfsHooks';
 import { collect } from './IpfsUtils';
 
+type AddJson = (json: any) => Promise<AddResult>;
+type GetJson = (cid: IPFSPath) => Promise<any>;
+
 type IpfsContextValue = {
-  addJson: (file: any) => Promise<AddResult>;
-  getJson: (cid: IPFSPath) => Promise<any>;
+  addJson: AddJson;
+  getJson: GetJson;
 };
 
 export const ERROR_TEXT = 'IPFS is not set up yet';
@@ -21,18 +24,16 @@ export const IpfsContext: Context<IpfsContextValue> = createContext({
 export const IpfsContextProvider = ({ children }: { children: ReactNode }) => {
   const ipfs = useIpfs();
 
-  const addJson = useCallback(
-    (file: any) => {
-      if (ipfs) {
-        return ipfs.add(Buffer.from(JSON.stringify(file)));
-      }
-      return Promise.reject(new Error(ERROR_TEXT));
-    },
+  const addJson = useCallback<AddJson>(
+    json =>
+      ipfs
+        ? ipfs.add(Buffer.from(JSON.stringify(json)))
+        : Promise.reject(new Error(ERROR_TEXT)),
     [ipfs]
   );
 
-  const getJson = useCallback(
-    async (cid: IPFSPath) =>
+  const getJson = useCallback<GetJson>(
+    async cid =>
       ipfs
         ? collect(ipfs.get(cid))
             .then(result => result[1].toString())

@@ -1,3 +1,5 @@
+import { IPFSPath } from 'ipfs-core-types/dist/src/utils';
+
 export type MessageMetadata = {
   sender: string;
   sentDate: number;
@@ -10,7 +12,7 @@ export type MessageContent = {
 
 export type Message = {
   metadata: MessageMetadata;
-  metadataHash: string;
+  metadataHash: IPFSPath;
   messageContent: MessageContent;
 };
 
