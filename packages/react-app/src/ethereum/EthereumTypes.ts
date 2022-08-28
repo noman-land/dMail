@@ -1,27 +1,39 @@
-export type ContractMethod = {
+export type ContractAbiMethod = {
   name: string;
   type: 'function';
 };
 
-type ContractEvent = {
+type ContractAbiEvent = {
   name: string;
   type: 'event';
 };
 
-type ContractElement = ContractMethod | ContractEvent;
+type ContractAbiElement = ContractAbiMethod | ContractAbiEvent;
 
-export type Abi = ContractElement[];
+export type Abi = ContractAbiElement[];
 
 type MakeContractMethodHookParams = {
   abi: Abi;
   address: string;
-  method: ContractMethod;
+  method: ContractAbiMethod;
 };
 
-type Hook = (...args: any[]) => any;
+export type ContractHookName<HN = string> = HN;
+
+export type Hook = (...args: any[]) => any;
 
 export type MakeContractMethodHook = (
   params: MakeContractMethodHookParams
 ) => Hook;
 
-export type HooksLookup = { [K: string]: Hook };
+export type HooksLookup<HN extends string> = { [K in HN]: Hook };
+
+export type UseContract<HN extends string> = (
+  address: string,
+  abi: Abi
+) => HooksLookup<HN>;
+
+export type MakeContractMethodHooks<HN extends string> = (
+  address: string,
+  abi: Abi
+) => HooksLookup<HN>;

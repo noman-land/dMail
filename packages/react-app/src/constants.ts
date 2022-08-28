@@ -5,7 +5,7 @@ export const DMAIL_ADDRESS_GOERLI =
 type AppRoute = 'inbox' | 'drafts' | 'settings';
 type RouteKey = 'INBOX' | 'DRAFTS' | 'SETTINGS';
 type Routes = {
-  readonly [K in RouteKey]: AppRoute;
+  [K in RouteKey]: AppRoute;
 };
 
 export const routes: Routes = {

@@ -18,9 +18,48 @@ const StyledUl = styled.ul`
 
 export const MessageList = ({ messages }: MessageListProps) => {
   const { addJson, getJson } = useContext(IpfsContext);
-  const { unreadCount } = useContext(DmailContext);
+  const {
+    useClearInbox,
+    useGetArchiveAddress,
+    useGetMail,
+    useGetUnreadCount,
+    useSendMessage,
+    useUpdateArchiveAddress,
+  } = useContext(DmailContext);
 
-  console.log('unreadCount', unreadCount);
+  // const {
+  //   send: clearInbox,
+  //   state: clearInboxState,
+  //   events: clearInboxStateEvents,
+  // } = useClearInbox();
+  // const {
+  //   send: getArchiveAddress,
+  //   state: archiveAddressState,
+  //   events: getArchiveAddressStateEvents,
+  // } = useGetArchiveAddress();
+  // const {
+  //   send: getMail,
+  //   state: mailState,
+  //   events: getMailStateEvents,
+  // } = useGetMail();
+  // const {
+  //   send: sendMessage,
+  //   state: messageState,
+  //   events: sendMessageStateEvents,
+  // } = useSendMessage();
+  // const {
+  //   send: updateArchiveAddress,
+  //   state: updatedArchiveAddressState,
+  //   events: updateArchiveAddressStateEvents,
+  // } = useUpdateArchiveAddress();
+
+  const unreadCount = useGetUnreadCount()?.toNumber();
+  const archiveAddress = useGetArchiveAddress();
+  const cleared = useClearInbox();
+
+  console.log('unread', unreadCount);
+  console.log('archive', archiveAddress);
+  console.log('cleared', cleared);
 
   useEffect(() => {
     addJson({ okay: 'hi' })

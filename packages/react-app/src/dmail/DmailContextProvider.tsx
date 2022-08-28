@@ -1,16 +1,16 @@
 import { createContext, ReactNode, useMemo } from 'react';
-import { Goerli, Mainnet, useNetwork } from '@usedapp/core';
+import { Goerli, Mainnet, TransactionStatus, useNetwork } from '@usedapp/core';
 
 import { abis } from '@dmail/contracts';
 
 import { DMAIL_ADDRESS_GOERLI, DMAIL_ADDRESS_MAINNET } from '../constants';
 import {
   DmailAddressLookup,
-  DmailContextValue,
+  DmailHookNames,
   SupportedChainIds,
 } from './DmailTypes';
-import { Abi, HooksLookup } from '../ethereum/EthereumTypes';
-import { makeContractMethodHooks } from '../ethereum/EthereumUtils';
+import { useContract } from '../ethereum/EthereumHooks';
+import { HooksLookup } from '../ethereum/EthereumTypes';
 
 const dmailAddressLookup = {
   [Mainnet.chainId]: DMAIL_ADDRESS_MAINNET,
@@ -37,16 +37,6 @@ const dmailAddressLookup = {
 //     )
 //   );
 
-const useContract = (address: string, abi: Abi): HooksLookup =>
-  useMemo(
-    () =>
-      makeContractMethodHooks(
-        address,
-        abi.filter(m => m.type === 'function')
-      ),
-    [address, abi]
-  );
-
 // export const watchForArchiveAddressUpdated = () => {
 //   const archiveAddressUpdatedEvent = DMailInterface.ArchiveAddressUpdated();
 //   archiveAddressUpdatedEvent.watch((error, result) => {
@@ -68,30 +58,31 @@ const useContract = (address: string, abi: Abi): HooksLookup =>
 //   });
 // };
 
-export const DmailContext = createContext<DmailContextValue>({
-  unreadCount: 0,
-});
+// const send = () => Promise.reject();
+// const state = {};
+// const events = [] as LogDescription[];
+// const resetState = () => {};
+
+const DmailContextValue: HooksLookup<DmailHookNames> = {
+  useClearInbox: () => {},
+  useSendMessage: () => {},
+  useUpdateArchiveAddress: () => {},
+  useGetArchiveAddress: () => {},
+  useGetMail: () => {},
+  useGetUnreadCount: () => {},
+};
+
+export const DmailContext =
+  createContext<HooksLookup<DmailHookNames>>(DmailContextValue);
 
 export const DmailContextProvider = ({ children }: { children: ReactNode }) => {
   const {
     network: { chainId },
   } = useNetwork();
 
-  const { useGetUnreadCount } = useContract(
-    dmailAddressLookup[chainId as SupportedChainIds],
-    abis.dmail
-  );
-
-  const unreadCount = useGetUnreadCount()?.toNumber();
-
-  const value = useMemo(
-    () => ({
-      unreadCount,
-    }),
-    [unreadCount]
-  );
-
+  const address = dmailAddressLookup[chainId as SupportedChainIds];
+  const dmail: HooksLookup<DmailHookNames> = useContract(address, abis.dmail);
   return (
-    <DmailContext.Provider value={value}>{children}</DmailContext.Provider>
+    <DmailContext.Provider value={dmail}>{children}</DmailContext.Provider>
   );
 };

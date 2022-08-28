@@ -12,6 +12,10 @@ export type DmailAddressLookup = {
   [K in SupportedChainIds]: SupportedAddresses;
 };
 
-export type DmailContextValue = {
-  unreadCount: number;
-};
+export type DmailHookNames =
+  | 'useClearInbox'
+  | 'useGetArchiveAddress'
+  | 'useGetMail'
+  | 'useGetUnreadCount'
+  | 'useSendMessage'
+  | 'useUpdateArchiveAddress';

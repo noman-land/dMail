@@ -1,12 +1,15 @@
 import {
   Abi,
-  ContractMethod,
+  ContractAbiMethod,
+  ContractHookName,
   HooksLookup,
   MakeContractMethodHook,
+  MakeContractMethodHooks,
 } from './EthereumTypes';
 
 import { Contract } from '@ethersproject/contracts';
-import { useCall } from '@usedapp/core';
+import { useCall, useContractFunction } from '@usedapp/core';
+import { useCallback } from 'react';
 
 const renameToUseHookStyle = ([first, ...rest]: string) =>
   `use${first.toUpperCase()}${rest.join('')}`;
@@ -14,6 +17,12 @@ const renameToUseHookStyle = ([first, ...rest]: string) =>
 const makeContractMethodHook: MakeContractMethodHook =
   ({ abi, address, method }) =>
   (...args) => {
+    //   console.log('address', address);
+    //   return useContractFunction(new Contract(address, abi), method.name, {
+    //     transactionName: `${method.name}-${Date.now}`,
+    //   });
+    // };
+
     const { value, error } =
       useCall(
         address && {
@@ -29,15 +38,17 @@ const makeContractMethodHook: MakeContractMethodHook =
     return value?.[0];
   };
 
-export const makeContractMethodHooks = (
-  address: string,
-  abi: Abi
-): HooksLookup =>
-  (abi as ContractMethod[]).reduce((accum: HooksLookup, method) => {
-    accum[renameToUseHookStyle(method.name)] = makeContractMethodHook({
-      abi,
-      address,
-      method,
-    });
-    return accum;
-  }, {});
+export const makeContractMethodHooks: MakeContractMethodHooks<
+  ContractHookName
+> = (address, abi) =>
+  (abi as ContractAbiMethod[]).reduce(
+    (accum: HooksLookup<ContractHookName>, method) => {
+      accum[renameToUseHookStyle(method.name)] = makeContractMethodHook({
+        abi,
+        address,
+        method,
+      });
+      return accum;
+    },
+    {}
+  );
