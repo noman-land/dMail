@@ -1,5 +1,7 @@
-*.DS_*
 node_modules
-.idea
+.DS_*
+.swp
+.swo
 *.log
-static/bundle
+.vscode
+.env
